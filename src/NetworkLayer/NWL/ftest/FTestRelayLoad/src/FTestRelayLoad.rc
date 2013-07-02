@@ -1,0 +1,207 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 14,0,0,0
+ PRODUCTVERSION 14,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "14.0.0.0"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "InternalName", "FTestRelayLoad.exe"
+            VALUE "OriginalFilename", "FTestRelayLoad.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "14.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_FTESTRELAYLOAD      REGISTRY                "FTestRelayLoad.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "FTestRelayLoad"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Ukrainian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+#ifdef _WIN32
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LOADTESTDLG DIALOGEX 0, 0, 510, 305
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Load Test For Relay Server"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Test",IDC_TESTGROUPSTATIC,235,7,268,45
+    LTEXT           "Type:",IDC_TESTTYPESTATIC,243,17,19,8
+    COMBOBOX        IDC_TESTTYPECOMBO,270,15,118,157,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Start",IDC_TESTSTARTBUTTON,392,14,50,14
+    PUSHBUTTON      "Stop",IDC_TESTSTOPBUTTON,445,14,50,14
+    PUSHBUTTON      "Clear Results",IDC_CLEARBUTTON,391,34,50,16
+    PUSHBUTTON      "Close",IDCLOSE,445,34,50,16
+    GROUPBOX        "Results",IDC_RESULTGROUPSTATIC,235,52,268,139
+    LISTBOX         IDC_RESULTLIST,242,63,254,122,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_OUTLIST,7,193,496,105,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Relay Server",IDC_RELAYGROUPSTATIC,7,7,226,38
+    LTEXT           "Address:",IDC_RELAYADDRESSSTATIC,12,23,28,8
+    CONTROL         "",IDC_IPADDRESS,"SysIPAddress32",WS_TABSTOP,48,20,101,15
+    LTEXT           "Port:",IDC_RELAYPORTSTATIC,162,23,16,8
+    EDITTEXT        IDC_RELAYPORTEDIT,185,20,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Authentication",IDC_AUTHGROUPSTATIC,7,46,226,47
+    LTEXT           "User:",IDC_USERSTATIC,13,57,18,8
+    EDITTEXT        IDC_USEREDIT,48,55,81,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_PASSWDSTATIC,14,73,34,8
+    EDITTEXT        IDC_PASSWDEDIT,48,71,178,14,ES_AUTOHSCROLL
+    GROUPBOX        "Threading",IDC_STRESSGROUPSTATIC,7,94,226,32
+    LTEXT           "Pool size:",IDC_POOLSTATIC,14,105,31,8
+    EDITTEXT        IDC_POOLEDIT,48,103,40,14,ES_AUTOHSCROLL
+    LTEXT           "Clients:",IDC_CLIENTSSTATIC,113,105,24,8
+    EDITTEXT        IDC_CLIENTSEDIT,145,103,47,14,ES_AUTOHSCROLL
+    GROUPBOX        "Test data (for Relay and NAT traversing tests only)",IDC_DATASTATIC,7,126,226,34
+    LTEXT           "Block size(b):",IDC_BLOCKSIZESTATIC,15,140,43,8
+    EDITTEXT        IDC_BLOCKSIZEEDIT,65,137,46,14,ES_AUTOHSCROLL
+    LTEXT           "Count of blocks:",IDC_BLOCKSCOUNTSTATIC,119,141,52,8
+    EDITTEXT        IDC_BLOCKSCOUNTEDIT,176,138,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Additional (for Open port test only)",IDC_EXTGROUPSTATIC,7,160,226,31
+    LTEXT           "External port:",IDC_EXTPORTSTATIC,15,172,42,8
+    EDITTEXT        IDC_EXTPORTEDIT,64,170,48,14,ES_AUTOHSCROLL
+    LTEXT           "Internal port:",IDC_INTPORTSTATIC,129,172,40,8
+    EDITTEXT        IDC_INTPORTEDIT,177,170,40,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_LOADTESTDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 503
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 298
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Ukrainian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,54 @@
+Todo
+----
+
+- libidn replacement?
+
+- mixed-content XML
+- unit tests (NonSaslAuth)
+- dns, linux, dyndns and 127.0.0.1
+
+- overhaul all XEP implementations (and note implemented version number)
+- RosterItem::status ::statusMsg for highest prio
+
+- (more) namespaces?
+- move stl/stdlib typedefs to types.h (?)
+- split send()/getID() to clientbasebase (?)
+- check this change: http://www.jabberstudio.org/cgi-bin/viewcvs.cgi/cvs/jeps/0085/jep-0085.xml?r1=1.28&r2=1.31
+- XEP-0020 (Feature Negotiation)
+- XEP-0079 (AMP)
+- XEP-0115 (Entity Capabilities)
+- XEP-0155 (Chat Session Negotiation)
+- XEP-0166 (Jingle Signaling)
+- XEP-0175 (Best Practices for Use of SASL ANONYMOUS)
+- XEP-0186 (Invisible Command)
+- XEP-0198 (Stanza Acknowledgements)
+- XEP-0199 (XMPP Ping)
+- sort SRV records by weight & cost
+- state p. for Stanza types
+- vcard-temp: support AGENT, CATEGORIES, SOUND, KEY
+- make socket tunable (keepalive)
+- allow for registration and immediate connection from within the same Client object
+- bindings (C, ...) (SWIG)
+- add prePresenceHook (for XEP-0182 (Invisible Command))
+- fix STLport support/configure check (broken on autoconf 2.61?)
+
+
+- more XPath
+- XEP-0174 (Link-Local Messaging)
+  - zeroconf support in XEP-0065
+
+
+- check subjectAltName for JIDs (core sec. 5.1 rule 8)
+- introduce some 'randomness' for IDs
+- introduce return values for *Handlers to indicate whether following handlers should be invoked as well
+- unify error recognition
+- look into IPv6 support
+- empty passwords allowed?
+
+
+
+rfc3920bis
+----------
+
+3.2: nameprep: set UseSTD3ASCIIRules to true
+

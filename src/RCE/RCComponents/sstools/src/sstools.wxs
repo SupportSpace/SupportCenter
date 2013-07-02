@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<!-- Product code must be changed (Major upgrade) by remove a component from a feature.
+       Debug and Release installations have different component composition in feature and MUST have different Product code.
+       See for detail http://msdn2.microsoft.com/en-us/library//aa367850.aspx (MSDN Changing the Product Code) -->
+	<!-- 58CBD3D5-549A-426a-B63E-EF2F1D90F0C9 -->
+	<!-- D8B374AE-9420-4afd-8DFC-FF7759429899 -->
+	<!-- 44B6670E-A800-4d31-9455-028AE9826D85 14.12.2007 -->
+  <!-- 1BBCEFD3-486C-480d-B536-52E5F4BF9E99 26.12.2007 -->
+	<!-- 8AB65E59-E555-4a58-BFD4-45F921912EA6 25.01.2008 -->
+	<!-- 1944D043-E4BF-4ce8-A4F9-464C3E3F09BE 22.05.2008 -->
+	<!-- 9C8E8CA3-D491-4aa6-8114-C6B33C40613D 01.06.2008 -->
+	<!-- C8B434D5-7FA3-4709-A07E-F281542742B1 02.06.2008 -->
+	<!-- AEA71097-7C8E-45f2-B595-37C3B69AE5FF 23.07.2008 -->
+	
+	<Product Id="AEA71097-7C8E-45f2-B595-37C3B69AE5FF" UpgradeCode="B359C619-3526-4216-BA49-7022953D0C8E" Version="14.0.0.0"                                                                                 
+		Name="SupportSpace Support Tools" Language="1033" Manufacturer="SupportSpace, Inc.">
+		<Package Description="SupportSpace Support Tools (Expanded)"  
+			Comments="This will appear in the file summary stream." InstallerVersion="200" Compressed="yes" />
+		<Upgrade Id="B359C619-3526-4216-BA49-7022953D0C8E">
+			<!--<UpgradeVersion ExcludeLanguages="yes" Minimum="5.0.522.6" IncludeMinimum="no" Property="OLDPRODUCTSCODES1" />
+			<UpgradeVersion ExcludeLanguages="yes" Minimum="0.0.0.0" Maximum="5.0.522.6" IncludeMaximum="yes" RemoveFeatures="RemoteControl,FileAccess" Property="OLDPRODUCTSCODES" />-->
+			<UpgradeVersion ExcludeLanguages="yes" Minimum="0.0.0.0" Property="OLDPRODUCTSCODES" />
+		</Upgrade>
+		<Property Id="OLDPRODUCTSCODES" Secure="yes"/>
+		<Property Id="OLDPRODUCTSCODES1" Secure="yes"/>
+		<!-- Turn off Restart Manager (WIv4). HelperService is running when InstallValidate action is carrying out. RM can define FilesInUse by system services. It is crutch.-->
+		<Property Id="MSIRESTARTMANAGERCONTROL" Value="Disable"/>
+
+
+		<!-- Dynamic configurations-->
+		<?if $(var.Configuration)="dynamic_release" or $(var.Configuration)="dynamic_debug"?>
+		<?define dynamic=""?>
+		<?endif?>
+
+		<!-- CompressLevel -->
+		<?ifdef dynamic>
+    <?define compressLevel="high" ?>
+		<?else ?>
+		<?define compressLevel="mszip" ?>
+		<?endif ?>
+
+		<!-- includs -->
+		<!--<?include SupportMessenger.wxi?>-->
+
+		<!--<Media Id="10"	Cabinet="RCInst.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>-->
+		<Media Id="20" Cabinet="RCUI.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)" />
+		<Media Id="30" Cabinet="FTUI.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+		<!--<Media Id="40" Cabinet="NetLogLb.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>-->
+		<Media Id="55" Cabinet="Broker.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+    <Media Id="51" Cabinet="HlpSvc.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+		<Media Id="60" Cabinet="ScEngine.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+		<Media Id="70" Cabinet="BrokerPx.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+		<Media Id="75" Cabinet="FFBP.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+		<?ifdef dynamic?>
+		<Media Id="1"	Cabinet="NWL.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+		<Media Id="2"	Cabinet="CRT.cab" EmbedCab="no" CompressionLevel="$(var.compressLevel)"/>
+		<?endif?>
+
+		<!--per-machine installation. Vista integrity level elevation demand of HKLM COM registration.-->
+		<Property Id="ALLUSERS" Value="1"/>
+		<!-- prevents the installer from registering any media source -->
+		<Property Id="DISABLEMEDIA" Value="1"/>
+		<!-- IE Security settings by default cAddToSupportSpaceZoneHKLM install -->
+		<!-- <Property Id="IESECURITY" Value="AddToSupportSpaceZoneHKLM"/> -->
+		<Property Id="IESECURITY" Value="null"/>
+		<!-- the primary icon for the Windows Installer package-->
+		<Property Id="ARPPRODUCTICON" Value="main"/>
+		<!-- Reboot suppression. Installation will happen. Changes will not be effective until the system is rebooted. -->
+		<!--<Property Id="REBOOT" Value="RealySuppress"/>-->
+
+		<!-- installation canceling if reboot needed and no UI -->
+		<!--When no UI and Files-In-Use a silent reboot is happen (when Initial installer install RCInstaller now). 
+				To prevent this use next workflow: Carry out of installation script (InstallExecute action) without ending the transaction.
+				Test ReplacedInUseFiles property. If this property set – reboot needed – installation be canceled via return 2 value from jscript
+				CancelInstallation() function. The installation rollback will carry out. MsiExec return 1602 - The user cancels installation.
+		-->
+		<Property Id="RoutinesScript">
+			function CancelInstallation()
+			{
+			var res=2;//Premature termination by user.
+			var record=Session.Installer.CreateRecord(4);
+			if(Session.Property("REBOOTSILENTLYENABLED")=="1")
+			{
+				record.StringData(1)="Installation must be canceled because of no UI and reboot needed. BUT silent reboot enabled.";
+				res=1;//Action completed successfully.
+			}
+			else
+				record.StringData(1)="Installation is canceled because of no UI and reboot needed. Raise UI level for blocking processes names see. Close these process.";
+			record.StringData(2)="UILevel="+Session.Property("UILevel")+" ReplacedInUseFiles="+Session.Property("ReplacedInUseFiles")+" REBOOTSILENTLYENABLED="+Session.Property("REBOOTSILENTLYENABLED");
+			Session.Message(0x01000000,record);
+			return res;//Premature termination by user.
+			}
+			
+			function RemoveCodebaseRemoving()
+			{
+				var result=1;
+				var oldProducts="";
+				oldProducts=Session.Property("OLDPRODUCTSCODES");
+				if(oldProducts=="")
+				{
+					var record=Session.Installer.CreateRecord(1);
+					record.StringData(1)="Session.Property('OLDPRODUCTSCODES') does not exist";
+					Session.Message(0x04000000,record);
+					return result;
+				}
+				var record=Session.Installer.CreateRecord(1);
+				record.StringData(1)="OLDPRODUCTSCODES="+oldProducts;
+				Session.Message(0x04000000,record);
+				
+				var products=oldProducts.split(";");
+				for(var i=0;i&lt;products.length;++i)
+				{
+					var productCode=products[i];
+					var package=null;
+					try
+					{
+						package=Session.Installer.ProductInfo(productCode,'LocalPackage');
+					}
+					catch(e)
+					{
+						var record=Session.Installer.CreateRecord(2);
+						record.StringData(1)="Session.Installer.ProductInfo("+productCode+",'LocalPackage') failed";
+						record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+						Session.Message(0x04000000,record);
+						continue;
+					}
+					var database=null;
+					try
+					{
+						database=Session.Installer.OpenDatabase(package,1);
+					}
+					catch(e)
+					{
+						var record=Session.Installer.CreateRecord(2);
+						record.StringData(1)="Session.Installer.OpenDatabase("+package+",1) failed";
+						record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+						Session.Message(0x04000000,record);
+						continue;
+					}
+					
+					var view=null;
+					var query="DELETE FROM `Registry` WHERE `Registry`.`Key`='SOFTWARE\\Microsoft\\Code Store Database\\Distribution Units\\{08653405-44A9-4E99-9C09-DD00770AAA08}'";
+					//var query="SELECT * FROM Registry WHERE 'Registry'.'Key'='SOFTWARE\\Microsoft\\Code Store Database\\Distribution Units\\{08653405-44A9-4E99-9C09-DD00770AAA08}'";
+					try
+					{
+						view=database.OpenView(query);
+					}
+					catch(e)
+					{
+						var record=Session.Installer.CreateRecord(2);
+						record.StringData(1)="database.OpenView("+query+") failed";
+						record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+						Session.Message(0x04000000,record);
+						continue;
+					}
+
+					try
+					{
+						view.Execute();
+					}
+					catch(e)
+					{
+						var record=Session.Installer.CreateRecord(2);
+						record.StringData(1)="view.Execute() failed";
+						record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+						Session.Message(0x04000000,record);
+						continue;
+					}
+
+					try
+					{
+						view.Close();
+					}
+					catch(e)
+					{
+						var record=Session.Installer.CreateRecord(2);
+						record.StringData(1)="view.Close() failed";
+						record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+						Session.Message(0x04000000,record);
+						continue;
+					}
+					
+					try
+					{
+						database.Commit();
+					}
+					catch(e)
+					{
+						var record=Session.Installer.CreateRecord(2);
+						record.StringData(1)="database.Commit() failed";
+						record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+						Session.Message(0x04000000,record);
+						continue;
+					}
+					var record=Session.Installer.CreateRecord(1);
+					record.StringData(1)="ProductCode="+productCode+" LocalPackage="+package+" Carried out.";
+					Session.Message(0x04000000,record);
+				}
+			}
+			function InstallUpg()
+			{
+				var result=1;
+				var installUpg="";
+				var installed="";
+				installUpg=Session.Property("INSTALLUPG");
+				if(installUpg=="")
+				{
+					var record=Session.Installer.CreateRecord(1);
+					record.StringData(1)="INSTALLUPG does not set";
+					Session.Message(0x04000000,record);
+					return result;
+				}
+				else
+				{
+					installed=Session.Property("Installed");
+					if(installed=="")
+					{
+						Session.Property("ADDLOCAL")=installUpg;
+						Session.Property("REINSTALL")="";
+					}
+					else
+					{
+						Session.Property("ADDLOCAL")="";
+						Session.Property("REINSTALL")=installUpg;
+					}
+				}
+				var addlocal=Session.Property("ADDLOCAL");
+				var reinstall=Session.Property("REINSTALL");
+				var reinstallmode=Session.Property("REINSTALLMODE");
+				var record=Session.Installer.CreateRecord(1);
+				record.StringData(1)="INSTALLUPG="+installUpg+" Installed="+installed+" ADDLOCAL="+addlocal+" REINSTALL="+reinstall+" REINSTALLMODE="+reinstallmode;
+				Session.Message(0x04000000,record);
+				return result;
+			}
+		</Property>
+		<!-- FireFox folder search -->
+		<Property Id="MOZILLAFIREFOXFOLDER">
+			<RegistrySearch Id="MozillaFirefoxFolderSearch" Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\firefox.exe" Name="Path" Type="directory" />
+		</Property>
+		<Property Id="BrokerProxyCodebaseUrl" Value="http://192.168.50.82/rcp/14.0.0.0/SupportSpace_tools.dll"/>
+		
+		<CustomAction Id="cancelInstallation" Property="RoutinesScript" JScriptCall="CancelInstallation"/>
+		<CustomAction Id="removeCodebaseRemoving" Property="RoutinesScript" JScriptCall="RemoveCodebaseRemoving" Impersonate="no"/>
+		<CustomAction Id="installUpg" Property="RoutinesScript" JScriptCall="InstallUpg"/>
+		<CustomAction Id="setMozillaFirefoxFolder" Property="MozillaFirefoxFolder" Value="[MOZILLAFIREFOXFOLDER]"/>
+		<InstallExecuteSequence>
+			<Custom Action="installUpg" Before="FindRelatedProducts">INSTALLUPG&lt;&gt;""</Custom>
+			<!-- FireFox folder setting -->
+			<Custom Action="setMozillaFirefoxFolder" Before="CostFinalize"/>
+			<InstallExecute Before="InstallFinalize"/>
+			<!-- installation canceling if reboot needed and no UI -->
+			<Custom Action="cancelInstallation" After="InstallExecute">UILevel&lt;3 AND ReplacedInUseFiles</Custom>
+			<!-- InitialInstaller (supportspace_tools.dll) deleting by full uninstallation UPGRADINGPRODUCTCODE indicator of RemoveExistingProducts action-->
+			<!--<Custom Action="ssinitRemove" After="InstallFinalize">REMOVE="ALL" AND UPGRADINGPRODUCTCODE=""</Custom>-->
+			<Custom Action="ssinitRemove" Before="InstallExecute">REMOVE="ALL" AND UPGRADINGPRODUCTCODE=""</Custom>
+      <!--Custom Action="installHelperService" Before="InstallExecute">
+        <![CDATA[(?cHelperService<>3 AND $cHelperService=3) OR ((?cHelperService=3 AND $cHelperService=3) AND (REINSTALL><"ALL" OR REINSTALL><"Broker"))]]>
+      </Custom>
+      <Custom Action="uninstallHelperService" After="InstallInitialize">
+        <![CDATA[(?cHelperService=3 AND $cHelperService=2) OR ((?cHelperService=3 AND $cHelperService=3) AND (REINSTALL><"ALL" OR REINSTALL><"Broker"))]]>
+      </Custom-->
+			<!--<RemoveExistingProducts After="InstallFinalize"/>-->
+			<RemoveExistingProducts Before="InstallInitialize"/>
+			<Custom Action="removeCodebaseRemoving" Before="RemoveExistingProducts"/>
+		</InstallExecuteSequence>
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<!--folders values use for uninstall shortcut-->
+			<Directory Id="DesktopFolder"/>
+			<Directory Id="SystemFolder"/>
+			<Directory Id="ProgramMenuFolder"/>
+			<Directory Id="WindowsFolder">
+				<Directory Id="DownloadedProgramFiles" Name="Downloaded Program Files"/>
+			</Directory>
+			<Directory Id="ProgramFilesFolder">
+				<!--main target installation folder-->
+				<Directory Id="SupportSpaceFolder" ShortName="SupSpace" Name ="SupportSpace">
+					<Directory Id="INSTALLLOCATION" ShortName="SupPltfm" Name="Support Platform"/>
+				</Directory>
+			</Directory>
+			<Directory Id="MozillaFirefoxFolder">
+				<Directory Id="MozillaFirefoxPluginsFolder" Name="plugins"/>
+			</Directory>
+		</Directory>
+		
+			
+	
+		<!--<Feature Id="RCInstaller" Title="Remote Control Installer Feature" Level="1">
+			<ComponentRef Id="cRCInstaller"/>-->
+			<!--<?ifdef dynamic?>-->
+			<!--<ComponentRef Id="cNetLogLib"/>-->
+			<!--<?endif ?>-->
+		<!--</Feature>-->
+
+
+
+		<!-- the primary icon for the Windows Installer package-->
+		<Icon Id="main" SourceFile="..\..\src\SupportMessenger.ico"/>
+	</Product>
+</Wix>

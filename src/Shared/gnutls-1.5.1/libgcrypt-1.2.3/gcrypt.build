@@ -1,0 +1,133 @@
+<?xml version="1.0" ?>
+
+<project name="GCrypt" default="build_all">
+
+
+  <!-- Additional targers -->
+
+  <!-- Setup environment variables -->
+  <target name="setup_environment">
+    <property name="roots.dir" value="${environment::get-variable('ROOTS')}" />
+    <if test="${property::exists('configuration')}">
+      <setenv>
+        <variable name="CONFIGURATION" value="${configuration}" />
+      </setenv>
+    </if>
+    <if test="${not property::exists('configuration')}">
+      <property name="configuration" value="${environment::get-variable('CONFIGURATION')}" />
+    </if>
+    <property name="install.dir" value="${roots.dir}\console_${configuration}" />
+    <property name="public.dir" value="public" />
+    <property name="output.bin.dir" value="out\bin\${configuration}" />
+    <property name="output.obj.dir" value="out\obj\${configuration}" />
+    <property name="project.name" value="gcrypt" />
+    <property name="project.exclude" value="GCRYPT_EXCLUDE_${configuration}" />
+    <property name="test.exclude" value="GCRYPT_TEST_EXCLUDE_${configuration}" />
+    <property name="test.bin.path" value="TESTBINPATH_${configuration}" />
+    <if test="${not property::exists('failontesterror')}">
+      <property name="failontesterror" value="true" />
+    </if>
+  </target>
+
+  <!-- Removing public files and binary files from roots direcory -->
+  <target name="clean_installed" />
+
+  <!-- Removing intermediate files from output direcory -->
+  <target name="clean_intermediate" depends="setup_environment">
+    <delete dir="${output.bin.dir}" if="${directory::exists(output.bin.dir)}" />
+    <delete dir="${output.obj.dir}" if="${directory::exists(output.obj.dir)}" />
+  </target>
+
+  <!-- Copying public files to roots directory -->
+  <target name="copy_public" />
+
+  <!-- Copying binary files from output directory to roots directory -->
+  <target name="copy_binaries" />
+
+  <!-- Building dependent projects -->
+  <target name="build_dependent" />
+
+  <!-- Building unit tests -->
+  <target name="build_utests" />
+
+  <!-- Building functional tests -->
+  <target name="build_ftests" />
+
+  <!-- Running unit and functional tests -->
+  <target name="run_tests" depends="setup_environment" if="${not environment::variable-exists(test.exclude)}" >
+    <property name="build.target" value="run_tests" />
+    <call target="build_dependent" failonerror="${failontesterror}" />
+    <setenv if="${not environment::variable-exists(test.bin.path)}" >
+      <variable name="PATH" value="${install.dir}\bin;%PATH%" />
+      <variable name="${test.bin.path}" value="1" />
+    </setenv>
+    <!-- INSERT TEST -->
+    <setenv>
+      <variable name="${test.exclude}" value="1" />
+    </setenv>
+  </target>
+
+
+
+  <!-- Main targers -->
+
+  <!-- Cleaning project -->
+  <target name="clean" depends="clean_installed, clean_intermediate" />
+
+  <!-- Installing project -->
+  <target name="install" depends="clean_installed, copy_public, copy_binaries" />
+
+  <!-- Building project and tests -->
+  <target name="build_all" depends="setup_environment" if="${not environment::variable-exists(project.exclude)}" >
+    <call target="clean_installed" />
+    <call target="copy_public" />
+    <property name="build.target" value="build_all" />
+    <call target="build_dependent" />
+    <call target="compile" />
+    <call target="copy_binaries" />
+    <setenv>
+      <variable name="${project.exclude}" value="1" />
+    </setenv>
+    <call target="build_utests" />
+    <call target="build_ftests" />
+  </target>
+
+  <!-- Building project -->
+  <target name="build" depends="setup_environment" if="${not environment::variable-exists(project.exclude)}" >
+    <call target="clean_installed" />
+    <call target="copy_public" />
+    <property name="build.target" value="build" />
+    <call target="build_dependent" />
+    <call target="compile" />
+    <call target="copy_binaries" />
+    <setenv>
+      <variable name="${project.exclude}" value="1" />
+    </setenv>
+  </target>
+
+  <!-- Building project without dependent projects -->
+  <target name="build_shallow" depends="clean_installed, copy_public, compile, copy_binaries" />
+
+  <!-- Compiling project -->
+  <target name="compile" depends="setup_environment">
+    <setenv>
+      <variable name="BUILDRCEFROMSCRIPT" value="1" />
+    </setenv>
+    <msbuild project = "src\w32gcrypt\w32gcrypt.vcproj" verbosity="Detailed" />
+  </target>
+
+
+
+  <!-- Targers for Visual Studio -->
+  <target name="prebuild" if="${not environment::variable-exists('BUILDRCEFROMSCRIPT')}">
+    <setenv>
+      <variable name="BUILDRCEFROMVS" value="1" />
+    </setenv>
+    <call target="clean_installed" />
+    <call target="copy_public" />
+  </target>
+  <target name="postbuild" if="${not environment::variable-exists('BUILDRCEFROMSCRIPT')}">
+    <call target="copy_binaries" />
+  </target>
+
+</project>

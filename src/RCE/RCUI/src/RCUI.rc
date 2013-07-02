@@ -1,0 +1,316 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// SKINS
+//
+
+IDR_CHB_UNCHECKED_REGULAR SKINS                   "images\\checkBox_unchecked_regular.png"
+IDR_CHB_CHECKED_MOUSEOVER SKINS                   "images\\checkBox_checked_mouseOver.png"
+IDR_CHB_CHECKED_REGULAR SKINS                   "images\\checkBox_checked_regular.png"
+IDR_CHB_UNCHECKED_MOUSEOVER SKINS                   "images\\checkBox_unchecked_mouseOver.png"
+IDR_CHB_UNCHECKED_DISABLED SKINS                   "images\\checkBox_unchecked_disabled.png"
+IDR_CHB_CHECKED_DISABLED SKINS                   "images\\checkBox_checked_disabled.png"
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_RCUI                REGISTRY                "RCUI.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "RCUI"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// SKINS
+//
+
+IDR_VSESSION            SKINS                   "images\\app_remote_control_top_first_panel_bkg.gif"
+IDR_VSTATUS             SKINS                   "images\\app_bottom_panel_bkg.gif"
+IDR_VSTATUS_DRAG        SKINS                   "images\\drag_status.gif"
+IDR_UIS_PERMISSION_REQUEST_SEND SKINS                   "images\\indicator_waiting_approval.gif"
+IDR_UIS_SESSION_CONNECTING SKINS                   "images\\indicator_connecting_customer.gif"
+IDR_UIS_SESSION_FAILED  SKINS                   "images\\indicator_connection_failed.gif"
+IDR_UIS_PERMISSION_RECIEVED SKINS                   "images\\indicator_customer_approved.gif"
+IDR_UIS_PERMISSION_DENIED SKINS                   "images\\indicator_customer_declined.gif"
+IDR_UIS_INSTALLATION_FAILED SKINS                   "images\\indicator_install_failed.gif"
+IDR_UIS_INSTALLATION_INPROGRESS SKINS                   "images\\indicator_install_porgress.gif"
+IDR_UIS_SESSION_OFF     SKINS                   "images\\indicator_sharing_off.gif"
+IDR_UIS_SESSION_ON      SKINS                   "images\\indicator_sharing_on.gif"
+IDR_UIS_INSTALLATION_SUCCESSFUL SKINS                   "images\\indicator_successful_install.gif"
+IDR_BTN_DISABLED_72_22  SKINS                   "images\\button_disabled_74x22.gif"
+IDR_BTN_MOUSEOVER_72_22 SKINS                   "images\\button_mouse_over_74x22.gif"
+IDR_BTN_PRESSED_72_22   SKINS                   "images\\button_pressed_74x22.gif"
+IDR_BTN_REGULAR_72_22   SKINS                   "images\\button_regular_74x22.gif"
+IDR_VSCOMBOBOXREGULAR   SKINS                   "images\\control_regular_85x20.gif"
+IDR_DOWN_MOUSE_OVER_74_22 SKINS                   "images\\button_setting_down_mouse_over_74x22.gif"
+IDR_DOWN_PRESSED_74_22  SKINS                   "images\\button_setting_down_pressed_74x22.gif"
+IDR_DOWN_REGULAR_74_22  SKINS                   "images\\button_setting_down_regular_74x22.gif"
+IDR_UP_MOUSE_OVER_74_22 SKINS                   "images\\button_setting_up_mouse_over_74x22.gif"
+IDR_UP_PRESSED_74_22    SKINS                   "images\\button_setting_up_pressed_74x22.gif"
+IDR_UP_REGULAR_74_22    SKINS                   "images\\button_setting_up_regular_74x22.gif"
+IDR_VSCOMBOBOXPRESSED   SKINS                   "images\\control_pressed_85x20.gif"
+IDR_VSCOMBOBOXDISABLED  SKINS                   "images\\control_disabled_85x20.gif"
+IDR_VPROPERTIES_CNTR    SKINS                   "images\\app_remote_control_top_second_panel_cntr.gif"
+IDR_VPROPERTIES_LEFT    SKINS                   "images\\app_remote_control_top_second_panel_left.gif"
+IDR_VPROPERTIES_RIGHT   SKINS                   "images\\app_remote_control_top_second_panel_right.gif"
+IDR_CAD_REGULAR         SKINS                   "images\\cad_normal.gif"
+IDR_CAD_MOUSEOVER       SKINS                   "images\\cad_selected.gif"
+IDR_CAD_DISABLED        SKINS                   "images\\cad_disabled.gif"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CFACTORYCONNECTDLG DIALOGEX 0, 0, 186, 74
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connection progress"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,77,51,50,16,NOT WS_VISIBLE
+    PUSHBUTTON      "Cancel",IDCANCEL,129,51,50,16
+    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",WS_BORDER | 0x1,7,36,172,14
+    LTEXT           "Start connectings...",IDC_STATIC1,7,7,172,29
+END
+
+IDD_RCVIEWERSESSIONDLG DIALOGEX 0, 0, 452, 26
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 7, "Verdana", 400, 0, 0xCC
+BEGIN
+    LTEXT           "Customer:",IDC_VSCUSTOMERTITLE,303,6,47,12,SS_NOTIFY | SS_CENTERIMAGE | NOT WS_VISIBLE,WS_EX_TRANSPARENT
+    CONTROL         "Customer Name",IDC_VSCUSTOMER,"Static",SS_LEFTNOWORDWRAP | SS_CENTERIMAGE | NOT WS_VISIBLE | WS_GROUP,333,7,67,12,WS_EX_TRANSPARENT
+    PUSHBUTTON      "Settings",IDC_VSPROPERTIES,402,6,44,15,BS_LEFT
+    LTEXT           "Permission:",IDC_VSPERMISIONTITLE,5,7,51,12,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    COMBOBOX        IDC_VSPERMISSION,62,6,67,57,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Send",IDC_VSSTART,135,6,42,15
+    LTEXT           "Disable customer background",IDC_HIDE_WALLPAPER_CHBOX,190,9,179,8,SS_NOTIFY
+END
+
+IDD_RCVIEWERDLG DIALOGEX 0, 0, 186, 95
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPCHILDREN
+FONT 9, "Verdana", 400, 0, 0xCC
+BEGIN
+    LTEXT           "",IDC_RCVIEWERAXPANEL,29,22,118,43
+END
+
+IDD_RCVIEWERPROPERTIESDLG DIALOGEX 0, 0, 319, 56
+STYLE DS_SETFONT | WS_CHILD
+FONT 7, "Verdana", 400, 0, 0xCC
+BEGIN
+    LTEXT           "Settings:",IDC_VPTITLE,5,7,44,12,SS_CENTERIMAGE
+    LTEXT           "Display:",IDC_VPDISPLAYTITLE,62,7,53,12,SS_CENTERIMAGE
+    LTEXT           "Colors:",IDC_VPCOLORSTITLE,62,23,53,12,SS_CENTERIMAGE
+    LTEXT           "Compression:",IDC_VSCOMPRESSIONTITLE,62,39,53,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_VPDISPLAY,135,5,59,82,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_VPCOLORS,135,21,59,105,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_VPCOMPRESSION,135,37,59,100,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Apply",IDC_VPAPPLY,271,35,42,15
+    PUSHBUTTON      "",IDC_CAD_BTN,206,35,42,15,NOT WS_VISIBLE
+    LTEXT           "Hide wallpaper",IDC_HIDE_WALLPAPER_CHBOX,210,7,98,8,SS_NOTIFY | NOT WS_VISIBLE
+END
+
+IDD_RCVIEWERSTATUSBARDLG DIALOGEX 0, 0, 186, 15
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 9, "Verdana", 700, 0, 0xCC
+BEGIN
+    CONTROL         "Status bar",IDC_VSBMESSAGE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,27,3,37,8
+    CONTROL         "",IDC_VSBDRAG,"Static",SS_ETCHEDFRAME | SS_REALSIZEIMAGE,3,4,7,7,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_VSBSTATUSICON,"Static",SS_BLACKFRAME,14,3,9,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CFACTORYCONNECTDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_RCVIEWERSESSIONDLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 400
+    END
+
+    IDD_RCVIEWERDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_RCVIEWERPROPERTIESDLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 313
+        BOTTOMMARGIN, 52
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_RCVIEWERSESSIONDLG DLGINIT
+BEGIN
+    IDC_VSPERMISSION, 0x403, 10, 0
+0x6552, 0x6461, 0x4f20, 0x6c6e, 0x0079, 
+    IDC_VSPERMISSION, 0x403, 9, 0
+0x7547, 0x6469, 0x6e61, 0x6563, "\000" 
+    IDC_VSPERMISSION, 0x403, 13, 0
+0x7546, 0x6c6c, 0x4320, 0x6e6f, 0x7274, 0x6c6f, "\000" 
+    0
+END
+
+IDD_RCVIEWERPROPERTIESDLG DLGINIT
+BEGIN
+    IDC_VPDISPLAY, 0x403, 11, 0
+0x6353, 0x6c61, 0x2065, 0x6f6d, 0x6564, "\000" 
+    IDC_VPDISPLAY, 0x403, 12, 0
+0x6353, 0x6f72, 0x6c6c, 0x6d20, 0x646f, 0x0065, 
+    IDC_VPDISPLAY, 0x403, 12, 0
+0x7546, 0x6c6c, 0x7320, 0x7263, 0x6565, 0x006e, 
+    IDC_VPCOLORS, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_VPCOLORS, 0x403, 5, 0
+0x7546, 0x6c6c, "\000" 
+    IDC_VPCOLORS, 0x403, 4, 0
+0x3532, 0x0036, 
+    IDC_VPCOLORS, 0x403, 3, 0
+0x3436, "\000" 
+    IDC_VPCOLORS, 0x403, 2, 0
+0x0038, 
+    IDC_VPCOLORS, 0x403, 7, 0
+0x2038, 0x7267, 0x7965, "\000" 
+    IDC_VPCOLORS, 0x403, 2, 0
+0x0034, 
+    IDC_VPCOLORS, 0x403, 2, 0
+0x0032, 
+    IDC_VPCOMPRESSION, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_VPCOMPRESSION, 0x403, 5, 0
+0x6948, 0x6867, "\000" 
+    IDC_VPCOMPRESSION, 0x403, 7, 0
+0x654d, 0x6964, 0x6d75, "\000" 
+    IDC_VPCOMPRESSION, 0x403, 4, 0
+0x6f4c, 0x0077, 
+    0
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,19 @@
+/**
+ * Uncomment whichever lib you have installed.
+ * Do not try to use (uncomment) more than one SSL/TLS implementation at a time
+ */
+
+/* Uncomment if you have zlib available and want to use it */
+// #define HAVE_ZLIB 1
+
+/* Uncomment if you have GnuTLS available and want to use it */
+#define HAVE_GNUTLS 1
+
+/* Uncomment if you have OpenSSL available and want to use it */
+// #define HAVE_OPENSSL 1
+
+/* Uncomment if you want to use native win32 TLS support (SChannel) */
+// #define HAVE_WINTLS 1
+
+/* Uncomment if you have LibIDN available and want to use it */
+// #define HAVE_LIBIDN 1

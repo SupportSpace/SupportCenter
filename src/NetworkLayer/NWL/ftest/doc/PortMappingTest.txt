@@ -1,0 +1,53 @@
+Port Mapping test user guide
+============================
+
+1. Configure ini file
+2. Run functional test
+
+Ini file description
+
+[CONFIG]			//General configuration
+PortMapping=1|0			- test with or without port mapping
+CountToStart=1			- number of working threads
+SearchDelay=2000		- time in milliseconds for discovering UPnP device
+CountToTry=3			- number of port changing attempts, if ports are busied
+DeleteMapping=1|0		- delete port mapping after all operations
+
+[SERVER]
+Address=192.168.0.66		- address of the relay server
+Port=5904			- port of the relay server
+
+[AUTOGENUSER]			//COnfiguration for multithread connections
+Name=NamePrefix			- Prefix for user name with incremental number at the end
+Password=UserLoginPassword	- User password. One for all users
+ExternalPort=60000		- External port wich are incremented for each user
+InternalPort=60000		- Internal port wich are incremented for each user
+				  If selected the CONFIG:PortMapping=0 configuration the external
+				  and internal ports must be equal
+Protocol=TCP|UDP		- Access protocol
+
+[USERS]				//Users data
+				  If this section is empty then uses [AUTOGENUSER] section
+Section1=User1			- Section with user's data
+Section2=User2			
+...
+				  If the CONFIG:CountToStart less then the number of users in [USERS]
+				  section then user's data selects in cycles
+
+[User1]				//User data
+Name=UserLoginName1		- User name
+Password=UserLoginPassword1	- User password
+ExternalPort=1000		- Prefer external port
+InternalPort=1000		- Prefer internal port
+Protocol=TCP|UDP		- Access protocol
+
+[User2]
+Name=UserLoginName2
+Password=UserLoginPassword2
+ExternalPort=2000
+InternalPort=2000
+Protocol=TCP
+
+...
+
+ 

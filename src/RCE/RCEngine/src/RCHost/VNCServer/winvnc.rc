@@ -1,0 +1,208 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+IDR_MANIFEST            RT_MANIFEST             "winvnc.exe.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 14,0,0,0
+ PRODUCTVERSION 14,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "UltraVNC - Remote Control for all"
+            VALUE "CompanyName", "UltraVNC"
+            VALUE "FileDescription", "VNC server for Win32"
+            VALUE "FileVersion", "14.0.0.0"
+            VALUE "InternalName", "WinVNC"
+            VALUE "LegalCopyright", "Copyright  2002-2005 UltraVNC team members"
+            VALUE "LegalTrademarks", "VNC"
+            VALUE "OriginalFilename", "WinVNC.exe"
+            VALUE "ProductName", "UltraVNC"
+            VALUE "ProductVersion", "14.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDI_WINVNC              "WinVNC"
+    IDS_WARNING             "WARNING: By default, this session do not use any encryption whatsoever. Please do not use it to send sensitive data unless you are sure your connection is secure.\n\n"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FAILED_INIT          "Failed to initialise the socket system"
+    ID_WINVNC_USAGE         "WinVNC Usage"
+    ID_ANOTHER_INST         "Another instance of WinVNC is already running"
+    ID_NO_EXIST_INST        "No existing instance of WinVNC could be contacted"
+    ID_UNABLE_INST          "Unable to install WinVNC service"
+    ID_SCM_NOT_HERE         "The SCM could not be contacted - the WinVNC service was not installed"
+    ID_SERV_NOT_REG         "The WinVNC service could not be registered"
+    ID_SERV_FAIL_ST         "The WinVNC service failed to start"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SERV_CT_MISS         "The Service Control Manager could not be contacted - the WinVNC service was not registered"
+    ID_SERV_OLD_REG         "The WinVNC service is already registered"
+    ID_SERVHELP_UNAB        "WARNING:Unable to install the ServiceHelper hook\nGlobal user-specific registry settings will not be loaded"
+    ID_SERV_CT_UNREG        "The Service Control Manager could not be contacted - the WinVNC service was not unregistered"
+    ID_SERV_NOT_UNRG        "The WinVNC service could not be unregistered"
+    ID_SERV_NCONTACT        "The WinVNC service could not be contacted"
+    ID_SERVHELP_NREM        "WARNING:The ServiceHelper hook entry could not be removed from the registry"
+    ID_SERV_NOT_STOP        "The WinVNC service could not be stopped"
+    ID_SERV_MK_UNREG        "The WinVNC service is already marked to be unregistered"
+    ID_SERV_NT_FOUND        "The WinVNC service could not be found"
+    ID_WINVNC_ERROR         "WinVNC Error"
+    ID_WINVNC_WARNIN        "WinVNC Warning"
+    ID_PLUGIN_LOADIN        "Plugin Loading"
+    ID_NO_PASSWD_NO_OVERRIDE_ERR 
+                            "No password has been set & this machine has been preconfigured to prevent users from setting their own.\nYou must contact a System Administrator to configure WinVNC properly."
+    ID_NO_PASSWD_NO_OVERRIDE_WARN 
+                            "WARNING : This machine has been preconfigured to allow un-authenticated\nconnections to be accepted and to prevent users from enabling authentication."
+    ID_NO_PASSWD_NO_LOGON_WARN 
+                            "WARNING : This machine has no default password set.  WinVNC will present the Default Properties dialog now to allow one to be entered."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NO_OVERRIDE_ERR      "This machine has been preconfigured with WinVNC settings, which cannot be overridden by individual users.  The preconfigured settings may be modified only by a System Administrator."
+    ID_NO_CURRENT_USER_ERR  "The WinVNC settings for the current user are unavailable at present."
+    ID_CANNOT_EDIT_DEFAULT_PREFS 
+                            "You do not have sufficient priviliges to edit the default local WinVNC settings."
+    ID_NO_PASSWORD_WARN     "WARNING : Running WinVNC without setting a password is a dangerous security risk!\nUntil you set a password, WinVNC will not accept incoming connections."
+    ID_PLUGIN_NOT_LOAD      "The Plugin cannot be loaded.\n\rPlease check its integrity."
+    ID_MB1                  "MB1"
+    ID_WVNC                 "WVNC"
+    ID_AUTHAD_NOT_FO        "You selected ms-logon, but the authad.dll\nwas not found.Check you installation"
+    ID_WARNING              "WARNING"
+    ID_AUTH_NOT_FO          "You selected ms-logon, but the auth.dll\nwas not found.Check you installation"
+    ID_DESKTOP_BITBLT_ROOT  "vncDesktop : root device doesn't support BitBlt\nWinVNC cannot be used with this graphic device driver"
+    ID_DESKTOP_BITBLT_MEM   "vncDesktop : memory device doesn't support GetDIBits\nWinVNC cannot be used with this graphics device driver"
+    ID_DESKTOP_PLANAR_NOTC  "vncDesktop : current display is PLANAR, not CHUNKY!\nWinVNC cannot be used with this graphics device driver"
+    ID_FAILED_CONNECT_LISTING_VIEW "Failed to connect to listening VNC viewer"
+    ID_OUTGOING_CONNECTION  "Outgoing Connection"
+    ID_UNABLE_PROC_MSLOGON  "Unable to process MS logon"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_RICHED32_UNLOAD      "Unable to load the Rich Edit (RICHED32.DLL) control!"
+    ID_RICHED32_DLL_LD      "Rich Edit Dll Loading"
+    ID_SERV_SUCCESS_INST    "The WinVNC service was successfully installed\nThe service will start now and will automatically\nbe run the next time this machine is reset"
+    ID_SERV_SUCCESS_REG     "The WinVNC service was successfully registered\nThe service may be started from the Control Panel, and will\nautomatically be run the next time this machine is reset"
+    ID_SERV_SUCCESS_UNREG   "The WinVNC service has been unregistered"
+    ID_ULTRAVNC_TEXTCHAT    "The selected client is not an Ultr@VNC Viewer !\nIt presumably does not support TextChat\n"
+    ID_ULTRAVNC_WARNING     "Ultr@VNC Warning"
+    ID_NO_PLUGIN_DETECT     "No Plugin detected..."
+    ID_CHAT_WITH_S_ULTRAVNC " Chat with <%s> - Ultr@VNC"
+    ID_CURRENT_USER_PROP    "WinVNC: Current User Properties"
+    ID_DEFAULT_SYST_PROP    "WinVNC: Default Local System Properties"
+    ID_AUTOREJECT_U         "AutoReject:%u"
+    ID_AUTOACCEPT_U         "AutoAccept:%u"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

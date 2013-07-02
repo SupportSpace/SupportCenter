@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+
+<project name="SupportSpaceSettings">
+  
+  <property name="tag" value="sprint14_0_0" />
+  <property name="configuration" value="dynamic_release" />
+  <property name="deploy_url" value="192.168.50.82;max;edem;zeus;supportspace.com;archer-soft.com;atlantis;andromeda;pluto;pluto.supportspace.com"/>
+
+  <property name="major.version" value="14" />
+  <property name="minor.version" value="0" />
+  <property name="release.version" value="0" />
+  <if test="${not property::exists('build.version')}">
+    <property name="build.version" value="0" />
+  </if>
+
+  <property name="jabber.base" value="JHB/" />
+  <property name="jabber.domain" value="edem" />
+  <property name="relay.server" value="192.168.0.66" />
+
+  <property name="ssinit.major.version" value="14" />
+  <property name="ssinit.minor.version" value="0" />
+  <property name="ssinit.release.version" value="0" />
+  <property name="ssinit.build.version" value="0" />
+
+
+  <!-- ftp settings -->
+  <property name="sftp.server" value="shuttlebuild.supportspace.com" />
+  <property name="sftp.user" value="shuttle" />
+  <property name="sftp.passwd" value="shuttle" />
+  <property name="sftp.dir" value="autobuilds/sftp/last_build" />
+  <!-- remote build settings -->
+  <property name="remote.build.dir" value="~/autobuilds/root" />
+  <property name="remote.sftp.dir" value="~/autobuilds/sftp" />
+  <property name="remote.build.params" value="PLATFORM=m64" />
+  <!-- ssh settings -->
+  <property name="ssh.host" value="shuttlebuild.supportspace.com" />
+  <property name="ssh.user" value="shuttle" />
+  <property name="ssh.passwd" value="shuttle" />
+
+  
+  <!-- baseurl for expert's side installation -->
+	<!-- baseurl=rccomponents.baseurl+'/'+rccomponents.partofurl+'/'+version -->
+	<property name="rccomponents.baseurl" value="http://www.supportspace.com/rcp"/>
+	<property name="rccomponents.partofurl" value=""/>
+	<!-- as result baseurl for MsiStuff.exe call will be http://max/iframe/bin/4.0.48.6 -->
+	<property name="sstools.codebaseurl" value="http://www.supportspace.com/rcp/14.0.0.0"/>
+</project>

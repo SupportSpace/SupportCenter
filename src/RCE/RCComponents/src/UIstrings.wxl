@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+	
+	<String Id="WelcomeDlg_Title" Overridable="yes">[ProductName]</String>
+	<String Id="WelcomeDlgDescription" Overridable="yes">The setup wizard will install our support tools on your computer.
+Click Next to continue or Cancel to exit setup.</String>
+	<String Id="WelcomeDlgTitle" Overridable="yes">{\WixUI_Font_Bigger}Welcome to the [ProductName] setup wizard</String>
+
+	<String Id="LicenseAgreementDlg_Title" Overridable="no">[ProductName]</String>
+	<String Id="LicenseAgreementDlgTitle" Overridable="yes">{\WixUI_Font_Title}Software License Agreement</String>
+
+	<String Id="InstallDirDlg_Title" Overridable="yes">[ProductName]</String>
+	<String Id="InstallDirDlgFolderLabel" Overridable="yes">Install [ProductName] in:</String>
+
+	<String Id="VerifyReadyDlg_Title" Overridable="yes">[ProductName]</String>
+	<String Id="VerifyReadyDlgInstallTitle" Overridable="yes">{\WixUI_Font_Title}Ready to install the support platform</String>
+
+	<String Id="ExitDialog_Title" Overridable="yes">[ProductName]</String>
+	<String Id="ExitDialogDescription" Overridable="yes">Click Finish to exit the setup wizard.</String>
+	<String Id="ExitDialogTitle" Overridable="yes">{\WixUI_Font_Bigger}Done!
+The SupportSpace support platform is now installed on your computer.</String>
+	
+	<String Id="MaintenanceTypeDlg_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="MaintenanceWelcomeDlg_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="BrowseDlg_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="DiskCostDlg_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="ErrorDlg_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="FatalError_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="FilesInUse_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="MsiRMFilesInUse_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="PrepareDlg_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="ProgressDlg_Title" Overridable="yes">[ProductName]</String>
+	<String Id="ProgressDlgTextInstalling" Overridable="yes">Please wait while the setup wizard installs the support platform.</String>
+	<String Id="ProgressDlgTitleInstalling" Overridable="yes">{\WixUI_Font_Title}Installing the support platform</String>
+	<String Id="ProgressDlgTextChanging" Overridable="yes">Please wait while the setup wizard changes the support platform.</String>
+	<String Id="ProgressDlgTitleChanging" Overridable="yes">{\WixUI_Font_Title}Changing the support platform</String>
+	<String Id="ProgressDlgTextRepairing" Overridable="yes">Please wait while the setup wizard repairs the support platform.</String>
+	<String Id="ProgressDlgTitleRepairing" Overridable="yes">{\WixUI_Font_Title}Repairing the support platform</String>
+	<String Id="ProgressDlgTextRemoving" Overridable="yes">Please wait while the setup wizard removes the support platform.</String>
+	<String Id="ProgressDlgTitleRemoving" Overridable="yes">{\WixUI_Font_Title}Removing the support platform</String>
+
+	<String Id="ResumeDlg_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="UserExit_Title" Overridable="yes">[ProductName]</String>
+
+	<String Id="CancelDlg_Title" Overridable="yes">[ProductName]</String>
+
+</WixLocalization>

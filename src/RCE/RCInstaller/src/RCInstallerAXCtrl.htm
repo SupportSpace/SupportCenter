@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>ATL 7.0 test page for object RCInstallerAXCtrl</TITLE>
+</HEAD>
+<BODY>
+
+<script language=javascript>
+  function Kill()
+  {
+    document.getElementById("RCInstallerAXCtrl").removeNode(true);
+    installer=null;
+    CollectGarbage();
+  }
+</script>
+<object id="RCInstallerObject" classid="clsid:7B3BBD75-A77C-40D9-BD0E-943055093249" width="0" height="0"> </object>
+<object id="IMMediatorObject" classid="clsid:3FE73D88-72F5-4526-A106-FAA12DE9A619" width="0" height="0"> </object>
+<OBJECT ID="RCInstallerAXCtrl" CLASSID="CLSID:7B3BBD75-A77C-40D9-BD0E-943055093249"></OBJECT>
+<input type=button value="kill" onclick="Kill();" />
+<script language=javascript>
+  var installer=new Object();
+  installer.installer=RCInstallerAXCtrl;
+  function OnNotifyLogMessage(message,severity)
+		{	var strseverity="";
+			/*@if (@_debug)@*/
+			switch(severity)
+			{	
+				case 0: strseverity="_MES ";break;
+				case 1: strseverity="_WAR ";break;
+				case 2: strseverity="_ERR ";break;
+				case 3: strseverity="_EXC ";break;
+				case 4: strseverity="_UTS ";break;
+				case 5: strseverity="_UTC ";break;
+				case 6: strseverity="_FTS ";break;
+				case 7: strseverity="_FTC ";break;
+				case -1: strseverity="_JS_ ";break;
+				default:strseverity="unkn ";
+			}
+			/*@end @*/
+			//logger.innerText=strseverity+message+"\n"+logger.innerText;
+			alert(strseverity+message);
+			//TODO create clean up old message and big blank space between submessage
+		}
+		RCInstallerAXCtrl.attachEvent("NotifyLogMessage",OnNotifyLogMessage);
+</script>
+
+</BODY>
+</HTML>

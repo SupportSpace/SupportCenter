@@ -1,0 +1,118 @@
+html, body{width:100%;height:100%;overflow:hidden;background-color:#DCDCDC;}
+html,body,form {margin:0;padding:0}
+
+
+/*#mainWin{width:300px;height:600px;background-color:green}*/
+#CMWindow{width:100%;height:100%;}
+#CMWindowTL{width:14px;height:78px;background-image:url('../img/frame_top_left_corner.gif');}
+#CMWindowT{height:78px;background-image:url('../img/frame_top_side_bkg.gif');}
+#CMWindowTR{width:75px;height:78px;background-image:url('../img/frame_top_right_corner.gif');}
+#CMWindowBtns{position:absolute;top:11px;width:100px;right:30px;}
+#CMHeaderPanel{width:100%;margin-top:10px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;}
+#CMHeaderPanel_1{margin:9px 0 0 9px;color:#6C6C6C;font-weight:bold;}
+#CMSupporterStatus{float:left}
+#CMSupporterName{margin:3px 0 0 5px;float:left}
+.dWindowButton{width:13px;height:12px;font-size: 0px;line-height:0px;float:left;margin-left:4px;}
+
+#CMSupporterStatusMenu{position:absolute;width:150px;top:50px;left:10px;z-index:5;background-color:#B6B6B6;border:1px solid #8B8B8B;}
+.dStatusChoice{color:#FFFFFF;padding:2px 4px 2px 4px;font-size:11px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;}
+.dStatusChoiceOver{font-weight:bold;background-color:#969696;}
+
+#CMPanels{width:100%;height:100%;}
+
+#CMPanel1{height:100%;background-color:#DCDCDC;}
+#CMPanel1,#CMPanel2{width:100%;}
+#CMPanel1 TR {font-size:11px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;color:#000000;font-weight:bold;letter-spacing:-1pt;}
+
+#CMLoginPanel{height:100%;}
+#CMLoginLogo{background-color:#FFFFFF;background-image:url('../img/logo_185x36.gif');background-repeat:no-repeat;background-position:center;width:100%;height:135px}
+#CMLoginForm{padding-top:10px;text-align:center;}
+#loginEmail,#loginPwd,#loginStatus{width:120px;font-size:11px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;border:1px solid #848484;height:20px}
+#loginStart{position:relative;left:-42px;top:-6px;color:#6B6B6B;}
+#CMLoginFormError{color:#EB511D;font-weight:bold}
+#CMLoginFooterStart{margin:7px 0 0 7px;}
+#CMLoginFooterForgotPwd, #CMLoginFooterCreateAcount{text-decoration:underline;color:#6C6C6C;font-size:10px;cursor:pointer;}
+#CMLoginFooterConnecting{margin:12px 0 0 10px;font-weight: bold;color:#6C6C6C;}
+
+#CMInboxPanel{}
+#CMInboxHeader,#CMInSessionHeader{width:100%;height:36px;overflow:hidden;background-image:url('../img/tab_panel_222x36.gif');font-size:11px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;}
+#CMInboxHeader_1,#CMInSessionHeader_1{margin:8px 0 0 5px;}
+#CMExpandInbox,#CMExpandInSession{float:left;}
+#CMInboxTitle,#CMInSessionTitle{margin:3px 0 0 3px;float:left;color:#FFFFFF;font-weight:bold;}
+#CMInboxFilter,#CMInSessionFilter{margin:3px 10px 0 0;color:gray;font-weight:bold;float:right;font-size:10px;}
+#CMInboxContent{width:100%;font-size:11px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;}
+
+#CMSettingsPanel{font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;}
+.CMSettingsTitle{background-color:#CACACA;font-weight:bold;height:20px;padding:5px;margin:3px 0 3px 0;}
+#CMSettingsPanel INPUT{float:expression(this.type=="checkbox" ? 'left':'');}
+#sShowAway,#sHandleCallsDisplayBusy,#sDisplayItemsAtTime,#sPortOpened{border:1px solid #828282;font-size:10px;width:20px;}
+.CMSettingsLink{float:right;font-weight:normal;cursor:pointer}
+.CMSettingsLink span{text-decoration:underline;color:#6C6C6C;}
+.CMSettingsLink span.init{color:#6C6C6C;}
+.CMSettingsLink span.failed{color:#DA7140;}
+.CMSettingsLink span.success{color:#0A8512;}
+#CMSettingsConnectionHelp{margin-right:10px;}
+#CMSettingsConnectionTest{margin-right:15px;}
+#sPortOpened{width:40px}
+
+#CMAboutPanel{padding:8px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;}
+#CMAboutPanelVersion{padding:10px 5px 13px 75px;line-height:16px;background:url('../img/logo_about_68x75.gif') left top no-repeat;}
+#CMAboutPanelRights,#CMAboutPanelVisit{margin-top:10px;font-size:10px;line-height:15px;}
+
+#CMPanel2{height:40px;font: normal 11px Verdana, Geneva, Arial, Helvetica, sans-serif;background-color:#DCDCDC}
+
+#CMStatusBar{width:100%;height:7px;font-size:9px;color:#767676;background-color:#DCDCDC;}
+#CMStatusBarPattern{float:left;margin-top:3px;}
+#CMStatusBarText{float:left;padding-left:18px}
+#CMStatusBarResize{float:right;margin-top:3px;}
+
+
+/* Frame Borders - For Inbox and In Session parts */
+
+/*.dFrameTopLeftBorder{background-image:url('../img/bord_left_top_corner_5x5.gif');background-repeat:no-repeat;width:5px;height:5px;font-size:0;}
+.dFrameTopCenterBorder{background-image:url('../img/bord_top_side_1x5.gif');height:5px;font-size:0;}
+.dFrameTopRightBorder{background-image:url('../img/bord_right_top_corner_5x5.gif');background-repeat:no-repeat;width:5px;height:5px;font-size:0;}*/
+.dFrameLeftBorder{background-image:url('../img/frame_left_side_bkg.gif');width:14px;font-size:0;}
+.dFrameRightBorder{background-image:url('../img/frame_right_side_bkg.gif');width:14px;font-size:0;}
+.dFrameBotLeftBorder{background-image:url('../img/frame_bottom_left_corner.gif');background-repeat:no-repeat;width:14px;height:15px;font-size:0;}
+.dFrameBotCenterBorder{background-image:url('../img/frame_bottom_side_bkg.gif');height:15px;font-size:0;}
+.dFrameBotRightBorder{background-image:url('../img/frame_bottom_right_corner.gif');background-repeat:no-repeat;width:14px;height:15px;font-size:0;}
+
+.dFrameTopBotLeftBorder{background-image:url('../img/frame_2_corners_left.gif');width:14px;height:14px;font-size:0;}
+.dFrameTopBotCenterBorder{background-image:url('../img/frame_separator_bkg.gif');height:14px;font-size:0;}
+.dFrameTopBotRightBorder{background-image:url('../img/frame_2_corners_right.gif');width:14px;height:14px;font-size:0;}
+/*End Frame*/
+
+.dCallItem{border-width:0 0 1px 0;border-style:solid;border-color:gray;height:71px;background-color:#FFFFFF;filter:progid:DXImageTransform.Microsoft.Fade(Overlap=0.6,Duration=0.60);}
+.dCallItemActions{width:100%;}
+.dCallItemAction{width:27px;height:27px;background-color:red;border:1px solid black;float:left;text-align:center;}
+.tdCallRow1{width:55px;}
+.dCallDirectionType{width:50px;height:20px;text-align:right;}
+.dCallDirectionType2{width:55px;height:20px;float:left;border:1px solid green;}
+.dCallDirection{position:relative;top:5px;left:3px;width:14px;height:14px;background-color:blue;z-index:3;float:left;}
+.dCallDirection2{position:relative;top:5px;left:3px;width:14px;height:14px;background-color:blue;z-index:3;float:left;}
+.dCallType{position:relative;top:0px;left:-3px;position:relative;left:0px;width:33px;height:23px;background-color:red;float:left;z-index:2;}
+.dCallType2{position:relative;top:0px;left:-3px;width:33px;height:23px;background-color:red;z-index:2;}
+
+.dTimers{margin-left:4px;font-family: Tahoma; font-size: 9px;color: #757D92; }
+.dElapsedClock{background-image:url(../img/time_white_9x9.gif);width:9px;height:9px;float:left;}
+.dElapsedTimer{clear:both;}
+.dElapsedTime{margin-left:3px;float:left;}
+.dSnoozeClock{background-image:url(../img/time_grey_9x9.gif);width:9px;height:9px;float:left;}
+.dSnoozeTimer{clear:both;}
+.dSnoozeTime{margin-left:3px;float:left;}
+
+.tdCallRow2{width:165px;}
+.dNameFlag{width:165px;}
+.dCustomerName{width:140px;float:left;font-size: 10px; font-weight: bold; color:gray;}
+.dCustomerName2{width:137px;float:left; font-size: 10px;font-weight: bold; color:gray;border:1px solid black;}
+.dCustomerFlag{width:20px;font-size: 11px;}
+.dCallProblemDescription{width:165px;height:50px;font-size: 10px;line-height: 135%;color: #000000;overflow:hidden;text-overflow:ellipsis;}
+.dCallCategoryPath{width:165px;font-family: Tahoma, Verdana, Arial; font-size: 11px; color: #000000; font-weight: bold; overflow:hidden;text-overflow:ellipsis;}
+
+/********** Actions **********/
+.dScrollList{overflow-y:hidden;border:1px solid red;}
+.dScrollItem{height:15px;cursor:hand;}
+.dScrollItemHover{background-color:red;}
+.sManageAction{color:#04648C;text-decoration:underline;cursor:pointer;}
+

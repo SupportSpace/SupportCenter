@@ -1,0 +1,14 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'BrokerProxy'
+		{
+			val DllSurrogate = s ''
+		}
+		'BrokerProxy.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

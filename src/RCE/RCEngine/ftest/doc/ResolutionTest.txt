@@ -1,0 +1,15 @@
+Resolution test user guide.
+===========================
+
+
+1. FTestResolutionServer.exe - server part of the test
+Usage: FTestResolutionServer.exe [-t=<time>] [-p=<port>]
+-t=<time>	- test time; default: 60000 msecs
+-p=<port>	- local port; default: 3000
+
+2. FTestResolutionClient.exe - client part of the test
+Usage: FTestResolutionClient.exe [-a=<address>] [-p=<port>] [-as] [-m=0|1]
+-a=<ip>		- remote ip address; default: 127.0.0.1
+-p=<port>	- remote port; default: 3000
+-as		- auto connect to server at startup; default: false
+-m=0|1		- display mode (0 - scale mode, 1 - scroll mode); default: 0

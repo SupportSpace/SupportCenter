@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'NetLogViewerLib'
+		'NetLogViewerLib.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

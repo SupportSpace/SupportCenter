@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>RCUI client</title>
+		<script language="JavaScript" src="rcui_if.js"></script>
+		<script language="JavaScript" type="text/javascript" src="imwrapper.js"></script>
+		<script language="JavaScript">
+			MyInclude(relayJabber+"sha1.js");
+			MyInclude(relayJabber+"xmlextras.js");
+			MyInclude(relayJabber+"JSJaCConnection.js");
+			MyInclude(relayJabber+"JSJaCPacket.js");
+			MyInclude(relayJabber+"JSJaCHttpPollingConnection.js");
+			MyInclude(relayJabber+"JSJaCHttpBindingConnection.js");
+		</script>
+		<style src="style.css"></style>
+	</head>
+	<body onload="InitPage(0x1);" onunload="OnUnloadPage();" onbeforeunload="DeinitPage();"><!--onload="OnLoadPage();"-->
+		<span style="font-size:500%;color:red;width:100%;height:100%" align="center">The Page is unsupported now.</span>
+		<object id="installerObject" classid="clsid:7B3BBD75-A77C-40D9-BD0E-943055093249" codebase="bin/Bootstrapper.exe#version=1,0,1,14" width="0" height="0"> </object>
+		<!-- <object id="installerObject" classid="clsid:7B3BBD75-A77C-40D9-BD0E-943055093249" codebase="bin/Bootstrapper.exe" width="0" height="0"> </object> -->
+		<!-- <script language="JavaScript">
+			document.write("<object id=\"installerObject\" classid=\"clsid:7B3BBD75-A77C-40D9-BD0E-943055093249\" width=\"0\" height=\"0\" codebase=\""+relayCodebase+"\"></object>");
+		</script> -->
+		<object id="IMMediatorObject" classid="clsid:3FE73D88-72F5-4526-A106-FAA12DE9A619" width="0" height="0"> </object>
+		<script language="JavaScript">
+			// Init mediator
+			$('IMMediatorObject').attachEvent("OnSendMessage", OnIMSendMessage);
+		</script>
+		<span id="spanHostObject"></span>
+		<table  cellpadding="0" cellspacing="0" width="100%" height="98%" border> <!--cellpadding="1" cellspacing="0"-->
+			<tr><!--session management pane-->
+				<td  colspan="2" nowrap height="40">
+					&nbsp;&nbsp;&nbsp;&nbsp;ID: <input id="userid" type="text" size="10" value="eran">&nbsp;&nbsp;&nbsp;&nbsp; 
+					Password: <input id="password" type="text" size="10" value="eran">&nbsp;&nbsp;&nbsp;&nbsp;  
+					<input type="button" value="Login" id="btnlogin" onClick="IMLogin();">&nbsp;&nbsp;&nbsp;&nbsp; 
+					PeerID: <input id="peerid" type="text" size="15" value="doron">&nbsp;&nbsp; 
+					<!--TODO disabled New button, until logon has performed.-->
+					<input id="bsnew" type="button" value="New"   onClick="NewSession($('userid').value,$('password').value,$('peerid').value);">&nbsp;
+					<input id="bsclose"type="button" value="Close" disabled="true" onClick="CloseSession(currentSession)">&nbsp;
+				</td>
+			</tr><!--session management pane   -->
+			<tr>
+				<td width="10%"   valign="top"> <!-- Peer pane rowspan="2"-->
+					<span id="peerContainer"></span>
+				</td><!-- Peer pane -->
+				<td  valign="center"> <!-- Attributes pane -->
+					<table width="100%" height="100%"  cellpadding="0" cellspacing="0" > <!--bordercolor="crimson" border-->
+						<tr height="245">
+							<td>
+								<table height="100%" width="100%" > <!--cellpadding="0" cellspacing="2"-->
+									<tr>
+										<td> <!-- Start/Stop service pane -->
+											<iframe id="frameSessions" src="rcui.files/Sessions.html" width="235" frameborder="0"></iframe>
+										</td><!-- Start/Stop service pane -->
+										<td align="center" valign="center" width="100%" > <!-- Custom service attributes pane -->
+											<!-- CServiceRCViewer pane -->
+											<iframe id="frameViewerOptions" align="center"  style="display:none" width="100%" height="100%" src="rcui.files/ViewerOptions.html" frameborder="0"></iframe>
+											<!-- CServiceRCPlayback pane -->
+											<iframe id="framePlaybackOptions" align="center"  style="display:none" width="100%" src="rcui.files/PlaybackOptions.html" frameborder="0"></iframe>
+											<!-- CServiceRCHost pane -->
+											<iframe id="frameHostOptions" align="center" style="display:none" width="100%" src="rcui.files/HostOptions.html" frameborder="0"></iframe>
+											<!-- CServiceRCFileAccessClient pane -->
+											<iframe id="frameFileAccessClientOptions" align="center"  style="display:none" width="100%" src="rcui.files/FileAccessClientOptions.html" frameborder="0"></iframe>
+											<!-- CServiceRCFileAccessHost pane -->
+											<iframe id="frameFileAccessHostOptions" align="center"  style="display:none" width="100%" src="rcui.files/FileAccessHostOptions.html" frameborder="0"></iframe>
+											<!-- CServiceRCInstaller pane -->
+											<iframe id="frameInstallerOptions" align="center" style="display:none" width="100%" src="rcui.files/InstallerOptions.html" frameborder="0"></iframe>
+										</td> <!-- Custom service attributes pane -->
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td> <!-- ActiveX pane -->
+								<!-- TODO innerHTML -->
+								<iframe id="frameActiveX"    width="0%" height= "0%" src="rcui.files/ActiveX.html" frameborder="0"></iframe>
+								<iframe id="frameProgress" width="100%" style="display:none" src="rcui.files/Progress.html" frameborder="0"></iframe>
+							</td><!-- ActiveX pane -->
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<iframe id="frameLogger" src="rcui.files/logger.html" width="100%" height="100%" frameborder="0">
+		</iframe>
+		<!--<br>
+		<a href="http://pigeon/msi_test4/setup.exe">Installation through bootstrapper (360kB bootstrapper, 2530kB Windows installer v3.1)</a>
+		-->
+	</body>
+</html>

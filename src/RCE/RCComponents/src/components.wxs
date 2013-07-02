@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<!-- InitialInstaller (supportspace_tools.dll) deleting by full uninstallation -->
+		<CustomAction Id="ssinitRemove" Script="jscript" Return="ignore">
+			var fso=new ActiveXObject("Scripting.FileSystemObject");
+			var fname=fso.GetSpecialFolder(0);
+			fname+="\\Downloaded Program Files\\supportspace_tools.dll";
+			var shell=new ActiveXObject("WScript.Shell");
+			try
+			{
+			shell.run("regsvr32 /u /s \""+fname+"\"",10,true/*wait*/);
+			}
+			catch(e)
+			{
+			var record=Session.Installer.CreateRecord(2);
+			record.StringData(1)="regsvr32 /u /s \""+fname+"\" failed";
+			record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+			Session.Message(0x04000000,record);
+			}
+			try
+			{
+			fso.DeleteFile(fname);
+			}
+			catch(e)
+			{
+			var record=Session.Installer.CreateRecord(2);
+			record.StringData(1)="Deleting file "+fname+" failed.";
+			record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+			Session.Message(0x04000000,record);
+			}
+		</CustomAction>
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="INSTALLLOCATION">
+			<!-- Aid dll -->
+			<Component Id="cNWL" Guid="2752795F-20FF-4fd6-92AB-404DB0D7936E">
+				<File Id="aidlib.dll" Name="aidlib.dll" DiskId="1" Source="$(env.ROOTS)\console_$(var.Configuration)\bin\"/>
+				<File Id="w32gnutls.dll" Name="w32gnutls.dll" DiskId="1" Source="$(env.ROOTS)\console_$(var.Configuration)\bin\"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="INSTALLLOCATION">
+			<!--CRT dll-->
+			<?if $(var.Configuration)="dynamic_debug" ?>
+			<Component Id="cCRT" Guid="{2D1D06A5-FF5C-43e7-AD04-B1A5E78DBF4E}">
+				<File Id="msvcp80d.dll" Name="msvcp80d.dll" DiskId="2" Source="$(env.VC80DPATH)\Microsoft.VC80.DebugCRT\"/>
+				<File Id="msvcr80d.dll" Name="msvcr80d.dll" DiskId="2" Source="$(env.VC80DPATH)\Microsoft.VC80.DebugCRT\"/>
+				<File Id="Microsoft.VC80.DebugCRT.manifest" Name="Microsoft.VC80.DebugCRT.manifest" DiskId="2" 
+              Source="$(env.VC80DPATH)\Microsoft.VC80.DebugCRT\"/>
+			</Component>
+			<?elseif 	$(var.Configuration)="dynamic_release"?>
+			<Component Id="cCRT" Guid="{2D1D06A5-FF5C-43e7-AD04-B1A5E78DBF4E}">
+				<File Id="msvcp80.dll" Name="msvcp80.dll" DiskId="2" Source="$(env.VC80PATH)\Microsoft.VC80.CRT\"/>
+				<File Id="msvcr80.dll" Name="msvcr80.dll" DiskId="2" Source="$(env.VC80PATH)\Microsoft.VC80.CRT\"/>
+				<File Id="Microsoft.VC80.CRT.manifest" Name="Microsoft.VC80.CRT.manifest" DiskId="2" 
+              Source="$(env.VC80PATH)\Microsoft.VC80.CRT\"/>
+			</Component>
+			<?endif ?>
+		</DirectoryRef>
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="INSTALLLOCATION">
+			<!-- cNetLogLib component -->
+			<Component Id="cNetLogLib" Guid="BF2CF73F-0126-4cc5-B4C5-3A682CAB4CF8">
+				<File Id="NetLogLib.dll" Name="NetLogLib.dll" ShortName="NetLogLb.dll" KeyPath="yes" DiskId="40" Source="$(env.ROOTS)\console_$(var.Configuration)\bin\">
+					<TypeLib Id="{5D282F46-A1B8-447B-97D4-8914CFE6EC40}" Description="NetLogLib 1.0 Type Library" 
+                   HelpDirectory="INSTALLLOCATION" Language="0" MajorVersion="1" MinorVersion="0">
+						<AppId Description="NetLogLib" Id="{5D282F46-A1B8-447B-97D4-8914CFE6EC40}" DllSurrogate=" ">
+							<Class Id="{93ABD1AB-CD4B-4E21-BF9B-5DE265FD91AA}" Context="InprocServer32" Description="Support Platform NetLogViwer client part"
+                     ThreadingModel="free">
+								<ProgId Id="NetLogLib.ComUDPListener.1" Description="Support Platform NetLogViwer client part">
+									<ProgId Id="NetLogLib.ComUDPListener" Description="Support Platform NetLogViwer client part" />
+								</ProgId>
+							</Class>
+						</AppId>
+						<Interface Id="{AC370F92-A9BF-4EAA-971C-3F28F770D67E}" Name="IComUDPListener" 
+                       ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" 
+                       ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+						<Interface Id="{E2DF56F8-611D-45FE-A2F4-4A33E18C280A}" Name="_IComUDPListenerEvents" 
+                       ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" 
+                       ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+					</TypeLib>
+				</File>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+ 
+
+</Wix>

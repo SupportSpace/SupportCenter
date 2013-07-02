@@ -1,0 +1,85 @@
+var g_bInit = false;
+var g_sCurrentCategoryId;
+
+function DeployAndRunScriptOnRemoteMachine(categoryId)
+{
+	g_sCurrentCategoryId = categoryId;
+
+	if(g_bInit==false)
+	{
+		// to init host and deploy script once
+		Init();
+	}
+	else
+	{
+		// host inited and diag script deployed
+		StartRemoteScript();
+	}
+}
+
+function OnFilesTransferred(success,err)
+{
+	if (success)
+	{
+		//alert('Results retrived, thats it :)');
+	}
+	else
+	{
+		//alert('Failed to retrive results: '+err);
+		UpdateStatusBar(gStatusBarMessage.FailedToRetrieveResults + ":" + err);
+	}
+}
+
+function OnExecComplete(success, err, params, obj)
+{
+	if (success)
+	{
+	    //alert('Remote script execution completed, params='+params+' retriving results');
+	    //ScriptEngineClient.GetRemoteFiles('data.dat');
+		UpdateStatusBar(gStatusBarMessage.RemoteScriptExecutionCompleted);
+		OnRemoteDataRetrieved(g_sCurrentCategoryId, params);
+	}
+	else
+	{
+		//alert('Remote script execution failed: '+err);  
+		UpdateStatusBar(gStatusBarMessage.RemoteScriptExecutionFailed + ":" +err);
+	}
+}
+
+function StartRemoteScript()
+{
+//    ScriptEngineClient.InvokeFile('VBScript' /*lang*/,'test.vbs' /*file*/,'Test' /*method*/, 'This is input string' /*params*/,'object','OnExecComplete' /*completion routine*/);
+	  ScriptEngineClient.InvokeFile('VBScript' /*lang*/,'diag.vbs' /*file*/,'BuildJsonFileByDiagCategory' /*method*/, g_sCurrentCategoryId /*params*/,'object','OnExecComplete' /*completion routine*/);
+}
+
+function OnDeploy(success,err)
+{
+	if(success)
+	{
+		//alert('Deploy complete, starting remote script');
+		UpdateStatusBar(gStatusBarMessage.ScriptDeployCompleted);
+		StartRemoteScript();
+	}
+	else
+	{
+		//alert('Deploy failed: '+err);
+		UpdateStatusBar(gStatusBarMessage.DeployFailed + ":" +err);
+	}
+}
+
+function OnHostInited(success,err)
+{
+	//TODO: handle errors
+	//alert('Remote host inited, starting deploy');
+	UpdateStatusBar(gStatusBarMessage.RemoteHostInitiated);
+	ScriptEngineClient.Deploy();
+}
+
+function Init()
+{
+	ScriptEngineClient.attachEvent("OnHostInited",OnHostInited);
+	ScriptEngineClient.attachEvent("OnFilesTransferred", OnFilesTransferred); // No matter when to attach event, you can attach right before starting deploy
+ 	ScriptEngineClient.attachEvent("OnDeployComplete", OnDeploy);
+	ScriptEngineClient.InitHost();
+	g_bInit = true;
+}

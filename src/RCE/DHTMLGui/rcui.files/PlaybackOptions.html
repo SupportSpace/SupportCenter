@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI PlaybackOptions frame </TITLE>
+
+</HEAD>
+<script language="JavaScript">
+	/// active service currently bind with this frame
+	var service=null;
+	/// The method activate service object. The object set its state on the UI elements. The function can't invoke as separate function, it must invoke as method service object (for example: service.Activate(true); ).
+	/// @param flag bool parameter. if it's true - session activates, else session deactivetes.
+	function Activate(flag)
+	{	
+		if(flag)//Activate
+		{	
+			document.getElementById('srvPlayDisplayMode').selectedIndex=service.m_displayMode;
+			document.getElementById('srvPlayFileName').value=service.m_fileName;
+			document.getElementById('srvPlayDelayFactor').selectedIndex=service.m_delayFactor;
+			var f=service.m_activeX==null;
+			document.getElementById('srvPlayStart').disabled=f;
+			document.getElementById('srvPlayPause').disabled=f;
+			document.getElementById('srvPlayStop').disabled=f;
+		}
+		else//Deactivate
+		{	
+			//TODO optimize!
+			service.m_delayFactor=document.getElementById('srvPlayDelayFactor').selectedIndex;
+		}
+	}
+</script>
+
+<BODY>
+	<span id="srPlaybackOptions" align="center"  ><!-- CServiceRCPlayback pane -->
+		<table>
+			<tr>
+				<td>
+					File name:
+				</td>
+				<td>
+					<input id="srvPlayFileName"  type="text" value="untitled" style="width: 150px" onfocusout="service.m_fileName=document.getElementById('srvPlayFileName').value;">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Delay Factor:
+				</td>
+				<td>
+					<select id="srvPlayDelayFactor" style="width: 150px" onChange= "service.SetDelayFactor(document.getElementById('srvPlayDelayFactor').selectedIndex);">
+						<option value="0">16:1</option>
+						<option value="1"> 8:1</option>
+						<option value="2"> 4:1</option>
+						<option value="3"> 2:1</option>
+						<option value="4"> 1:1</option>
+						<option value="5"> 1:2</option>
+						<option value="6"> 1:4</option>
+						<option value="7"> 1:8</option>
+						<option value="8"> 1:16</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					DisplayMode:
+				</td>
+				<td>
+					<select id="srvPlayDisplayMode" style="width: 150px" onChange= "service.SetDisplayMode(document.getElementById('srvPlayDisplayMode').selectedIndex);">
+						<option value="0">Scale mode</option>
+						<option value="1">Scroll mode</option>
+						<option value="2">Full screen</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<input id="srvPlayStart" type="button" value="Start"  onClick="service.m_activeX.SetPlaybackMode(0);">
+					<input id="srvPlayPause" type="button" value="Pause"  onClick="service.m_activeX.SetPlaybackMode(2);">
+					<input id="srvPlayStop" type="button" value="Stop"  onClick="service.m_activeX.SetPlaybackMode(1);">
+				</td>
+			</tr>
+		</table>
+	</span><!-- CServiceRCPlayback pane -->
+</BODY>
+</HTML>

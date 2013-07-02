@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>ATL 8.0 test page for object SSInitialInstaller</TITLE>
+</HEAD>
+<script language=javascript>
+  function InvokeInstall()
+  {
+    var res="";
+    try
+    {
+      res=SSInitialInstaller.Install(1,"blah.msi","parameters",0x0f000007);
+    }
+    catch(e)
+    {
+      res+=e.description;
+    }  
+    alert(res);
+  }
+</script>
+<BODY>
+<OBJECT ID="SSInitialInstaller" CLASSID="CLSID:08653405-44A9-4E99-9C09-DD00770AAA08"></OBJECT>
+<input type=button onclick="InvokeInstall();" />
+
+
+
+</BODY>
+</HTML>

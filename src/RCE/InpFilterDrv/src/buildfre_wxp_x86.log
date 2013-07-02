@@ -1,0 +1,148 @@
+BUILD: Examining d:\alexg\trunk\sw\src\dev\clients\win32\rce\inpfilterdrv\src directory for files to compile.
+before AssemblyIdentity_AfterReadAllSources
+after AssemblyIdentity_AfterReadAllSources
+skipping post pass 0 command
+Compiling and Linking d:\alexg\trunk\sw\src\dev\clients\win32\rce\inpfilterdrv\src *************
+'nmake.exe /nologo BUILDMSG=Stop. -i BUILD_PASS=PASS2 LINKONLY=1 NOPASS0=1 MAKEDIR_RELATIVE_TO_BASEDIR= MAKEDIR_LOWERCASE=d:\alexg\trunk\sw\src\dev\clients\win32\rce\inpfilterdrv\src'
+d:\alexg\trunk\sw\src\dev\clients\win32\rce\inpfilterdrv\src: TARGETPATH is ..\out\bin\dynamic_release
+BUILDMSG: _NT_TARGET_VERSION SET TO WINXP
+	cl.exe @d:\alexg\trunk\sw\src\dev\clients\win32\rce\inpfilterdrv\src\objfre_wxp_x86\i386\cl.rsp
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 14.00.50727.220 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+cl /Fo"d:\alexg\trunk\sw\src\dev\clients\win32\rce\inpfilterdrv\src\objfre_wxp_x86\i386/"
+   /FC
+   
+   
+   /Ii386
+   /I.
+   /Id:\alexg\trunk\sw\src\dev\clients\win32\rce\inpfilterdrv\src\objfre_wxp_x86\i386
+   /IC:\WINDDK\6000\inc\api
+   /IC:\WINDDK\6000\inc\api
+   /IC:\WINDDK\6000\inc\ddk
+   /IC:\WINDDK\6000\inc\ddk
+   /IC:\WINDDK\6000\inc\crt
+   /D_X86_=1
+   /Di386=1
+   
+   /DSTD_CALL
+   /DCONDITION_HANDLING=1
+   
+   
+   /DNT_INST=0
+   /DWIN32=100
+   /D_NT1X_=100
+   /DWINNT=1
+   /D_WIN32_WINNT=0x0501
+   /DWINVER=0x0501
+   /D_WIN32_IE=0x0603
+   
+   
+   
+   /DWIN32_LEAN_AND_MEAN=1
+   /DDEVL=1
+   /D__BUILDMACHINE__=WinDDK
+   /DFPO=0
+   
+   /DNDEBUG
+   /D_DLL=1
+   /DNDEBUG
+   
+   /DNTDDI_VERSION=0x05010200
+   
+   
+   
+   
+   /c
+   /Zc:wchar_t-
+   /Zl
+   /Zp8
+   /Gy
+   /Gm-
+   -cbstring
+   /W3
+   /WX
+   /Gz
+   
+   
+   /hotpatch
+   /EHs-c-
+   
+   /GR-
+   /GF
+   /GS
+   /Z7
+   /Oxs
+   
+   /Oy-
+   /Z7
+   
+   
+   -DKMDF_MAJOR_VERSION=01
+   -DKMDF_MINOR_VERSION=005
+   /FIC:\WINDDK\6000\inc\api\warning.h
+   
+   
+   .\adddevice.c .\attach.c .\unload.c .\skip.c .\read.c .\complete.c .\control.c .\clear.c .\create.c .\close.c .\startio.c .\inputdriver.c 
+
+adddevice.c
+attach.c
+unload.c
+skip.c
+read.c
+complete.c
+control.c
+clear.c
+create.c
+close.c
+startio.c
+inputdriver.c
+Generating Code...
+	link.exe /out:..\out\bin\dynamic_release\i386\ssinput.sys /machine:ix86 @C:\DOCUME~1\alexg\LOCALS~1\Temp\nm11.tmp
+Microsoft (R) Incremental Linker Version 8.00.50727.220
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/MERGE:_PAGE=PAGE 
+/MERGE:_TEXT=.text 
+/SECTION:INIT,d 
+/OPT:REF 
+/OPT:ICF 
+/IGNORE:4198,4010,4037,4039,4065,4070,4078,4087,4089,4221 
+/INCREMENTAL:NO 
+/FULLBUILD 
+/release 
+/NODEFAULTLIB 
+/WX 
+/debug 
+/debugtype:cv 
+/version:6.0 
+/osversion:6.0 
+/functionpadmin:5 
+/safeseh 
+/debug 
+/debugtype:cv,fixup 
+/pdbcompress 
+/STACK:0x40000,0x1000 
+/driver 
+/base:0x10000 
+/align:0x80 /stub:c:\winddk\6000\lib\wxp\stub512.com 
+/subsystem:native,5.01 
+/entry:GsDriverEntry@8 
+/out:..\out\bin\dynamic_release\i386\ssinput.sys 
+objfre_wxp_x86\i386\adddevice.obj 
+objfre_wxp_x86\i386\attach.obj 
+objfre_wxp_x86\i386\unload.obj 
+objfre_wxp_x86\i386\skip.obj 
+objfre_wxp_x86\i386\read.obj 
+objfre_wxp_x86\i386\complete.obj 
+objfre_wxp_x86\i386\control.obj 
+objfre_wxp_x86\i386\clear.obj 
+objfre_wxp_x86\i386\create.obj 
+objfre_wxp_x86\i386\close.obj 
+objfre_wxp_x86\i386\startio.obj 
+objfre_wxp_x86\i386\inputdriver.obj 
+c:\winddk\6000\lib\wxp\i386\BufferOverflowK.lib 
+c:\winddk\6000\lib\wxp\i386\ntoskrnl.lib 
+c:\winddk\6000\lib\wxp\i386\hal.lib 
+c:\winddk\6000\lib\wxp\i386\wmilib.lib 
+c:\winddk\6000\lib\wxp\i386\sehupd.lib 

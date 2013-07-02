@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'FTestRelayLoad'
+		'FTestRelayLoad.EXE'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

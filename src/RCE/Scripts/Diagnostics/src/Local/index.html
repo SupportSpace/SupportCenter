@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Diagnostic Widget. SupportSpace Ltd</title>
+
+	<script>
+/*
+	Copyright (c) 2005-2007, The SupportSpace Experts Platform
+	All Rights Reserved.
+
+	Description:  main file for diagnostic widget
+
+	Author name: Anatoly  Gutnick
+*/
+	</script>
+
+	<script>
+
+	var localVBS = false; // will be tru if we would like to open index.htm wihout script engine
+
+	/* parseUri 1.2; MIT License By Steven Levithan <http://stevenlevithan.com> */
+ 	 var parseUri = function () {var source=window.location.href;var o = parseUri.options, value = o.parser[o.strictMode ? "strict" : "loose"].exec(source); for (var i = 0, uri = {}; i < 14; i++) { uri[o.key[i]] = value[i] || ""; } uri[o.q.name] = {}; uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) { if ($1) uri[o.q.name][$1] = $2; }); return uri; }; parseUri.options = { strictMode: false, key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"], q: { name: "queryKey", parser: /(?:^|&)([^&=]*)=?([^&]*)/g }, parser: { strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/, loose: /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ } };
+ 	
+	var dojo_base_url = parseUri().queryKey.g_app_server; //'http://pluto'; 	// g_app_server is the query key in the following examples
+	var gBaseUrl = parseUri().queryKey.gBaseUrl; //"/home/";
+
+	dojo_base_url = dojo_base_url + gBaseUrl;
+
+	if(parseUri().queryKey.localVBS)
+	   localVBS = true;
+
+	if(gBaseUrl==undefined)
+	{
+	   localVBS = true;
+	   dojo_base_url = "http://www.supportspace.com/home/";
+	}
+
+	
+	// here is working example:  note hta instead of html as far as 	file:///C:/Program%20Files/SupportSpace/Support%20Platform/Scripts/Diagnostics/Local/index.hta?g_app_server=http://ws-anatoly:8080/home&gBaseUrl=/&localVBS="1"
+	
+	</script>
+
+    <script>
+		document.write( '<link rel="stylesheet" type="text/css" href="' + dojo_base_url + 'extra_scripts/dojo1.0/dojox/grid/_grid/Grid.css"/>');
+		document.write( '<link rel="stylesheet" type="text/css" href="' + dojo_base_url + 'extra_scripts/dojo1.0/dojo/resources/dojo.css"/>');
+		document.write( '<link rel="stylesheet" type="text/css" href=/css/dijitTests.css"/>');
+		document.write( '<link rel="stylesheet" type="text/css" href="' + dojo_base_url + 'extra_scripts/dojo1.0/dojo/resources/dnd.css"/>');
+		document.write( '<link rel="stylesheet" type="text/css" href=/css/dndDefault.css"/>');
+	</script>
+
+	<style type="text/css">
+
+		html, body{	
+			width: 100%;	/* make the body expand to fill the visible window */
+			height: 100%;
+			padding: 0 0 0 0;
+			margin: 0 0 0 0;
+			overflow: hidden;
+            font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+            font-size:11px;
+            color:#585858;
+		}
+		.dijitSplitPane{
+			margin: 5px;
+		}
+        .dijitTreeContent{font-weight:normal;}
+        //.dijitTreeExpandoOpened + .dijitExpandoText + .dijitTreeContent{font-weight:bold;}
+		//.dijitTreeExpandoClosed + .dijitExpandoText + .dijitTreeContent{font-weight:bold;}
+        
+.dojoxGrid-master-view,.dojoxGrid-view,.dojoxGrid-scrollbox{height:98% !important;width:100% !important;}
+.dojoxGrid-header,.dojoxGrid-row-table{width:100% !important;}
+        .dojoxGrid-scrollbox{background:transparent !important;overflow:auto;}
+        .dojoxGrid-row{background:transparent;}
+        .dojoxGrid-row-selected{background-color:#DEDEDE;}
+		.dojoxGrid-content *{border:1px transparent}
+        
+		/* make grid containers overflow hidden */
+		body .dijitContentPane {
+			overflow: hidden;
+		}
+		#rightPane {
+			margin: 0;
+		}
+
+		.heading {
+				font-weight: bold;
+				padding-bottom: 0.25em;
+		}
+		#gridContainer{
+				height:94%;
+		}
+		/*	width: 70em;	height: 60em;  */			
+		#grid {
+            width:100%;
+            /*height:400px;*/
+            height:100%;
+        }
+        #textCategoryName{padding:5px 0 5px 0;font-weight:bold;}
+        
+        .Section{padding:3px 0 5px 0;line-height:140%;}
+        .SectionTitle{font-weight:bold;}
+        
+        .dWinStatus{width:100%;position:relative;clear:both;height:16px;padding:6px;background:url('images/app_bottom_panel_bkg.gif') #DCDCDC;text-align:left}
+        .dStatus{clear:both;position:relative;height:16px}
+        .dStatusImg{float:left;margin-top:5px;position:absolute;}
+        .dStatusText{float:left;left:20px;color:#585858;position:absolute;}
+        
+        .dijitButtonText{font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;font-size:11px;color:#585858;font-weight:bold;}
+
+        #myTree{overflow-y:auto;height:98%}
+        
+	</style>
+
+	<script type="text/javascript">
+		document.write('<script type="text/javascript" src=' + dojo_base_url + 'extra_scripts/dojo1.0/dojo/dojo.js djConfig="parseOnLoad: true, isDebug: false">'); 
+		document.write('<\/script>'); 
+
+		//  2 purposes of this case
+		//	to avoid activex warning in production environment 
+		//  to allow local index.html page running in test environment
+		if(localVBS==true)
+		{
+			document.write('<script language="vbscript" type="text/vbscript" src="../Remote/diag.vbs">');
+			document.write('<\/script>'); 
+		}
+
+	</script>
+
+	<script type="text/javascript" src="js/_testCommon.js"></script>
+	<script someProperty="text/javascript" src="js/diag.js"></script>
+	<script someProperty="text/javascript" src="js/gridData.js"></script>
+	<script someProperty="text/javascript" src="js/prototype.js"></script>
+	<script someProperty="text/javascript" src="js/consts.js"></script>
+	<script someProperty="text/javascript" src="js/index.js"></script>
+
+	<script type="text/javascript">
+		dojo.require("dijit.layout.LayoutContainer");
+		dojo.require("dijit.layout.ContentPane");
+		dojo.require("dijit.layout.LinkPane");
+		dojo.require("dijit.layout.SplitContainer");
+		dojo.require("dijit.layout.TabContainer");
+		
+		dojo.require("dojox.grid.Grid");
+		dojo.require("dojox.grid._data.model");
+		dojo.require("dojox.grid.VirtualGrid"); 
+
+		dojo.require("dojo.data.ItemFileWriteStore");
+		dojo.require("dijit.Tree");
+		dojo.require("dijit.form.Button");
+		
+		dojo.require("dojo.parser");	// scan page for widgets and instantiate them
+	</script>
+	<script type="text/javascript">
+
+	dojo.addOnLoad(function(){
+
+		theStore = dijit.byId("myTree").store;
+		theRetrieveButton = dijit.byId("myRetrieveButton");
+		createGrid();
+
+		showInfoPaneStatus();
+		updateInfoPaneStatus(gInfoPaneMessage.PressRetrieveToStart);
+		UpdateStatusBar(gStatusBarMessage.PressRetrieveToStart);
+	});
+		
+	</script>
+</head>
+<body class="tundra" onKeyPress="return disableCtrlKeyCombination(event);" onKeyDown="return disableCtrlKeyCombination(event);">
+	<div id="outer" dojoType="dijit.layout.LayoutContainer" style="width: 100%; height: 100%;">
+		<div class="dWinStatus" dojoType="dijit.layout.ContentPane" layoutAlign="bottom">
+            <div class="dStatusImg"><img src="images/drag_status.gif" alt=""/></div>
+            <div id="bottomBarText" class="dStatusText">Loading...</div> 
+        </div>
+		<div id="horizontalSplit" dojoType="dijit.layout.SplitContainer" orientation="horizontal" sizerWidth="5" activeSizing="0" layoutAlign="client">
+			<div id="leftPane" dojoType="dijit.layout.LayoutContainer" sizeMin="20" sizeShare="20">
+				<div dojoType="dojo.data.ItemFileWriteStore" jsId="treeTestStore" url="treeSystemSummary.json"></div>
+                <div id="dTreeContainer" dojoType="dijit.layout.ContentPane" layoutAlign="client">
+				    <div dojoType="dijit.Tree" id="myTree"  store="treeTestStore" onClick="onClick" labelAttr="name" somePropertyAttr="someProperty" Width="100%" height="100%" getIconClass="getIcon"></div>
+                </div>
+                <div dojoType="dijit.layout.ContentPane" layoutAlign="bottom">
+				    <div dojoType="dijit.form.Button" id="myRetrieveButton" onClick="RetrieveButtonClicked();" style="float:right;">Retrieve</div>
+                </div>
+			</div>
+
+		<div id="rightPane" dojoType="dijit.layout.SplitContainer" orientation="vertical" sizerWidth="5" activeSizing="0" sizeMin="50" sizeShare="80">
+			<div id="bottomRight" dojoType="dijit.layout.ContentPane" sizeMin="20" sizeShare="30">
+				<div id="textCategoryName" style="display:none">Category Name</div>
+                <div id="systemSummaryDiv" class=Section1 style="display:none">
+                    <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                    <tr>
+					  <td width=299 valign=top style='width:283.75pt;border:none;border-right:1px solid #ACACAC;padding:0in 5.4pt 0in 5.4pt'>
+						  <div class="Section">
+                              <div class="SectionTitle">Operating System</div>
+    						  <div>Name: <span id="sOSName">sOSVersion</span></div>
+    						  <div>Version: <span id="sOSVersion">sOSVersion</span></div>
+    						  <div>Manufactor: <span id="sOSManufactor">sOSManufactor</span></div>
+    						  <div>Directory: <span id="sDirectory">sDirectory</span></div>
+    						  <div>OS Directory: <span id="sOSDirectory">sOSDirectory</span></div>
+						  </div>
+						  <div class="Section">
+    						  <div class="SectionTitle">System &amp; Hardware</div>
+    						  <div>Name: <span id="sHWname">sHWname</span></div>
+    						  <div>Manufactor: <span id="sHWManufactor">sHWManufactor</span></div>
+    						  <div>Model: <span id="sHWModel">sHWModel</span></div>
+    						  <div>Type: <span id="sHWType">sHWType</span></div>
+    						  <div>Processor: <span id="sHWProcessor">sHWProcessor</span></div>
+    						  <div>BIOS Version / Data:<span id="sHWBiosVerDate">sHWBiosVerDate</span></div>
+    						  <div>SMBIOS Version / Data:<span id="sHWSMBiosVerDate">sHWSMBiosVerDate</span></div>
+    						  <div>Boot Device:<span id="sHWBootDevice">sHWBootDevice</span></div>
+    						  <div>Hardware Abstraction Layer:<span id="sHWAbstactionLayer">sHWAbstactionLayer</span></div>
+    						  <div>Username:<span id="sHWUsername">sHWUsername</span></div>
+                          </div>
+					  </td>
+					  <td width=473 valign=top style='width:318.95pt;border:none;padding:0 6px 0 10px'>
+                          <div class="Section">
+        					  <div class="SectionTitle">Memory</div>
+    						  <div>Total Physical Memory: <span id="sMEMTotalPhysicalMemory">sMEMTotalPhysicalMemory</span></div>
+    						  <div>Availible Physical Memory: <span id="sMEMAvailiblePhMemory">sMEMAvailiblePhMemory</span></div>
+    						  <div>Total Virtual Memory: <span id="sMemTotalVirtualMemory">sMemTotalVirtualMemory</span></div>
+    						  <div>Available Virtual Memory: <span id="sMemAvailableVirtualMemory"> sMemAvailableVirtualMemory</span></div>
+    						  <div>Page File Space: <span id="sMemPageFileSpace">sMemPageFileSpace</span></div>
+    						  <div>Page File: <span id="sMemPageFile">sMemPageFile</span></div>
+                          </div>
+                          <div class="Section">
+        					  <div class="SectionTitle">Other</div>
+        					  <div>Time zone: <span id="sOtherTimeZone">sOtherTimeZone</span></div>
+        					  <div>Locale: <span id="sOtherLocale">sOtherLocale</span></div>
+							  <div>OS Language: <span id="sOSLanguage">sOSLanguage</span></div>
+                          </div>
+					  </td>
+					 </tr>
+					</table>
+                </div>
+				<div class="gridContainer" id="gridContainer" style="display:none"></div>
+                <div id="infoPaneStatus" style="display:none">Info Pane Status</div>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>

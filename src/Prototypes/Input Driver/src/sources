@@ -1,0 +1,17 @@
+TARGETNAME=ssinput
+TARGETTYPE=DRIVER
+TARGETPATH=obj
+
+SOURCES=adddevice.c \
+	attach.c \
+	unload.c \
+	skip.c \
+	read.c \
+	complete.c \
+	control.c \
+	clear.c \
+	create.c \
+	close.c \
+	startio.c \
+	inputdriver.c
+

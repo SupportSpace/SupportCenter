@@ -1,0 +1,489 @@
+<?xml version="1.0" ?>
+
+
+<project name="SupportSpace" default="help">
+
+  <include buildfile="settings.include" />
+
+  <script language="C#" prefix="archer">
+    <code>
+      <![CDATA[
+
+		[Function("update-version")]
+		static public string UpdateVersion(string fileName,
+			int major, int minor, int build, int reserved)
+		{
+			FileInfo info = new FileInfo(fileName);
+			info.Attributes = FileAttributes.Normal;
+
+			string ver = major+","+minor+","+build+","+reserved;
+			string sver = "\""+major+"."+minor+"."+build+"."+reserved+"\"";
+
+			string content;
+			using( StreamReader reader = info.OpenText() ) //STL-661
+			//using (StreamReader reader = new StreamReader(info.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)))
+			content = reader.ReadToEnd();
+
+			RegexOptions opts = RegexOptions.Multiline;
+			Regex rx = new Regex(@"\bFILEVERSION (\d+, *){3}\d+", opts);
+			content = rx.Replace(content, "FILEVERSION "+ver);
+
+			rx = new Regex(@"PRODUCTVERSION (\d+, *){3}\d+", opts);
+			content = rx.Replace(content, "PRODUCTVERSION "+ver);
+
+			rx = new Regex(@"VALUE +""FileVersion"", *"".*?""", opts);
+			content = rx.Replace(content, "VALUE \"FileVersion\", "+sver);
+
+			rx = new Regex(@"VALUE +""ProductVersion"", *"".*?""", opts);
+			content = rx.Replace(content, "VALUE \"ProductVersion\", "+sver);
+      
+			// Settinng version for JS
+			//rx = new Regex("#version=.*\"",opts);
+			//content = rx.Replace(content, String.Format("#version={0},{1},{2},{3}\"",major,minor,build,reserved));
+			
+			// Setting versions in versions.js //AvailableVersion = '3.0.400.0';
+			rx = new Regex("AvailableVersion = '.*';",opts);
+			content = rx.Replace(content, String.Format("AvailableVersion = '{0}.{1}.{2}.{3}'",major,minor,build,reserved));
+			
+			using(StreamWriter writer= File.CreateText(info.FullName) )
+			//using(StreamWriter writer= new StreamWriter(info.CreateText(), new UTF8Encoding())
+				writer.Write(content);
+
+			return String.Format("Version updated: \"{0}\".", fileName );
+		}
+
+		[Function("update-version-msi")]
+		static public string UpdateVersionMsi(string fileName,
+			int major, int minor, int build, int reserved)
+		{
+			FileInfo info = new FileInfo(fileName);
+			info.Attributes = FileAttributes.Normal;
+
+			string ver = major+","+minor+","+build+","+reserved;
+			string sver = "\""+major+"."+minor+"."+build+"."+reserved+"\"";
+
+			string content;
+			using( StreamReader reader = info.OpenText() )
+				content = reader.ReadToEnd();
+
+			RegexOptions opts = RegexOptions.Multiline;
+						
+			// UpgradeCode="B359C619-3526-4216-BA49-7022953D0C8E" Version="0.0.0.0"
+			Regex rx = new Regex(" UpgradeCode=\"B359C619-3526-4216-BA49-7022953D0C8E\" Version=\".*\"",opts);
+			content = rx.Replace(content, String.Format(" UpgradeCode=\"B359C619-3526-4216-BA49-7022953D0C8E\" Version=\"{0}.{1}.{2}.{3}\"",major,minor,build,reserved));
+
+			using( StreamWriter writer = info.CreateText() )
+			writer.Write(content);
+
+			return String.Format("Version updated: \"{0}\".", fileName );
+		}
+                
+		[Function("set-codebase-msi")]
+		static public string SetCodebaseMsi(string fileName,string codebaseUrl)
+		{
+			FileInfo info = new FileInfo(fileName);
+			info.Attributes = FileAttributes.Normal;
+
+			
+			string content;
+			using( StreamReader reader = info.OpenText() )
+				content = reader.ReadToEnd();
+
+			RegexOptions opts = RegexOptions.Multiline;
+
+			// <Property Id="BrokerProxyCodebaseUrl" Value="http://max/brokers/bin/SupportSpace_tools.dll"/>
+			Regex rx = new Regex("<Property Id=\"BrokerProxyCodebaseUrl\" Value=\".*",opts);
+			content = rx.Replace(content, String.Format("<Property Id=\"BrokerProxyCodebaseUrl\" Value=\"{0}\"/>",codebaseUrl));
+
+
+			using( StreamWriter writer = info.CreateText() )
+			writer.Write(content);
+
+			return String.Format("Codebase set: \"{0}\".", fileName );
+		}
+
+    
+    [Function("update-url")]
+    static public string UpdateUrl(string fileName, string urls, string tag)
+    {
+      FileInfo info = new FileInfo(fileName);
+			info.Attributes = FileAttributes.Normal;
+
+			string content;
+			using( StreamReader reader = info.OpenText() )
+			content = reader.ReadToEnd();
+
+      char[] separators = new char[1];
+      separators[0] = ';';
+      string[] domains = urls.Split(separators);
+      int domains_count = 0;
+      string array_entries = "";
+      for (int i = 0; i < domains.Length; i++)
+      {
+        string domain = domains[i].Trim();
+        if(domain.Equals(""))
+          continue;
+        if(!array_entries.Equals(""))
+          array_entries += ",";
+        array_entries += "ALLOWED_ENTRY(L\"";
+        array_entries += domain;
+        array_entries += "\")";
+        domains_count++;
+        array_entries += ",";
+	array_entries += "ALLOWED_ENTRY_S(L\"";
+        array_entries += domain;
+        array_entries += "\")";
+        domains_count++;
+      }
+
+      RegexOptions opts = RegexOptions.Multiline;
+      //#define ALLOWED_DOMAINS ALLOWED_ENTRY(ALLOWED_DOMAIN)
+			Regex rx = new Regex("^#define ALLOWED_DOMAINS .*$", opts);
+			content = rx.Replace(content, String.Format("#define ALLOWED_DOMAINS {0}",array_entries));
+   
+      //#define ALLOWED_DOMAINS_COUNT 1
+			rx = new Regex("^#define ALLOWED_DOMAINS_COUNT .*$", opts);
+			content = rx.Replace(content, String.Format("#define ALLOWED_DOMAINS_COUNT {0}",domains_count));
+   
+      //#define BUILD_TAG _T("unspecified")
+			rx = new Regex("#define BUILD_TAG _T\\(\".*\"\\)",opts);
+			content = rx.Replace(content, String.Format("#define BUILD_TAG _T(\"{0}\")",tag));
+
+			using( StreamWriter writer = info.CreateText() )
+				writer.Write(content);
+
+			return String.Format("Url updated: \"{0}\".", fileName );
+    }
+
+    [Function("update-config-param")]
+    static public string UpdateConfigParam(string fileName, string pattern, string str, string param)
+    {
+      FileInfo info = new FileInfo(fileName);
+			info.Attributes = FileAttributes.Normal;
+
+			string content;
+			using( StreamReader reader = info.OpenText() )
+			content = reader.ReadToEnd();
+
+      RegexOptions opts = RegexOptions.Multiline;
+			Regex rx = new Regex(pattern, opts);
+			content = rx.Replace(content, String.Format(str,param));
+   
+			using( StreamWriter writer = info.CreateText() )
+				writer.Write(content);
+
+			return String.Format("Parameter updated: \"{0}\".", fileName );
+    }
+		
+		[Function("productcode-to-versionsjs")]
+		static public string ProductCodeToVersionjs(string productCodeFileName,string versionsjsFileName)
+		{
+			FileInfo productCodeInfo = new FileInfo(productCodeFileName);
+			productCodeInfo.Attributes = FileAttributes.Normal;
+
+			string productCodeContent;
+			using( StreamReader reader = productCodeInfo.OpenText() )
+				productCodeContent = reader.ReadToEnd();
+
+			RegexOptions opts = RegexOptions.Multiline;
+			Regex rx = new Regex("<Product Id=\"(?<code>.{36})\" UpgradeCode=\"B359C619-3526-4216-BA49-7022953D0C8E\" Version=", opts);
+			string productCode = rx.Match(productCodeContent).Result("${code}");
+
+			FileInfo versionsjsInfo = new FileInfo(versionsjsFileName);
+			versionsjsInfo.Attributes = FileAttributes.Normal;
+
+			string versionsjsContent;
+			using( StreamReader reader = versionsjsInfo.OpenText() )
+			versionsjsContent = reader.ReadToEnd();
+
+			opts = RegexOptions.Multiline;
+			rx = new Regex("SSToolsProductCode = '{.{36}}';", opts);
+			versionsjsContent = rx.Replace(versionsjsContent,"SSToolsProductCode = '{"+productCode+"}';");
+			
+			using( StreamWriter writer = versionsjsInfo.CreateText() )
+			writer.Write(versionsjsContent);
+
+			return String.Format("ProductCode ={0} version.js=\n{1}", productCode, versionsjsContent );
+		}
+
+
+		]]>
+    </code>
+  </script>
+
+  <!-- Outputs help message -->
+  <target name="help">
+    <echo>
+      required parameters:
+          roots             --  roots directory, used by main.build
+                                must be set as environment variable
+          configuration     --  name of configuration to build
+                                can be set as environment variable or as input script parameter
+          release.version   --  version number
+                                must be set as input script parameter
+          deploy_url        --  url for deployment
+                                must be set as input script parameter
+          tag               --  svn tag, corresponding to build.
+                                if this parameter is specified, binaries will be
+                                copied into roots/console_CONFIGURATION/tag/ directory
+          deploy_dir        --  directory for deployment, could be specified instead of tag
+                                parameter
+                                must be set as input script parameter
+
+      task list:
+          prepare           --  prepares sources for deployment, i.e. set up versions,
+                                changes urls etc
+          deploy            --  performs deployment (just copy built files to deploy dir)
+          build             --  performs main.build
+          doall             --  performs prepare, build, deploy
+    </echo>
+  </target>
+
+  <target name="check_integrity">
+    <if test="${not property::exists('release.version')}">
+      <echo>
+        Integrity check failed:
+        Reqired parameter version is missed. See nant help for details.
+      </echo>
+      <fail/>
+    </if>
+    <if test="${not property::exists('deploy_dir')}">
+      <if test="${not property::exists('tag')}">
+        <echo>
+          Integrity check failed:
+          None of deploy_dir or tag parameters found. See nant help for details.
+        </echo>
+        <fail/>
+      </if>
+    </if>
+    <if test="${not property::exists('deploy_url')}">
+      <echo>
+        Integrity check failed:
+        Reqired parameter deploy_url is missed. See nant help for details.
+      </echo>
+      <fail/>
+    </if>
+    <nant target="check_integrity">
+      <buildfiles>
+        <include name="..\main.build"/>
+      </buildfiles>
+    </nant>
+  </target>
+
+  <target name="prepare" depends="check_integrity setup_environment setup_deploy_dir">
+
+    <!-- 
+          Now special case appeared: RCInstaller dynamic versions depends from
+          shared libraries static versions, so in case of dynamic configurations we need
+          to prepare static configurations as well
+    -->
+    <!-- Begin crutch for RCInstaller-->
+    <if test="${string::to-lower(configuration) == 'dynamic_debug'}">
+      <exec program="nant" commandline="${'-t:net-2.0 prepare -D:configuration=static_debug'}" />
+    </if>
+    <if test="${string::to-lower(configuration) == 'dynamic_release'}">
+      <exec program="nant" commandline="${'-t:net-2.0 prepare -D:configuration=static_release'}" />
+    </if>
+    <!-- End crutch for RCInstaller-->
+
+    <!-- copying public stuff -->
+    <nant target="clean_installed">
+      <buildfiles>
+      </buildfiles>
+    </nant>
+    <nant target="copy_public">
+      <buildfiles>
+      </buildfiles>
+    </nant>
+    <!-- Setting flag to skip clean installed, copy public -->
+    <property name="skip_ci_cp" value="true"/>
+    <call target="update-versions" failonerror="true"/>
+    <call target="update-urls" failonerror="true"/>
+  </target>
+
+  <target name="deploy" depends="check_integrity setup_deploy_dir setup_environment">
+  <!-- <target name="doall" depends="deploy"> -->
+    <!-- creating dir infrastracture -->
+    <if test="${not directory::exists(deploy_dir+'\bin')}">
+      <mkdir dir="${deploy_dir+'\bin'}"/>
+    </if>
+    <!-- copying files -->
+    <!-- installation -->
+    <copy todir="${deploy_dir+'\bin'}" overwrite="true" >
+      <fileset basedir="${roots.dir+'/console_'+configuration+'/install'}">
+        <include name="*.cab" />
+        <include name="*.msi" />
+        <include name="*.dll" />
+        <include name="*.exe" />
+      </fileset>
+    </copy>
+    <!-- version script -->
+    <copy todir="${deploy_dir+'\bin'}" overwrite="true" >
+      <fileset basedir="${roots.dir+'/console_'+configuration+'/html'}">
+        <include name="versions.js" />
+      </fileset>
+    </copy>
+    <!-- test pages -->
+    <copy todir="${deploy_dir}" overwrite="true" >
+      <fileset basedir="${roots.dir+'/console_'+configuration+'/html'}">
+        <include name="**/*.html" />
+        <include name="**/*.js" />
+        <include name="**/*.css" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="setup_deploy_dir" depends="setup_environment">
+    <if test="${property::exists('tag')}">
+      <property name="deploy_dir" value="${roots.dir+'/console_'+configuration+'/'+tag}" />
+    </if>
+    <if test="${not directory::exists('deploy_dir')}">
+      <mkdir dir="${deploy_dir}"/>
+    </if>
+  </target>
+
+  <target name="build" depends="check_integrity">
+
+    <!-- 
+          Now special case appeared: RCInstaller dynamic versions depends from
+          shared libraries static versions, so in case of dynamic configurations we need
+          to prepare static configurations as well
+    -->
+    <!-- Begin crutch for RCInstaller-->
+    <if test="${string::to-lower(configuration) == 'dynamic_debug'}">
+      <exec program="nant" workingdir=".." commandline="${'-t:net-2.0 clean -D:skip_ci_cp=true -D:configuration=static_debug'}" />
+    </if>
+    <if test="${string::to-lower(configuration) == 'dynamic_release'}">
+      <exec program="nant" workingdir=".." commandline="${'-t:net-2.0 clean -D:skip_ci_cp=true -D:configuration=static_release'}" />
+    </if>
+    <!-- End crutch for RCInstaller-->
+
+
+    <nant target="clean">
+      <buildfiles>
+        <include name="..\main.build"/>
+      </buildfiles>
+    </nant>
+    <nant target="build">
+      <buildfiles>
+        <include name="..\main.build"/>
+      </buildfiles>
+    </nant>
+  </target>
+
+  <target name="build_all" depends="check_integrity">
+
+    <!-- 
+          Now special case appeared: RCInstaller dynamic versions depends from
+          shared libraries static versions, so in case of dynamic configurations we need
+          to prepare static configurations as well
+    -->
+    <!-- Begin crutch for RCInstaller-->
+    <if test="${string::to-lower(configuration) == 'dynamic_debug'}">
+      <exec program="nant" workingdir=".." commandline="${'-t:net-2.0 clean -D:skip_ci_cp=true -D:configuration=static_debug'}" />
+    </if>
+    <if test="${string::to-lower(configuration) == 'dynamic_release'}">
+      <exec program="nant" workingdir=".." commandline="${'-t:net-2.0 clean -D:skip_ci_cp=true -D:configuration=static_release'}" />
+    </if>
+    <!-- End crutch for RCInstaller-->
+
+
+    <nant target="clean">
+      <buildfiles>
+        <include name="..\main.build"/>
+      </buildfiles>
+    </nant>
+    <nant target="build_all">
+      <buildfiles>
+        <include name="..\main.build"/>
+      </buildfiles>
+    </nant>
+  </target>
+
+  <target name="doall" depends="prepare build deploy">
+  </target>
+
+  <target name="doall_include_tests" depends="prepare build_all deploy">
+  </target>
+
+  <target name="setup_environment">
+    <property name="roots.dir" value="${environment::get-variable('ROOTS')}" />
+    <if test="${property::exists('configuration')}">
+      <setenv>
+        <variable name="CONFIGURATION" value="${configuration}" />
+      </setenv>
+    </if>
+    <if test="${not property::exists('configuration')}">
+      <property name="configuration" value="${environment::get-variable('CONFIGURATION')}" />
+    </if>
+  </target>
+
+  <target name="update-versions" depends="setup_environment">
+    <foreach item="File" property="filename">
+      <in>
+        <items>
+          <include name="..\**\*.rc" />
+          <exclude name="..\RCE\RCComponents\ssinit\src\SSInitial.rc" />
+          <include name="${roots.dir+'/console_'+configuration+'\Include\**\*.rc'}" />
+          <include name="${roots.dir+'/console_'+configuration+'\html\**\*.html'}" />
+          <include name="${roots.dir+'/console_'+configuration+'\html\**\*.js'}" />
+        </items>
+      </in>
+      <do>
+        <echo message="${archer::update-version(filename, major.version, minor.version, release.version, build.version)}" />
+      </do>
+    </foreach>
+    <!-- Update version of ssinit -->
+    <foreach item="File" property="filename">
+      <in>
+        <items>
+          <include name="..\RCE\RCComponents\ssinit\src\SSInitial.rc" />
+        </items>
+      </in>
+      <do>
+        <echo message="${archer::update-version(filename, ssinit.major.version, ssinit.minor.version, ssinit.release.version, ssinit.build.version)}" />
+      </do>
+    </foreach>
+    <foreach item="File" property="filename">
+      <in>
+        <items>
+	        <include name="..\RCE\RCComponents\src\RCComponents.wxs"/>
+	        <include name="..\RCE\RCComponents\sstools\src\sstools.wxs"/>
+        </items>
+      </in>
+      <do>
+        <echo message="${archer::update-version-msi(filename, major.version, minor.version, release.version, build.version)}" />
+        <echo message="${archer::set-codebase-msi(filename, sstools.codebaseurl+'/SupportSpace_tools.dll')}" />
+      </do>
+    </foreach>
+		<!-- sstools.wxs product code to versions.js -->
+		<property name="productcode" value="${directory::get-current-directory()}\RCE\RCComponents\sstools\src\sstools.wxs"/>
+
+    <!-- TODO: update version in html codebase. Or this should be done manually? -->
+  </target>
+
+	<target name="productcode">
+		<!-- sstools.wxs product code to versions.js -->
+		<property name="productcode" value="..\RCE\RCComponents\sstools\src\sstools.wxs"/>
+	</target>
+	
+  <target name="update-urls" depends="setup_environment">
+    <if test="${property::exists('version')}">
+      <property name="build_tag" value="${version}"/>
+    </if>
+    <if test="${property::exists('tag')}">
+      <property name="build_tag" value="${tag}"/>
+    </if>
+    <foreach item="File" property="filename">
+      <in>
+        <items>
+          <include name="${roots.dir+'/console_'+configuration+'\Include\**\hardcode.h'}" />
+        </items>
+      </in>
+      <do>
+        <echo message="${archer::update-url(filename, deploy_url, build_tag)}" />
+      </do>
+    </foreach>
+  </target>
+
+</project>

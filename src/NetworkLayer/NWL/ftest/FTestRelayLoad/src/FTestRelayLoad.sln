@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FTestRelayLoad", "FTestRelayLoad.vcproj", "{D5371F81-B2F5-4479-9BD2-D1240F5F9405}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		dynamic_debug|Win32 = dynamic_debug|Win32
+		dynamic_release|Win32 = dynamic_release|Win32
+		static_debug|Win32 = static_debug|Win32
+		static_release|Win32 = static_release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.dynamic_debug|Win32.ActiveCfg = dynamic_debug|Win32
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.dynamic_debug|Win32.Build.0 = dynamic_debug|Win32
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.dynamic_release|Win32.ActiveCfg = dynamic_release|Win32
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.dynamic_release|Win32.Build.0 = dynamic_release|Win32
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.static_debug|Win32.ActiveCfg = static_debug|Win32
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.static_debug|Win32.Build.0 = static_debug|Win32
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.static_release|Win32.ActiveCfg = static_release|Win32
+		{D5371F81-B2F5-4479-9BD2-D1240F5F9405}.static_release|Win32.Build.0 = static_release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

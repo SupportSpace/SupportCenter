@@ -1,0 +1,115 @@
+{ 
+  identifier: 'id',
+  label: 'name',
+  items: [
+	{ name:"System Summary", id:"SystemSummary", background:"images\\system_info.gif" },
+	{ name:"Drives", id:"ComponentsStorageDrives", background:"images\\drives.gif", nosort:"1" },
+
+	{ name:"Hardware", id:"HardwareResources", nonSubCcategory:"1", 
+		children:[
+			 { name:"Components", id:"Components", nonSubCcategory:"1",
+				children:[
+					{ name:"Multimedia", id:"Multimedia", nonSubCcategory:"1",
+						children:[
+							{ name:"Audio Codecs", id:"ComponentsMultimediaAudio", background:"images\\hardware.gif"},
+							{ name:"Video Codecs", id:"ComponentsMultimediaVideo", background:"images\\hardware.gif"}
+						]
+					},
+					
+					{ name:"CD-ROM", id:"ComponentsMultimediaCDROM", background:"images\\hardware.gif", nosort:"1"},
+					{ name:"Sound-Device", id:"ComponentsMultimediaSound", background:"images\\hardware.gif", nosort:"1"},
+					{ name:"Display", id:"ComponentsDisplay", background:"images\\hardware.gif" ,nosort:"1"},
+					{ name:"Infrared", id:"ComponentsInfrared", background:"images\\hardware.gif"},
+
+					{ name:"Input", id:"Input", nonSubCcategory:"1",
+						children:[
+							{ name:"Keyboard", id:"ComponentsKeyboard", background:"images\\hardware.gif", nosort:"1"},
+							{ name:"Pointing Device", id:"ComponentsPointDev", background:"images\\hardware.gif",nosort:"1"}
+						]
+					},
+
+					{ name:"Modem", id:"ComponentsModem"},
+					{ name:"Network", id:"Network", nonSubCcategory:"1",
+						children:[
+							{ name:"Adapter", id:"ComponentsNetAdapter", background:"images\\hardware.gif",nosort:"1"},
+							{ name:"Protocol", id:"ComponentsNetworkProtocol", background:"images\\hardware.gif",nosort:"1"},
+							{ name:"WinSock", id:"ComponentsNetworkWinSock", background:"images\\hardware.gif",nosort:"1"}
+						]
+					},
+
+					{ name:"Ports", id:"Ports", nonSubCcategory:"1",
+						children:[
+							{ name:"Serial", id:"ComponentsSerialPorts", background:"images\\hardware.gif",nosort:"1"},
+							{ name:"Parallel", id:"ComponentsParallelPorts", background:"images\\hardware.gif",nosort:"1"}
+						]
+					},
+
+					{ name:"Storage", id:"Storage", nonSubCcategory:"1",
+						children:[
+							{ name:"Disks", id:"ComponentsStorageDisks", background:"images\\hardware.gif",nosort:"1"},
+							{ name:"SCSI", id:"ComponentsStorageSCSI", background:"images\\hardware.gif",nosort:"1"},
+							{ name:"IDE", id:"ComponentsStorageIDE", background:"images\\hardware.gif",nosort:"1"}
+						]
+					},
+
+					{ name:"Printing", id:"ComponentsPrinting", background:"images\\hardware.gif"},
+					{ name:"Problem Devices", id:"ComponentsProblemDevices", background:"images\\hardware.gif"},
+					{ name:"USB", id:"ComponentsUSB", background:"images\\hardware.gif"}
+				]
+			},	
+
+			{ name:"Conflicts/Sharing", id:"ResourcesConflicts", background:"images\\hardware.gif", nosort:"1"},
+			{ name:"DMA", id:"ResourcesDMA", background:"images\\Hardware.gif"},
+			{ name:"Forced Hardware", id:"ResourcesForcedHardware", background:"images\\hardware.gif"},
+			{ name:"IO", id:"ResourcesIO", background:"images\\hardware.gif" },
+			{ name:"IRQs", id:"ResourcesIRQS", background:"images\\hardware.gif"},
+			{ name:"Memory", id:"ResourcesMemory", background:"images\\hardware.gif"}
+		]
+	},
+
+	{ name:"Software", id:"noneSoftware", nonSubCcategory:"1",
+		children:[
+			{ name:"System Drivers", id:"SWEnvDrivers", background:"images\\software.gif"},
+			{ name:"Signed Drivers", id:"SWEnvSignedDrivers", background:"images\\software.gif" },
+			{ name:"Environment Variables", id:"SWEnvEnvVars", background:"images\\software.gif"},
+			{ name:"Print Jobs", id:"SWEnvPrint", background:"images\\software.gif" },
+			{ name:"Network Connections", id:"SWEnvNetConn", background:"images\\software.gif"},
+			{ name:"Running Tasks", id:"SWEnvRunningTasks", background:"images\\software.gif"},
+			{ name:"Loaded Modules", id:"SWEnvLoadedModules", background:"images\\software.gif"},
+			{ name:"Services", id:"SWEnvServices", background:"images\\software.gif"},
+			{ name:"Program Groups", id:"SWEnvProgramGroup", background:"images\\software.gif"},
+			{ name:"Startup Programs", id:"SWEnvStartupPrograms", background:"images\\software.gif"},
+			{ name:"OLE Registration", id:"SWEnvOLEReg", background:"images\\software.gif"},
+			{ name:"Windows Error Reporting", id:"SWEnvWindowsError", background:"images\\software.gif"}
+		]
+	},
+
+	{ name:"Internet", id:"InternetSettings", nonSubCcategory:"1",
+		children:[
+			{ name:"Internet Explorer", id:"InternetExplorer", nonSubCcategory:"1",  
+				children:[
+					{ name:"Summary", id:"IEsummary", background:"images\\internet.gif"},
+					{ name:"File Versions", id:"IEFileVersions", background:"images\\internet.gif"},
+					{ name:"Connectivity", id:"IEConnectivity", background:"images\\internet.gif",nosort:"1"},
+					{ name:"Cache", id:"Cachenone", nonSubCcategory:"1",
+						children:[
+							{ name:"Summary", id:"IECacheSummary", background:"images\\internet.gif"},
+							{ name:"List of Objects", id:"IECacheObjectList", background:"images\\internet.gif"}
+						]
+					},
+					{ name:"Content", id:"noneContent", nonSubCcategory:"1",
+						children:[
+							{ name:"Summary", id:"IEContentSummary", background:"images\\internet.gif"},
+							{ name:"Personal Certificates", id:"IEContentPersonalCertificates", background:"images\\internet.gif"},
+							{ name:"Other People Certificates", id:"IEContentOtherPeopleCertificates", background:"images\\internet.gif"},
+							{ name:"Publishers", id:"IEContentPublishers", background:"images\\internet.gif"}
+						]
+					},
+
+					{ name:"Security", id:"IESecurity", background:"images\\internet.gif"}
+				]
+			}
+		]	
+	}
+   ]
+}

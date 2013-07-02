@@ -1,0 +1,28 @@
+Frame Rate test user guide.
+===========================
+
+1. FTestFrameRateGenerator.exe	- console application to generate file with frames data
+Usage: FTestFrameRateGenerator.exe [-f="<filename>"] [-c=<cols>] [-r=<rows>] [-t=1|2|3]
+-f="<filename>"	- output file name; default: frames.dat
+-c=<cols>	- number of columns; default: 16
+-r=<rows>	- number of rows; default: 16
+-t=1|2|3	- test id; default: 1
+
+2. FTestFrameRateServer.exe	- server part of the test
+Usage: FTestFrameRateServer.exe [-f="<filename>"] [-r=<repeats>] [-p=<port>] [-po]
+-f="<filename>"	- file with frames; default: frames.dat
+-r=<repeats>	- number of repeats; default: 1
+-p=<port>	- local port to listen; default: 3000
+-po		- "Play Only" mode (in this mode server plays scenario without connected client); default: false
+-ms		- "Multiplex Stream" in this mode server use CSubStream as transport; default: CSocketStream
+
+
+3. FTestFrameRateClient.exe	- client part of the test
+Usage: FTestFrameRateClient.exe [-a=<ip>] [-p=<port>] [-f="<filename>"] [-r="<filename>"] [-as] [-m=0|1]
+-a=<ip>		- remote ip address; default: 127.0.0.1
+-p=<port>	- remote port; default: 3000
+-f="<filename>"	- file with frames; default: frames.dat
+-r="<filename>"	- output file with results; default: results.csv
+-as		- auto connect to server at startup; default: false
+-m=0|1		- display mode (0 - scale mode, 1 - scroll mode); default: 0
+-ms		- "Multiplex Stream" in this mode client use CSubStream as transport; default: CSocketStream

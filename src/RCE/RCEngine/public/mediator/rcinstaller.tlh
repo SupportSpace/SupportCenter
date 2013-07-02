@@ -1,0 +1,89 @@
+#pragma once
+#pragma pack(push, 8)
+
+#include <comdef.h>
+
+//
+// Forward references and typedefs
+//
+
+struct __declspec(uuid("68498894-2e76-432d-8341-a949c201fb3f"))
+/* LIBID */ __RCInstaller;
+struct __declspec(uuid("fc5f5fae-d3c0-434f-9030-53de9081ec82"))
+/* dispinterface */ _IIMMediatorEvents;
+struct /* coclass */ CIMMediator;
+struct __declspec(uuid("11b0e69c-a4d3-4142-926f-eed8660ab5d9"))
+/* dual interface */ IIMMediator;
+
+//
+// Smart pointer typedef declarations
+//
+
+_COM_SMARTPTR_TYPEDEF(_IIMMediatorEvents, __uuidof(_IIMMediatorEvents));
+_COM_SMARTPTR_TYPEDEF(IIMMediator, __uuidof(IIMMediator));
+
+//
+// Type library items
+//
+
+struct __declspec(uuid("fc5f5fae-d3c0-434f-9030-53de9081ec82"))
+_IIMMediatorEvents : IDispatch
+{
+    //
+    // Wrapper methods for error-handling
+    //
+
+    // Methods:
+    HRESULT OnSendMessage (
+        _bstr_t peerId,
+        _bstr_t msg );
+};
+
+struct __declspec(uuid("3fe73d88-72f5-4526-a106-faa12de9a619"))
+CIMMediator;
+    // [ default ] interface IIMMediator
+    // [ default, source ] dispinterface _IIMMediatorEvents
+
+struct __declspec(uuid("11b0e69c-a4d3-4142-926f-eed8660ab5d9"))
+IIMMediator : IDispatch
+{
+    //
+    // Wrapper methods for error-handling
+    //
+
+    HRESULT HandleMsgInternal (
+        _bstr_t peerId,
+        _bstr_t msg );
+    HRESULT SendMsg (
+        _bstr_t peerId,
+        _bstr_t msg );
+    _bstr_t HandleMsg (
+        _bstr_t peerId );
+    HRESULT ResetMap ( );
+    __int64 GetEvent ( );
+
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall raw_HandleMsgInternal (
+        /*[in]*/ BSTR peerId,
+        /*[in]*/ BSTR msg ) = 0;
+      virtual HRESULT __stdcall raw_SendMsg (
+        /*[in]*/ BSTR peerId,
+        /*[in]*/ BSTR msg ) = 0;
+      virtual HRESULT __stdcall raw_HandleMsg (
+        /*[in]*/ BSTR peerId,
+        /*[out,retval]*/ BSTR * msg ) = 0;
+      virtual HRESULT __stdcall raw_ResetMap ( ) = 0;
+      virtual HRESULT __stdcall raw_GetEvent (
+        /*[out,retval]*/ __int64 * hEvent ) = 0;
+};
+
+//
+// Wrapper method implementations
+//
+
+#include "rcinstaller.tli"
+
+#pragma pack(pop)

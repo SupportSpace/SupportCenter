@@ -1,0 +1,46 @@
+1>------ Build started: Project: gloox-0.8.6, Configuration: Static_debug Win32 ------
+1>Performing Pre-Build Event...
+1>NAnt 0.85 (Build 0.85.2478.0; release; 10/14/2006)
+1>Copyright (C) 2001-2006 Gerry Shaw
+1>http://nant.sourceforge.net
+1>Buildfile: file:///c:/trunk/anatolyg/sw/src/Dev/Clients/Win32/NetworkLayer/JabberClient/gloox-0.8.6/gloox-0.8.6.build
+1>Target framework: Microsoft .NET Framework 2.0
+1>Target(s) specified: copy_public 
+1>setup_environment:
+1>copy_public:
+1>BUILD SUCCEEDED
+1>Total time: 0.1 seconds.
+1>Compiling...
+1>compression.cpp
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\compression.cpp(84) : warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\compression.cpp(88) : warning C4267: '=' : conversion from 'size_t' to 'uInt', possible loss of data
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\compression.cpp(102) : warning C4267: '+=' : conversion from 'size_t' to 'int', possible loss of data
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\compression.cpp(103) : warning C4267: '+=' : conversion from 'size_t' to 'int', possible loss of data
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\compression.cpp(127) : warning C4267: '=' : conversion from 'size_t' to 'uInt', possible loss of data
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\compression.cpp(142) : warning C4267: '+=' : conversion from 'size_t' to 'int', possible loss of data
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\compression.cpp(143) : warning C4267: '+=' : conversion from 'size_t' to 'int', possible loss of data
+1>connection.cpp
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\connection.cpp(215) : warning C4312: 'type cast' : conversion from 'int' to 'gnutls_transport_ptr_t' of greater size
+1>c:\trunk\anatolyg\sw\src\dev\clients\win32\networklayer\jabberclient\gloox-0.8.6\src\connection.cpp(1099) : warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+1>Generating Code...
+1>Creating library...
+1>Performing Post-Build Event...
+1>NAnt 0.85 (Build 0.85.2478.0; release; 10/14/2006)
+1>Copyright (C) 2001-2006 Gerry Shaw
+1>http://nant.sourceforge.net
+1>Buildfile: file:///c:/trunk/anatolyg/sw/src/Dev/Clients/Win32/NetworkLayer/JabberClient/gloox-0.8.6/gloox-0.8.6.build
+1>Target framework: Microsoft .NET Framework 2.0
+1>Target(s) specified: install 
+1>setup_environment:
+1>clean_installed:
+1>   [delete] Deleting directory 'C:\anatolyg\roots\console_Static_Debug\include\gloox'.
+1>copy_public:
+1>     [copy] Copying 22 files to 'C:\anatolyg\roots\console_Static_Debug\include\gloox'.
+1>copy_binaries:
+1>     [copy] Copying 1 file to 'C:\anatolyg\roots\console_Static_Debug\lib'.
+1>install:
+1>BUILD SUCCEEDED
+1>Total time: 1.3 seconds.
+1>Build log was saved at "file://c:\trunk\anatolyg\sw\src\Dev\Clients\Win32\NetworkLayer\JabberClient\gloox-0.8.6\Static_debug\BuildLog.htm"
+1>gloox-0.8.6 - 0 error(s), 9 warning(s)
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI first </TITLE>
+</HEAD>
+
+
+<BODY >
+	<span id="TestInstallSpan">
+	</span>
+	<table align="center" width="100%" height="100%">
+		<tr vAlign="center">
+			<td align="center">
+				To display this page correctly additional components should be installed.
+				<br>
+				Automatic 'download and install' prompt should appear in a several seconds.
+				<br>
+				If propmt desn't appears, please, click on link below for manual components install.
+			</td>
+		</span>
+		<tr vAlign="center">
+			<td align="center">
+				<a href="bin/Bootstrapper.exe">Click here to download and run RCComponents installation</a>	
+			</td>
+		</span>
+		<tr vAlign="center">
+			<td align="center">
+				<a id="backLink" href="" target="_parent">This page will automatically get back, after installation is complete.
+				<br>
+				If this takes a while, please click here.</a>
+				<br>
+				If this page appears again after installation, then there is problem with your security policy.
+				Please check if this site is added to trusted zone.
+
+			</td>
+		</span>
+	</table>
+	<script language="JavaScript">
+		/// source page url
+		var backUrl="";
+		// Initializing page
+		Init();
+
+		/// called on page init
+		function Init()
+		{
+			var url=document.location.href;
+			var param=url.split("?",2);
+			var src=param[1].split("=");
+			if(src[0]=="src")
+			{
+				backUrl=src[1];
+				document.getElementById("backLink").href=backUrl;
+				GetBackIfInstalled();
+			}
+		
+			// starting bootstrapper
+			//document.location.href="bin/Bootstrapper.exe";
+		}
+
+		/// returns on main page if installation is complete
+		function GetBackIfInstalled()
+		{
+			document.getElementById("TestInstallSpan").outerHTML+="<OBJECT classid=\"clsid:7B3BBD75-A77C-40D9-BD0E-943055093249\" id=\"TestInstaller\" width=\"0%\" height=\"0%\" ></OBJECT>";
+			if (document.getElementById("TestInstaller")!=null
+				&&
+				document.getElementById("TestInstaller").object!=null)
+			{
+				document.getElementById("TestInstaller").removeNode(true);
+				//document.location.href=backUrl;
+				document.getElementById("backLink").click();
+			}
+			else
+			{
+				setTimeout("GetBackIfInstalled()",1000);
+			}
+			
+		}
+	</script>
+</BODY>
+</HTML>

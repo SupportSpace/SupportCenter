@@ -1,0 +1,46 @@
+#pragma once
+
+//
+// dispinterface _IIMMediatorEvents wrapper method implementations
+//
+
+inline HRESULT _IIMMediatorEvents::OnSendMessage ( _bstr_t peerId, _bstr_t msg ) {
+    return _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008\x0008", (BSTR)peerId, (BSTR)msg);
+}
+
+//
+// interface IIMMediator wrapper method implementations
+//
+
+inline HRESULT IIMMediator::HandleMsgInternal ( _bstr_t peerId, _bstr_t msg ) {
+    HRESULT _hr = raw_HandleMsgInternal(peerId, msg);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IIMMediator::SendMsg ( _bstr_t peerId, _bstr_t msg ) {
+    HRESULT _hr = raw_SendMsg(peerId, msg);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline _bstr_t IIMMediator::HandleMsg ( _bstr_t peerId ) {
+    BSTR _result = 0;
+    HRESULT _hr = raw_HandleMsg(peerId, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline HRESULT IIMMediator::ResetMap ( ) {
+    HRESULT _hr = raw_ResetMap();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline __int64 IIMMediator::GetEvent ( ) {
+    __int64 _result = 0;
+    HRESULT _hr = raw_GetEvent(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}

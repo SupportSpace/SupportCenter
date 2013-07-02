@@ -1,0 +1,1 @@
+nant -buildfile:get_error_strings

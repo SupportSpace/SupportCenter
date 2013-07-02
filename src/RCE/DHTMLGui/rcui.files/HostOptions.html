@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI HostOptions frame </TITLE>
+
+</HEAD>
+<script language="JavaScript">
+	/// active service currently bind with this frame
+	var service=null;
+	/// The method activate service object. The object set its state on the UI elements. The function can't invoke as separate function, it must invoke as method service object (for example: service.Activate(true); ).
+	/// @param flag bool parameter. if it's true - session activates, else session deactivetes.
+	function Activate(flag)
+	{	
+		if(flag)//Activate
+		{	
+			document.getElementById('srvAccess').selectedIndex=service.m_access;
+			document.getElementById('srvHostRecordStart').disabled=service.m_hostObject.m_recState;
+			document.getElementById('srvHostRecordStop').disabled=!service.m_hostObject.m_recState;
+		}
+		else//Deactivate
+		{	
+			
+		}
+	}
+</script>
+<BODY>
+	<span id="srHostOptions" align="center">
+		<table>
+			<tr>
+				<td>
+					Access:
+				</td>
+				<td>
+					<select id="srvAccess" style="width: 150px" onclick="service.SetAccessMode(document.getElementById('srvAccess').selectedIndex);">
+						<option id="0">View Only</option>
+						<option id="1">View Only + Visual Pointer</option>
+						<option id="2">Full Control</option>
+					</select>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Session Recording:
+				</td>
+				<td>
+					<input id="srvHostRecord"  type="text" value="untitled" style="width: 150px">
+				</td>
+				<td>
+					<input id="srvHostRecordStart" type="button" value="Start"  onClick="service.m_hostObject.statSetSessionRecording(document.getElementById('srvHostRecord').value,true);">
+					<input id="srvHostRecordStop" type="button" value="Stop" disabled onClick="service.m_hostObject.statSetSessionRecording(document.getElementById('srvHostRecord').value,false);">
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<input id="srvHostProtectWindow" type="checkbox" onclick="service.m_hostObject.ProtectWindow(document.getElementById('srvHostProtectWindow').checked);">Protect Window	
+				</td>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<input id="srvSetCaptureAlphaBlend" type="checkbox" onclick="service.m_hostObject.SetCaptureAlphaBlend(document.getElementById('srvSetCaptureAlphaBlend').checked);">Capture alpha blend
+				</td>
+			</tr>
+				<td>
+				</td>
+			</tr>
+		</table>
+	</span>
+</BODY>
+</HTML>

@@ -1,0 +1,29 @@
+Relay stress test user guide.
+=============================
+
+FTestRelay.exe	- relay stress test console application
+Usage: FTestRelay.exe -a=<ip> [-p=<port>] [-t=<test>] [-u=<user>] [-s=<password>] [-l=<pool>] [-e=<clients>] [-x=<ext.port>]
+-a=<ip>		- ip address of relay
+-p=<port>	- service port; 5904 - relay, external ip, external port services; 5902 - STUN service; default: 5904
+-t=<test>	- test type; 0 - relay service test, 1 - STUN service test, 2 - connect phase test; default: 0
+-u=<user>	- user name for authentication on relay; default: TestUser
+-s=<password>	- user password for authentication on relay; default: A7B3F3CA-0096-4d02-8936-31B2392F973F
+-l=<pool>	- count of threads in pool; default: 500
+-e=<clients>	- count of client connection; default: 100000
+-x=<ext.port>	- external port (FOR connect test(2) ONLY); default: 7799
+
+
+Examples:
+=========
+1. FTestRelay.exe -a=192.168.0.66
+
+Stress test for relay service with default port, user, password, pool size and number of client connections
+
+2. FTestRelay.exe -a=192.168.0.66 -p=5902 -t=1 -u=SomeUser -l=50 -e=1000
+
+Stress test for STUN service with pool size = 50, number of client = 1000, user name = SomeUser and default password
+
+3. FTestRelay.exe -a=192.168.0.66 -t=2 -e=200000
+
+Test of connection phase with number of client connections = 200000, with default user, password, pool size, port and external port
+

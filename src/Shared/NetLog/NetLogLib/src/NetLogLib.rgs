@@ -1,0 +1,14 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'NetLogLib'
+		{
+            val DllSurrogate = s ''
+        }
+		'NetLogLib.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

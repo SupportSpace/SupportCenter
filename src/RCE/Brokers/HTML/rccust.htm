@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+		<title>Remote Control Customer's side</title>
+		<script language=javascript src=rctypes.js></script>
+		<script language=javascript src=rccust.js></script>
+		<script language=vbscript>
+			
+			'return a blank dynamic array
+			function getBlankArray()
+				getBlankArray = Array()
+			end function
+
+			'append  arr with the specified val
+			function appendArray(arr, val)
+				redim preserve arr(ubound(arr) + 1)
+				arr(ubound(arr)) = val
+				appendArray = arr
+			end function 
+		</script>
+		<script language=jscript>
+			Array.prototype.toVBArray = function()
+			{
+				//call our vbscript function to give us a blank VBArray
+				var vbarray = getBlankArray();
+				for(var i = 0; i < this.length; i++)
+				{
+					//use our vbscript manipulation function to append the ith item
+					vbarray = (appendArray(vbarray, this[i]));
+				}
+				return(vbarray);
+			}
+		</script>
+</head>
+<body onload="InitPage();">
+	SID <input id="uiSid" type="text" size="10" value="E_NOTIMPL" />
+	ID: <input id="uiUser" type="text" size="10" value="eran">
+	Password: <input id="uiPasswd" type="text" size="10" value="eran">
+	<!--<input type="button" value="Login" id="btnlogin" onClick="alert('E_NOTIMPL');">
+	<input type="button" value="Logout" id="btnlogout" onClick="alert('E_NOTIMPL');">
+		<input type=button value="CreateFeature" onclick="CoVBroker.StartFeature('','','','','',1);" />-->
+	PeerID: <input id="uiRemoteUser" type="text" size="15" value="doron">
+	<input id=uiSvcId type=text size="15" value="1" />
+	<input type="button" value="Approve" onClick="ApprovedRC();">
+	<input type=button value="Clear Log" onclick="logger.innerHTML='';" />
+	<input id=ChatEdit type=text size="15" value="Chat Here" />
+	<input type=button value=Send onclick="SendChatMessage(ChatEdit.value);" />
+	<span id="spanCoBrokerProxy">
+		<!--<OBJECT ID="CoBrokerProxy" CLASSID="CLSID:08653405-44A9-4E99-9C09-DD00770AAA08" width="50" height="23" ></OBJECT>-->
+	</span>
+	<br />
+	<div style="color:Gray; font-size:65%">
+		<b>RemoteSending:</b><br/>
+		<div id="spanRemoteSending"></div><br />
+	</div>
+	<b>Chat:</b><br/>
+	<div id="spanChat">
+	</div>
+	<br /><br />
+	<span id="logger" style="font-size:65%">blank</span>
+</body>
+</html>

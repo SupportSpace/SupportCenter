@@ -1,0 +1,382 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 14,0,0,0
+ PRODUCTVERSION 14,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "CompanyName", "SupportSpace, Inc."
+            VALUE "FileVersion", "14.0.0.0"
+            VALUE "ProductVersion", "14.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// SKINS
+//
+
+IDR_SIMPLE_PANEL_1x1    SKINS                   "res\\simple_panel_1x1.png"
+IDR_BTN_HIDE_NORMAL     SKINS                   "res\\btnShowNormal.png"
+IDR_BTN_HIDE_MOUSEOVER  SKINS                   "res\\btnShowMouseOver.png"
+IDR_BTN_SHOW_MOUSEOVER  SKINS                   "res\\btnHideMouseOver.png"
+IDR_BTN_SHOW_NORMAL     SKINS                   "res\\btnHideNormal.png"
+IDR_TOOLBARPANEL_BGRND  SKINS                   "res\\ToolBarPanel.png"
+IDR_HISTORY_HEADER      SKINS                   "res\\historyHeader.png"
+IDR_HISTORY_FOOTER      SKINS                   "res\\historyFooter.png"
+IDR_FILEVIEW_HEADER     SKINS                   "res\\FileViewHeader.png"
+IDR_FILEVIEW_MIDDLE     SKINS                   "res\\FileViewMiddle.png"
+IDR_RESIZE_IMAGE        SKINS                   "res\\ResizeImage.png"
+IDR_MSG_BOX_DIALOG      SKINS                   "res\\msgBoxDialog.png"
+IDR_CHB_CHECKED_MOUSEOVER SKINS                   "res\\checkBox_checked_mouseOver.png"
+IDR_CHB_CHECKED_REGULAR SKINS                   "res\\checkBox_checked_regular.png"
+IDR_CHB_UNCHECKED_MOUSEOVER SKINS                   "res\\checkBox_unchecked_mouseOver.png"
+IDR_CHB_UNCHECKED_REGULAR SKINS                   "res\\checkBox_unchecked_regular.png"
+IDR_UIS_PERMISSION_REQUEST_SEND SKINS                   "res\\indicator_waiting_approval.gif"
+IDR_UIS_SESSION_CONNECTING SKINS                   "res\\indicator_connecting_customer.gif"
+IDR_UIS_SESSION_FAILED  SKINS                   "res\\indicator_connection_failed.gif"
+IDR_UIS_PERMISSION_RECIEVED SKINS                   "res\\indicator_customer_approved.gif"
+IDR_UIS_PERMISSION_DENIED SKINS                   "res\\indicator_customer_declined.gif"
+IDR_UIS_INSTALLATION_FAILED SKINS                   "res\\indicator_install_failed.gif"
+IDR_UIS_INSTALLATION_INPROGRESS SKINS                   "res\\indicator_install_porgress.gif"
+IDR_UIS_SESSION_OFF     SKINS                   "res\\indicator_sharing_off.gif"
+IDR_UIS_SESSION_ON      SKINS                   "res\\indicator_sharing_on.gif"
+IDR_UIS_INSTALLATION_SUCCESSFUL SKINS                   "res\\indicator_successful_install.gif"
+IDR_BTN_GO_NORMAL_24x24 SKINS                   "res\\btnGo_Normal_24x24.png"
+IDR_BTN_GO_DISABLE_24x24 SKINS                   "res\\btnGo_Disable_24x24.png"
+IDR_BTN_GO_PRESSED_24x24 SKINS                   "res\\btnGo_Pressed_24x24.png"
+IDR_BTN_GO_MOUSEOVER_24x24 SKINS                   "res\\btnGo_Mouseover_24x24.png"
+IDR_BTN_REFRESH_NORMAL_24x24 SKINS                   "res\\btnRefresh_Normal_24x24.png"
+IDR_BTN_REFRESH_DISABLE_24x24 SKINS                   "res\\btnRefresh_Disable_24x24.png"
+IDR_BTN_REFRESH_PRESSED_24x24 SKINS                   "res\\btnRefresh_Pressed_24x24.png"
+IDR_BTN_REFRESH_MOUSEOVER_24x24 SKINS                   "res\\btnRefresh_Mouseover_24x24.png"
+IDR_BTN_UP_NORMAL_24x24 SKINS                   "res\\btnUp_Normal_24x24.png"
+IDR_BTN_UP_DISABLE_24x24 SKINS                   "res\\btnUp_Disable_24x24.png"
+IDR_BTN_UP_PRESSED_24x24 SKINS                   "res\\btnUp_Pressed_24x24.png"
+IDR_BTN_UP_MOUSEOVER_24x24 SKINS                   "res\\btnUp_Mouseover_24x24.png"
+IDR_TB_DELETE_NORMAL_29x29 SKINS                   "res\\tbbtn_Delete_Normal_29x29.gif"
+IDR_TB_DELETE_DISABLE_29x29 SKINS                   "res\\tbbtn_Delete_Disable_29x29.gif"
+IDR_TB_DELETE_PRESSED_29x29 SKINS                   "res\\tbbtn_Delete_Pressed_29x29.gif"
+IDR_TB_DELETE_MOUSEOVER_29x29 SKINS                   "res\\tbbtn_Delete_Mouseover_29x29.gif"
+IDR_TB_RENAME_NORMAL_29x29 SKINS                   "res\\tbbtn_Rename_Normal_29x29.gif"
+IDR_TB_RENAME_DISABLE_29x29 SKINS                   "res\\tbbtn_Rename_Disable_29x29.gif"
+IDR_TB_RENAME_PRESSED_29x29 SKINS                   "res\\tbbtn_Rename_Pressed_29x29.gif"
+IDR_TB_RENAME_MOUSEOVER_29x29 SKINS                   "res\\tbbtn_Rename_Mouseover_29x29.gif"
+IDR_TB_MOVE_NORMAL_29x29 SKINS                   "res\\tbbtn_Move_Normal_29x29.gif"
+IDR_TB_MOVE_DISABLE_29x29 SKINS                   "res\\tbbtn_Move_Disable_29x29.gif"
+IDR_TB_MOVE_PRESSED_29x29 SKINS                   "res\\tbbtn_Move_Pressed_29x29.gif"
+IDR_TB_MOVE_MOUSEOVER_29x29 SKINS                   "res\\tbbtn_Move_Mouseover_29x29.gif"
+IDR_TB_COPY_NORMAL_29x29 SKINS                   "res\\tbbtn_Copy_Normal_29x29.gif"
+IDR_TB_COPY_DISABLE_29x29 SKINS                   "res\\tbbtn_Copy_Disable_29x29.gif"
+IDR_TB_COPY_PRESSED_29x29 SKINS                   "res\\tbbtn_Copy_Pressed_29x29.gif"
+IDR_TB_COPY_MOUSEOVER_29x29 SKINS                   "res\\tbbtn_Copy_Mouseover_29x29.gif"
+IDR_TB_CREATE_NORMAL_29x29 SKINS                   "res\\tbbtn_Create_Normal_29x29.gif"
+IDR_TB_CREATE_DISABLE_29x29 SKINS                   "res\\tbbtn_Create_Disable_29x29.gif"
+IDR_TB_CREATE_PRESSED_29x29 SKINS                   "res\\tbbtn_Create_Pressed_29x29.gif"
+IDR_TB_CREATE_MOUSEOVER_29x29 SKINS                   "res\\tbbtn_Create_Mouseover_29x29.gif"
+IDR_TB_ATTRIBUTES_NORMAL_36x29 SKINS                   "res\\tbbtn_Attributes_Normal_36x29.gif"
+IDR_TB_ATTRIBUTES_DISABLE_36x29 SKINS                   "res\\tbbtn_Attributes_Disable_36x29.gif"
+IDR_TB_ATTRIBUTES_PRESSED_36x29 SKINS                   "res\\tbbtn_Attributes_Pressed_36x29.gif"
+IDR_TB_ATTRIBUTES_MOUSEOVER_36x29 SKINS                   "res\\tbbtn_Attributes_Mouseover_36x29.gif"
+IDR_PB_LEFT_EMPTY_7x16  SKINS                   "res\\pb_Left_Empty_7x16.png"
+IDR_PB_PAD_EMPTY_1x16   SKINS                   "res\\pb_Pad_Empty_1x16.png"
+IDR_PB_RIGHT_EMPTY_7x16 SKINS                   "res\\pb_Right_Empty_7x16.png"
+IDR_PB_LEFT_FULL_7x16   SKINS                   "res\\pb_Left_Full_7x16.png"
+IDR_PB_PAD_FULL_1x16    SKINS                   "res\\pb_Pad_Full_1x16.png"
+IDR_PB_RIGHT_FULL_7x16  SKINS                   "res\\pb_Right_Full_7x16.png"
+IDR_LV_TOP_SKIN_1x8     SKINS                   "res\\lv_Top.png"
+IDR_LV_BRUSH_SKIN_1x1   SKINS                   "res\\lv_Brush.PNG"
+IDR_LV_BOTTOM_SKIN_1x8  SKINS                   "res\\lv_Bottom.png"
+IDR_HLV_SENDDIRECTION_16x16 SKINS                   "res\\hlv_arrowSend.PNG"
+IDR_HLV_RECEIVEDIRECTION_16x16 SKINS                   "res\\hlv_arrowReceive.PNG"
+IDR_BTN_DISABLED_72_22  SKINS                   "res\\button_disabled_74x22.gif"
+IDR_BTN_MOUSEOVER_72_22 SKINS                   "res\\button_mouse_over_74x22.gif"
+IDR_BTN_PRESSED_72_22   SKINS                   "res\\button_pressed_74x22.gif"
+IDR_BTN_REGULAR_72_22   SKINS                   "res\\button_regular_74x22.gif"
+IDR_UIS_STATUSDOTS_11_11 SKINS                   "res\\drag_status.png"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENUEX 
+BEGIN
+    POPUP "",                               65535,MFT_STRING,MFS_ENABLED
+    BEGIN
+        MENUITEM "Read only",                   ID__ATR_READONLY,MFT_STRING | MFT_RIGHTJUSTIFY,MFS_ENABLED
+        MENUITEM "Hidden",                      ID__ATR_HIDDEN,MFT_STRING | MFT_RIGHTJUSTIFY,MFS_ENABLED
+        MENUITEM "System",                      ID__ATR_SYSTEM,MFT_STRING | MFT_RIGHTJUSTIFY,MFS_ENABLED
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINDLG DIALOGEX 0, 0, 414, 327
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_LOCAL_LIST,"SysListView32",LVS_SINGLESEL | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,4,38,199,283
+    CONTROL         "",IDC_REMOTE_LIST,"SysListView32",LVS_SINGLESEL | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,211,38,199,283
+    LTEXT           "Local",IDC_LOCAL,3,28,198,9
+    LTEXT           "Static",IDC_REMOTE,212,28,198,9
+    LTEXT           "Static",IDC_SPLITTER,258,14,19,8,SS_NOTIFY
+END
+
+IDD_LIGHTVIEWERDLG DIALOGEX 0, 0, 149, 129
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_SYSMENU
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+END
+
+IDD_MSGBOX_DIALOG DIALOGEX 0, 0, 260, 102
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,147,81,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,203,81,50,14
+    LTEXT           "This is message text",IDC_TEXT_LBL,71,25,163,43
+    LTEXT           "Don't show this message again",IDC_SHOWAGAIN_CHBOX,8,87,135,8,SS_NOTIFY | NOT WS_GROUP
+END
+
+IDD_PANE DIALOGEX 0, 0, 186, 95
+STYLE DS_SETFONT | WS_CHILD
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAINDLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 410
+    END
+
+    IDD_LIGHTVIEWERDLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 148
+        BOTTOMMARGIN, 127
+    END
+
+    IDD_MSGBOX_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 253
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
+    END
+
+    IDD_PANE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CPROGRESSBARDLG DIALOGEX 0, 0, 210, 98
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,80,74,50,16
+    CONTROL         "",IDC_PROGRESS,"msctls_progress32",WS_BORDER | 0x1,7,51,196,14
+    LTEXT           "Static",IDC_SOURCE,7,7,196,8
+    LTEXT           "Static",IDC_DESTINATION,7,21,189,8
+    LTEXT           "Static",IDC_SPEED,8,36,191,8
+END
+
+IDD_CREATE_FOLDER DIALOGEX 0, 0, 186, 50
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Create Folder"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,5,10,179,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,73,31,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,133,31,50,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_ACTIVEX             REGISTRY                "FTUI.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BTN_LEVEL_UP        ICON                    "res\\btnLevelUp_16x16.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "ActiveX"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Ukrainian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+#ifdef _WIN32
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CoFAViewer          BITMAP                  "CoFAViewer.bmp"
+#endif    // Ukrainian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

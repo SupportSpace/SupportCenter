@@ -1,0 +1,5 @@
+LIBTASN1_0_3
+{
+  global: asn1*; libtasn1*;
+  local: *;
+};

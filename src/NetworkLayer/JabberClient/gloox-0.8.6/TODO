@@ -1,0 +1,18 @@
+Todo
+----
+
+- check subjectAltName for JIDs (core sec. 5.1 rule 8)
+- introduce some 'randomness' for IDs
+- introduce return values for *Handlers to indicate whether following handlers should be invoked as well
+- sort SRV records by weight & cost
+- get rid of iksemel (and don't introduce another hard requirement)
+- unify error recognition
+- thread safety
+- look into IPV6 support
+
+
+In the pipe
+-----------
+
+- doc for every class
+

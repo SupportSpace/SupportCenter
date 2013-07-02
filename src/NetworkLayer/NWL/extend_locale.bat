@@ -1,0 +1,1 @@
+nant -buildfile:extand_locale

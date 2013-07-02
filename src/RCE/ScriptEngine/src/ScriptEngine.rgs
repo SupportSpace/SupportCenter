@@ -1,0 +1,14 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'ScriptEngine'
+		{
+            val DllSurrogate = s ''
+        }
+		'ScriptEngine.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

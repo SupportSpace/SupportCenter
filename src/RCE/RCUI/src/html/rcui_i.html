@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>RCUI</title>
+		<script language="JavaScript" src="rcui_i.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://213.8.114.132:18080/jwchat/jabberscripts/sha1.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://213.8.114.132:18080/jwchat/jabberscripts/xmlextras.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://213.8.114.132:18080/jwchat/jabberscripts/JSJaCConnection.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://213.8.114.132:18080/jwchat/jabberscripts/JSJaCPacket.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://213.8.114.132:18080/jwchat/jabberscripts/JSJaCHttpPollingConnection.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://213.8.114.132:18080/jwchat/jabberscripts/JSJaCHttpBindingConnection.js"></script>
+		<script language="JavaScript" type="text/javascript" src="imwrapper.js"></script>
+		<style src="style.css"></style>
+	</head>
+	<body onload="installerObjectInit();" onunload="OnUnloadPage();"><!--onload="OnLoadPage();"-->
+		<!--<object id="installerObject" classid="clsid:7B3BBD75-A77C-40D9-BD0E-943055093249" width="0" height="0" codebase="http://pigeon/rcinstaller.dll"> </object>-->
+		<object id="installerObject" classid="clsid:7B3BBD75-A77C-40D9-BD0E-943055093249" width="0" height="0" codebase="http://pigeon/rcinstaller.cab"> </object>
+		<object id="IMMediatorObject" classid="clsid:3FE73D88-72F5-4526-A106-FAA12DE9A619" width="0" height="0"> </object>
+		<span id="spanHostObject">
+		<!--<object id="hostObject" classid="clsid:82AA4446-50DD-443B-9AD7-919B0438E145" width="0" height="0"> </object><!--style="display:none"-->
+		</span>
+		<script language="JavaScript">
+			// Init mediator
+			$('IMMediatorObject').attachEvent("OnSendMessage", OnIMSendMessage);
+		</script>
+		<table  cellpadding="0" cellspacing="0" width="100%" height="98%" border> <!--cellpadding="1" cellspacing="0"-->
+			<tr><!--session management pane   -->
+				<td  colspan="2" nowrap height="40">
+					&nbsp;&nbsp;&nbsp;&nbsp;ID: <input id="userid" type="text" size="10" value="eran">&nbsp;&nbsp;&nbsp;&nbsp; 
+					Password: <input id="password" type="text" size="10" value="eran">&nbsp;&nbsp;&nbsp;&nbsp;  
+					<input type="button" value="Login" id="btnlogin" onClick="IMLogin();">&nbsp;&nbsp;&nbsp;&nbsp; 
+					PeerID: <input id="peerid" type="text" size="15" value="doron">&nbsp;&nbsp; 
+					<!--TODO disabled New button, until logon has performed.-->
+					<input id="bsnew" type="button" value="New"  onClick="NewSession($('userid').value,$('password').value,$('peerid').value);">&nbsp;
+					<input id="bsclose"type="button" value="Close" disabled="true" onClick="CloseSession(currentSession)">&nbsp;
+					<script language="JavaScript">
+						//+save user and peer id ondeactivate event of editbox
+						$('userid').ondeactivate=SaveUserPeerId;
+						$('password').ondeactivate=SaveUserPeerId;
+						$('peerid').ondeactivate=SaveUserPeerId;
+						function SaveUserPeerId()
+						{	//alert("save : "+$('userid').value+" "+$('peerid').value);
+							//date=new Date(2007,12,31);
+							date=new Date();
+							date.setDate(date.getDate()+365);
+							document.cookie="userid="+escape($('userid').value)+ "; expires=" + date.toGMTString();
+							document.cookie="password="+escape($('password').value)+"; expires=" + date.toGMTString();
+							document.cookie="peerid="+escape($('peerid').value) + "; expires=" + date.toGMTString();
+							//var str="peerid="+escape($('peerid').value) + "; expires=" + date.toGMTString();
+							//alert(document.cookie+"\n"+str);
+						}
+						//-save user and peer id
+						//+load saved earlier user and peer id
+			 			var aCookie = document.cookie.split("; ");
+						//alert(document.cookie);
+						for (var i=0; i < aCookie.length; i++)
+						  { //alert(aCookie[i]);
+							var aCrumb = aCookie[i].split("=");
+							if(aCrumb[0]=="userid")$('userid').value=unescape(aCrumb[1]);
+							else if(aCrumb[0]=="password")$('password').value=unescape(aCrumb[1]);
+							else if(aCrumb[0]=="peerid")$('peerid').value=unescape(aCrumb[1]);
+						  }
+						//-load saved earlier user and peer id
+					</script>
+				</td>
+			</tr><!--session management pane   -->
+			<tr>
+				<td width="1%"   valign="top"> <!-- Peer pane rowspan="2"-->
+					<span id="peerContainer"></span> 
+				</td><!-- Peer pane -->
+				<td  valign="center"> <!-- Attributes pane -->
+					<table width="100%" height="100%"  cellpadding="0" cellspacing="0"> <!--bordercolor="crimson" border-->
+						<tr height="50">
+							<td>
+								<table width="100%"> <!--cellpadding="0" cellspacing="2"-->
+									<tr>
+										<td> <!-- Start/Stop service pane -->
+											<table>
+												<tr>
+													<td>
+
+													</td>
+													<td>
+														<input id="cursession" type="text" value="" disabled="true">
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Type:
+													</td>
+													<td>
+														<select id="srtype" style="width: 150px" disabled="true" onchange="sessions[currentSession].ChangeType($('srtype').selectedIndex);">
+															<option id="0">RCViewer</option>
+															<option id="1">RCHost</option>
+															<option id="3">RCPlayback</option>
+															<option id="4">RCFileAccessClient</option>
+															<option id="5">RCFileAccessHost</option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Access:
+													</td>
+													<td>
+														<select id="sraccess" style="width: 150px" disabled="true" >
+															<option id="0">Read Only</option>
+															<option id="1">Upload Only</option>
+															<option id="2">Full Access</option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" align="right">
+														<input id="bsrstart" type="button" value="Start" disabled="true" onClick="sessions[currentSession].Start();">&nbsp;&nbsp;
+														<input id="bsrstop" type="button" value="Stop" disabled="true" onClick="sessions[currentSession].Stop();">
+													</td>
+												</tr>
+											</table>
+										</td><!-- Start/Stop service pane -->
+										<td align="center" valign="center" width="100%" > <!-- Custom service attributes pane -->
+											<span id="srViewerOptions" align="center"  style="display:none"><!-- CServiceRCViewer pane -->
+												<table>
+													<tr>
+														<td>
+															Session Recording:
+														</td>
+														<td>
+															<input id="srvRecord"  type="text" value="untitled" style="width: 150px">
+														</td>
+														<td>
+															<input id="srvRecordStart" type="button" value="Start"  onClick="sessions[currentSession].m_service.SetSessionRecording($('srvRecord').value,true);">
+															<input id="srvRecordStop" type="button" value="Stop" onClick="sessions[currentSession].m_service.SetSessionRecording($('srvRecord').value,false);">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															DisplayMode:
+														</td>
+														<td>
+															<select id="srvDisplayMode" style="width: 150px" onChange= "sessions[currentSession].m_service.SetDisplayMode($('srvDisplayMode').selectedIndex);">
+																<option value="0">Scale mode</option>
+																<option value="1">Scroll mode</option>
+																<option value="2">Full screen</option>
+															</select>
+														</td>
+														<td>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															Colors:
+														</td>
+														<td>
+															<select id="srvColors" style="width: 150px" onChange= "sessions[currentSession].m_service.SetOptions();">
+																<option value="0">full</option>
+																<option value="1">256</option>
+																<option value="2"> 64</option>
+																<option value="3">  8</option>
+																<option value="4">  8 grey</option>
+																<option value="5">  4</option>
+																<option value="6">  2 grey</option>
+															</select>
+														</td>
+														<td>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															Encoding:
+														</td>
+														<td>
+															<select id="srvEncoding" style="width: 150px" onChange="sessions[currentSession].m_service.SetOptions();">
+																<option value="0">ZRLE</option>
+																<option value="1">Zlib(+xor)</option>
+																<option value="2">ZlibHex</option>
+																<option value="3">Hextile</option>
+																<option value="4">RRE</option>
+																<option value="5">CORRE</option>
+																<option value="6">Raw</option>
+																<option value="7">Ultra</option>
+																<option value="8">Tight</option>
+															</select>
+														</td>
+														<td>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<input id="srvuCompressLevel" type="checkbox" onclick="sessions[currentSession].m_service.SetOptions();">Zip/Tight Compression	
+														</td>
+														<td>
+															<input id="srvCompressLevel" type="text" value=6 style="width: 150px">
+														</td>
+														<td>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<input id="srvuJpeg" type="checkbox" onclick="sessions[currentSession].m_service.SetOptions();">Jpeg(Tight) quality	
+														</td>
+														<td>
+															<input id="srvJpeg" type="text" value=6 style="width: 150px">
+														</td>
+														<td>
+														</td>
+													</tr>
+												</table>
+											</span><!-- CServiceRCViewer pane -->
+											<span id="srPlaybackOptions" align="center"  style="display:none"><!-- CServiceRCPlayback pane -->
+												<table>
+													<tr>
+														<td>
+															File name:
+														</td>
+														<td>
+															<input id="srvPlayFileName"  type="text" value="untitled" style="width: 150px">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															Delay Factor:
+														</td>
+														<td>
+															<select id="srvPlayDelayFactor" style="width: 150px" onChange= "sessions[currentSession].m_service.SetDelayFactor($('srvPlayDelayFactor').selectedIndex);">
+																<option value="0">16:1</option>
+																<option value="1"> 8:1</option>
+																<option value="2"> 4:1</option>
+																<option value="3"> 2:1</option>
+																<option value="4"> 1:1</option>
+																<option value="5"> 1:2</option>
+																<option value="6"> 1:4</option>
+																<option value="7"> 1:8</option>
+																<option value="8"> 1:16</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															DisplayMode:
+														</td>
+														<td>
+															<select id="srvPlayDisplayMode" style="width: 150px" onChange= "sessions[currentSession].m_service.SetDisplayMode($('srvPlayDisplayMode').selectedIndex);">
+																<option value="0">Scale mode</option>
+																<option value="1">Scroll mode</option>
+																<option value="2">Full screen</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td>
+														</td>
+														<td>
+															<input id="srvPlayStart" type="button" value="Start"  onClick="sessions[currentSession].m_service.m_activeX.SetPlaybackMode(0);">
+															<input id="srvPlayPause" type="button" value="Pause"  onClick="sessions[currentSession].m_service.m_activeX.SetPlaybackMode(2);">
+															<input id="srvPlayStop" type="button" value="Stop"  onClick="sessions[currentSession].m_service.m_activeX.SetPlaybackMode(1);">
+														</td>
+													</tr>
+												</table>
+											</span><!-- CServiceRCPlayback pane -->
+											<span id="srHostOptions" align="center" style="display:none"><!-- CServiceRCHost pane -->
+												<table>
+													<tr>
+														<td>
+															Session Recording:
+														</td>
+														<td>
+															<input id="srvHostRecord"  type="text" value="untitled" style="width: 150px">
+														</td>
+														<td>
+															<input id="srvHostRecordStart" type="button" value="Start"  onClick="hostObject.statSetSessionRecording($('srvHostRecord').value,true);">
+															<input id="srvHostRecordStop" type="button" value="Stop" disabled onClick="hostObject.statSetSessionRecording($('srvHostRecord').value,false);">
+														</td>
+													</tr>
+													<tr>
+														<td>
+														</td>
+														<td>
+															<input id="srvHostProtectWindow" type="checkbox" onclick="hostObject.ProtectWindow($('srvHostProtectWindow').checked);">Protect Window	
+														</td>
+														<td>
+														</td>
+													</tr>
+												</table>
+											</span><!-- CServiceRCHost pane -->
+											<!-- CServiceRCFileAccessClient pane -->
+											<span id="srFileAccessClientOptions" align="center"  style="display:none">
+												FileAccessClient OPTIONS
+											</span><!-- CServiceRCFileAccessHost pane -->
+											<span id="srFileAccessHostOptions" align="center"  style="display:none">
+												FileAccessHost OPTIONS
+											</span><!-- CServiceRCFileAccessHost pane -->
+											<span id="srInstallerOptions" align="center" style="display:none"><!-- CServiceRCInstaller pane -->
+												<table>
+													<tr>
+														<td>
+															Feature:
+														</td>
+														<td>
+															<select id="srvInstallerFeatures" style="width: 150px"></select>
+														</td>
+														<td>
+															
+														</td>
+													</tr>
+												</table>
+											</span><!-- CServiceRCInstaller pane -->
+										</td> <!-- Custom service attributes pane -->
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td> <!-- ActiveX pane -->
+								<span id="activeX" style="display:none">
+								</span>
+								<span id="activeXcon" style="display:none">
+									<span style="width:5%"></span><span id="activeXconMessage" style="width: 90%"></span><BR><BR>
+									<span style="width:5%"></span>
+									<span style="border-style:double; width: 90%" align="left">
+										<span id="activeXconPercent" style="background-color: background; width:0%"></span></span>
+								</span>
+							</td><!-- ActiveX pane -->
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<input type="button"  width="10" onClick="$('logger').innerText=' ';"> 
+		<span id="logger" style="font-size:65%">
+		</span>
+	</body>
+</html>

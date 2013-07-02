@@ -1,0 +1,464 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Ukrainian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+#ifdef _WIN32
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\NetworkLayerTest.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\NetworkLayerTest.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_STREAM_FABRIC_TEST DIALOGEX 0, 0, 474, 276
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_LOCAL_PEED_EDIT,65,7,115,14,ES_AUTOHSCROLL
+    LTEXT           "Local peed id",IDC_STATIC,7,11,42,8
+    LTEXT           "Remote peer id",IDC_STATIC,7,25,50,8
+    EDITTEXT        IDC_REMOTE_PEED_EDIT,65,22,115,14,ES_AUTOHSCROLL
+    CONTROL         "Master",IDC_MASTER_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,65,41,38,10
+    LTEXT           "Server User Id:",IDC_STATIC,7,59,50,8
+    EDITTEXT        IDC_SERVER_USERID_EDIT,65,57,115,14,ES_AUTOHSCROLL
+    LTEXT           "Server Password:",IDC_STATIC,7,75,58,8
+    EDITTEXT        IDC_SERVER_PASSWORD_EDIT,65,73,115,14,ES_AUTOHSCROLL
+    CONTROL         "Use async connect method",IDC_ASYNC_CONNECT_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,97,102,10
+    PUSHBUTTON      "Connect",IDC_CONNECT_BUTTON,7,111,50,14,BS_FLAT
+    PUSHBUTTON      "Reset im server (stub)",IDC_RESETIM_BUTTON,61,111,88,15,BS_FLAT
+    PUSHBUTTON      "Disconnect",IDC_DISCONNECT_BUTTON,7,126,50,14,BS_FLAT | WS_DISABLED
+    LTEXT           "Connect time out (msec)",IDC_STATIC,19,151,79,8
+    EDITTEXT        IDC_CONNECT_TIMEOUT_EDIT,105,148,67,14,ES_AUTOHSCROLL
+    CONTROL         "Use custom port",IDC_CUSTOM_PORT_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,172,68,10
+    EDITTEXT        IDC_CUSTOM_PORT_EDIT,106,170,42,14,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_DATA_GROUP,187,7,284,265
+    EDITTEXT        IDC_EDIT_SEND_TEXT,192,16,221,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Send",IDC_BUTTON_SEND,418,16,50,14,WS_DISABLED
+    CONTROL         "Add \\r\\n",IDC_CHECK_ADD_BRAKLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,193,35,88,10
+    PUSHBUTTON      "Clear",IDC_BUTTON_CLEAR,418,36,50,14
+    LISTBOX         IDC_LIST_SEND,192,54,132,215,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_RECEIVE,330,54,132,215,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+END
+
+IDD_MAIN_DIALOG DIALOGEX 0, 0, 478, 309
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTROLPARENT | WS_EX_APPWINDOW
+CAPTION "NWL test"
+MENU IDR_MENU1
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TABCONTROL,"SysTabControl32",TCS_TOOLTIPS | WS_TABSTOP,0,0,477,308
+    LISTBOX         IDC_LOG_LIST,2,16,475,292,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_NAT_TRAVERSAL_DIALOG DIALOGEX 0, 0, 469, 271
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Relay Server",IDC_NAT_RELAY_GROUP,7,7,173,41
+    LTEXT           "Address:",IDC_NAT_SRV_ADDRESS,16,17,30,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_ADDRESS,75,15,100,14,ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_NAT_SRV_PORT,16,31,17,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_PORT,75,30,41,14,ES_AUTOHSCROLL
+    GROUPBOX        "Server Credentials",IDC_NAT_SRV_CRED_GROUP,7,49,173,41
+    LTEXT           "User Id:",IDC_NAT_SRV_USER,15,60,27,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_USER,74,58,100,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_NAT_SRV_PASS,16,75,34,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_PASS,74,73,100,14,ES_AUTOHSCROLL
+    GROUPBOX        "Connection",IDC_NAT_SRV_CONNECT_GROUP,7,92,173,101
+    LTEXT           "Connection Id:",IDC_NAT_SRV_CONNECT,17,103,48,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_CONNECT,75,100,100,14,ES_AUTOHSCROLL
+    LTEXT           "Local Peer Id:",IDC_NAT_SRV_PEER,17,117,45,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_PEER,75,116,100,14,ES_AUTOHSCROLL
+    LTEXT           "Remote Peer Id:",IDC_NAT_SRV_REMOTE_PEER,17,133,54,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_REMOTE_PEER,75,132,100,14,ES_AUTOHSCROLL
+    CONTROL         "Master Mode",IDC_CHECK_NAT_MASTER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,165,57,10
+    LTEXT           "Connect timeout (msecs):",IDC_NAT_TIMEOUT,15,175,83,8
+    EDITTEXT        IDC_EDIT_NAT_TIMEOUT,101,173,68,14,ES_AUTOHSCROLL
+    GROUPBOX        "Cipher",IDC_NAT_CIPHER_GROUP,7,194,79,70
+    CONTROL         "None",IDC_RADIO_NAT_CIPH_NONE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,203,33,10
+    CONTROL         "AES_128",IDC_RADIO_NAT_CIPH_AES_128,"Button",BS_AUTORADIOBUTTON,15,215,45,10
+    CONTROL         "AES_256",IDC_RADIO_NAT_CIPH_AES_256,"Button",BS_AUTORADIOBUTTON,15,228,45,10
+    CONTROL         "3DES",IDC_RADIO_NAT_3DES,"Button",BS_AUTORADIOBUTTON,15,240,33,10
+    CONTROL         "RC4_128",IDC_RADIO_NAT_CIPH_RC4_128,"Button",BS_AUTORADIOBUTTON,15,252,45,10
+    GROUPBOX        "Compression",IDC_NAT_COMPRESSION_GROUP,90,194,89,39,WS_GROUP
+    CONTROL         "None",IDC_RADIO_NAT_COMP_NONE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,97,202,33,10
+    CONTROL         "ZLIB",IDC_RADIO_NAT_COMP_ZLIB,"Button",BS_AUTORADIOBUTTON,97,211,30,10
+    CONTROL         "LZO",IDC_RADIO_NAT_COMP_LZO,"Button",BS_AUTORADIOBUTTON,97,220,29,10
+    GROUPBOX        "Key Exchange",IDC_NAT_KEY_GROUP,90,234,89,30,WS_GROUP
+    CONTROL         "PSK",IDC_RADIO_NAT_KX_PSK,"Button",BS_AUTORADIOBUTTON | WS_GROUP,97,243,28,10
+    CONTROL         "DHE-PSK",IDC_RADIO_NAT_KX_DHE_PSK,"Button",BS_AUTORADIOBUTTON,97,253,44,10
+    GROUPBOX        "Credentials",IDC_NAT_CREDENTIALS_GROUP,182,7,201,41,WS_GROUP
+    LTEXT           "User ID:",IDC_NAT_USER_ID,191,17,28,8
+    EDITTEXT        IDC_EDIT_NAT_USER_ID,231,15,145,14,ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "Key:",IDC_NAT_USER_KEY,192,30,16,8
+    EDITTEXT        IDC_EDIT_NAT_USER_KEY,231,29,145,14,ES_AUTOHSCROLL
+    GROUPBOX        "Settings",IDC_NAT_SET_GROUP,182,49,280,69
+    LTEXT           "Auth Delay:",IDC_NAT_AUTH_DELAY,191,60,39,8
+    EDITTEXT        IDC_EDIT_NAT_AUTH_DELAY,246,58,40,14,ES_AUTOHSCROLL
+    LTEXT           "Auth Max:",IDC_NAT_AUTH_MAX,191,73,34,8
+    EDITTEXT        IDC_EDIT_NAT_AUTH_MAX,246,72,40,14,ES_AUTOHSCROLL
+    LTEXT           "Bind Delay:",IDC_NAT_BIND_DELAY,191,87,37,8
+    EDITTEXT        IDC_EDIT_NAT_BIND_DELAY,246,86,40,14,ES_AUTOHSCROLL
+    LTEXT           "Bind Max:",IDC_NAT_BIND_MAX,191,101,32,8
+    EDITTEXT        IDC_EDIT_NAT_BIND_MAX,246,101,40,14,ES_AUTOHSCROLL
+    LTEXT           "Probe Delay:",IDC_NAT_PROBE_DELAY,325,61,42,8
+    EDITTEXT        IDC_EDIT_NAT_PROBE_DELAY,383,58,40,14,ES_AUTOHSCROLL
+    LTEXT           "Probe Max:",IDC_NAT_PROBE_MAX,326,74,38,8
+    EDITTEXT        IDC_EDIT_NAT_PROBE_MAX,383,72,40,14,ES_AUTOHSCROLL
+    LTEXT           "Port Range:",IDC_NAT_PORT_RANGE,326,103,40,8
+    EDITTEXT        IDC_EDIT_NAT_PORT_RANGE,383,100,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Connect/Disconnect",IDC_NAT_CONTROL_GROUP,386,7,75,42
+    PUSHBUTTON      "Connect",IDC_BUTTON_NAT_CONNECT,402,16,50,14
+    PUSHBUTTON      "Disconnect",IDC_BUTTON_NAT_DISCONNECT,402,31,50,14,WS_DISABLED
+    GROUPBOX        "",IDC_NAT_DATA_GROUP,182,116,280,148
+    EDITTEXT        IDC_EDIT_NAT_SEND_TEXT,184,124,221,14,ES_AUTOHSCROLL
+    CONTROL         "Add \\r\\n",IDC_CHECK_NAT_ADD_BRAKLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,185,143,88,10
+    PUSHBUTTON      "Send",IDC_BUTTON_NAT_SEND,410,124,50,14,WS_DISABLED
+    PUSHBUTTON      "Clear",IDC_BUTTON_NAT_CLEAR,410,144,50,14
+    LISTBOX         IDC_LIST_NAT_SEND,185,161,132,95,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_NAT_RECEIVE,323,160,132,96,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LTEXT           "(msecs)",IDC_STATIC,427,61,26,8
+    LTEXT           "(msecs)",IDC_STATIC,288,90,26,8
+    LTEXT           "(msecs)",IDC_STATIC,288,61,26,8
+    LTEXT           "Session Id:",IDC_NAT_SRV_REMOTE_PEER2,17,149,36,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_SESSION_ID,75,148,100,14,ES_AUTOHSCROLL
+END
+
+IDD_RELAYED_STREAM_DLG DIALOGEX 0, 0, 466, 276
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Relay Server",IDC_NAT_RELAY_GROUP,7,4,173,41
+    LTEXT           "Address:",IDC_NAT_SRV_ADDRESS,16,15,30,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_ADDRESS,75,12,100,14,ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_NAT_SRV_PORT,16,28,17,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_PORT,75,28,41,14,ES_AUTOHSCROLL
+    GROUPBOX        "Credentials",IDC_NAT_CREDENTIALS_GROUP,182,4,201,41
+    LTEXT           "User ID:",IDC_NAT_USER_ID,191,15,28,8
+    EDITTEXT        IDC_EDIT_NAT_USER_ID,231,12,145,14,ES_AUTOHSCROLL
+    LTEXT           "Key:",IDC_NAT_USER_KEY,192,28,16,8
+    EDITTEXT        IDC_EDIT_NAT_USER_KEY,231,27,145,14,ES_AUTOHSCROLL
+    GROUPBOX        "Connect/Disconnect",IDC_NAT_CONTROL_GROUP,386,4,75,42
+    PUSHBUTTON      "Connect",IDC_BUTTON_NAT_CONNECT,402,14,50,14
+    PUSHBUTTON      "Disconnect",IDC_BUTTON_NAT_DISCONNECT,402,28,50,14,WS_DISABLED
+    GROUPBOX        "Server Credentials",IDC_NAT_SRV_CRED_GROUP,7,48,173,41
+    LTEXT           "User Id:",IDC_NAT_SRV_USER,15,59,27,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_USER,74,57,100,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_NAT_SRV_PASS,16,74,34,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_PASS,74,72,100,14,ES_AUTOHSCROLL
+    GROUPBOX        "Connection",IDC_NAT_SRV_CONNECT_GROUP,7,91,173,101
+    LTEXT           "Connection Id:",IDC_NAT_SRV_CONNECT,17,102,48,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_CONNECT,75,99,100,14,ES_AUTOHSCROLL
+    LTEXT           "Local Peer Id:",IDC_NAT_SRV_PEER,17,116,45,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_PEER,75,115,100,14,ES_AUTOHSCROLL
+    LTEXT           "Remote Peer Id:",IDC_NAT_SRV_REMOTE_PEER,17,132,54,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_REMOTE_PEER,75,131,100,14,ES_AUTOHSCROLL
+    CONTROL         "Master Mode",IDC_CHECK_NAT_MASTER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,165,57,10
+    LTEXT           "Connect timeout (msecs):",IDC_NAT_TIMEOUT,15,174,83,8
+    EDITTEXT        IDC_EDIT_NAT_TIMEOUT,101,172,68,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_SEND_TEXT,185,59,221,14,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_DATA_GROUP,182,48,280,210
+    PUSHBUTTON      "Send",IDC_BUTTON_SEND,411,59,50,14,WS_DISABLED
+    LISTBOX         IDC_LIST_SEND,185,99,132,151,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_RECEIVE,323,99,132,151,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Clear",IDC_BUTTON_CLEAR,411,79,50,14
+    CONTROL         "Add \\r\\n",IDC_CHECK_ADD_BRAKLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,186,78,88,10
+    LTEXT           "Session Id:",IDC_NAT_SRV_REMOTE_PEER2,17,149,36,8
+    EDITTEXT        IDC_EDIT_NAT_SRV_SESSION_ID,75,148,100,14,ES_AUTOHSCROLL
+END
+
+IDD_PROGRESS_DLG DIALOGEX 0, 0, 353, 58
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Start connecting",IDC_CAPTION_STATIC,7,7,339,8
+    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",0x1,7,18,339,14
+    PUSHBUTTON      "Cancel",ID_ABORT,287,35,58,14,BS_FLAT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_STREAM_FABRIC_TEST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
+
+    IDD_MAIN_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 477
+        BOTTOMMARGIN, 308
+    END
+
+    IDD_NAT_TRAVERSAL_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 462
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 264
+    END
+
+    IDD_RELAYED_STREAM_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 465
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 273
+    END
+
+    IDD_PROGRESS_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 346
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 51
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "Commands"
+    BEGIN
+        MENUITEM "Clear log",                   ID_COMMANDS_CLEARLOG
+        MENUITEM "Save log to file",            ID_COMMANDS_SAVELOGTOFILE
+    END
+END
+
+#endif    // Ukrainian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 14,0,0,0
+ PRODUCTVERSION 14,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "CompanyName", "SupportSpace, Inc."
+            VALUE "FileVersion", "14.0.0.0"
+            VALUE "InternalName", "NetworkLayerTest.exe"
+            VALUE "OriginalFilename", "NetworkLayerTest.exe"
+            VALUE "ProductVersion", "14.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_NETWORKLAYERTEST_DIALOG DIALOGEX 0, 0, 469, 271
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_POPUP | WS_VISIBLE | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Address/Ports",IDC_CONNECT_GROUP,7,7,173,64
+    LTEXT           "Remote Address:",IDC_REMOTE_ADDR,15,22,56,8
+    EDITTEXT        IDC_EDIT_REMOTE_ADDR,74,20,100,14,ES_AUTOHSCROLL
+    LTEXT           "Remote Port:",IDC_REMOTE_PORT,15,36,44,8
+    EDITTEXT        IDC_EDIT_REMOTE_PORT,74,35,41,14,ES_AUTOHSCROLL
+    LTEXT           "Local Port:",IDC_LOCAL_PORT,15,49,35,8
+    EDITTEXT        IDC_EDIT_LOCAL_PORT,74,50,41,14,ES_AUTOHSCROLL
+    GROUPBOX        "Proxy Settings",IDC_PROXY_GROUP,7,71,173,57
+    CONTROL         "Use HTTP Proxy",IDC_CHECK_USE_PROXY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,81,67,10
+    LTEXT           "Proxy Address:",IDC_PROXY_ADDR,15,93,50,8
+    EDITTEXT        IDC_EDIT_PROXY_ADDR,74,91,100,14,ES_AUTOHSCROLL
+    LTEXT           "Proxy Port:",IDC_PROXY_PORT,15,107,38,8
+    EDITTEXT        IDC_EDIT_PROXY_PORT,74,106,41,14,ES_AUTOHSCROLL
+    GROUPBOX        "Cipher",IDC_CIPHER_GROUP,7,128,80,90
+    CONTROL         "None",IDC_RADIO_CIPH_NONE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,138,33,10
+    CONTROL         "AES_128",IDC_RADIO_CIPH_AES_128,"Button",BS_AUTORADIOBUTTON,15,151,45,10
+    CONTROL         "AES_256",IDC_RADIO_CIPH_AES_256,"Button",BS_AUTORADIOBUTTON,15,167,45,10
+    CONTROL         "3DES",IDC_RADIO_3DES,"Button",BS_AUTORADIOBUTTON,15,183,33,10
+    CONTROL         "RC4_128",IDC_RADIO_CIPH_RC4_128,"Button",BS_AUTORADIOBUTTON,15,199,45,10
+    GROUPBOX        "Compression",IDC_COMPRESSION_GROUP,91,128,89,49,WS_GROUP
+    CONTROL         "None",IDC_RADIO_COMP_NONE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,97,139,33,10
+    CONTROL         "ZLIB",IDC_RADIO_COMP_ZLIB,"Button",BS_AUTORADIOBUTTON,97,152,30,10
+    CONTROL         "LZO",IDC_RADIO_COMP_LZO,"Button",BS_AUTORADIOBUTTON,97,166,29,10
+    GROUPBOX        "Key Exchange",IDC_KEY_GROUP,91,178,89,40,WS_GROUP
+    CONTROL         "PSK",IDC_RADIO_KX_PSK,"Button",BS_AUTORADIOBUTTON | WS_GROUP,97,189,28,10
+    CONTROL         "DHE-PSK",IDC_RADIO_KX_DHE_PSK,"Button",BS_AUTORADIOBUTTON,97,201,44,10
+    GROUPBOX        "Connect/Disconnect",IDC_CONTROL_GROUP,7,219,173,45
+    LTEXT           "Connect timeout (msecs):",IDC_TIMEOUT,15,230,83,8
+    EDITTEXT        IDC_EDIT_TIMEOUT,103,228,68,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Connect",IDC_BUTTON_CONNECT,67,245,50,14
+    PUSHBUTTON      "Disconnect",IDC_BUTTON_DISCONNECT,121,245,50,14,WS_DISABLED
+    GROUPBOX        "Credentials",IDC_CREDENTIALS_GROUP,182,7,280,48,WS_GROUP
+    LTEXT           "User ID:",IDC_USER_ID,191,21,28,8
+    EDITTEXT        IDC_EDIT_USER_ID,231,19,223,14,ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "Key:",IDC_USER_KEY,192,36,16,8
+    EDITTEXT        IDC_EDIT_USER_KEY,231,35,223,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SEND_TEXT,185,65,221,14,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_DATA_GROUP,182,54,280,210
+    PUSHBUTTON      "Send",IDC_BUTTON_SEND,412,65,50,14,WS_DISABLED
+    LISTBOX         IDC_LIST_SEND,185,105,132,151,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_RECEIVE,323,105,132,151,LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Clear",IDC_BUTTON_CLEAR,412,85,50,14
+    CONTROL         "Add \\r\\n",IDC_CHECK_ADD_BRAKLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,186,84,88,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_NETWORKLAYERTEST_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 462
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 264
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\NetworkLayerTest.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

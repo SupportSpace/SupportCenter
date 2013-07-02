@@ -1,0 +1,169 @@
+Version 0.3.6 (released 2006-08-13)
+- Fix man pages to use \- instead of - for negative signs (as in "-1").
+- Add -I's when building in src/, so that unistd.h etc is found on
+  systems that doesn't have them.
+- Valgrind isn't used for cross-compilation by default, and there is
+  also --disable-valgrind-tests to unconditionally disable it.
+- Valgrind is invoked without parameters, put things you like into
+  ~/.valgrindrc instead.
+
+Version 0.3.5 (released 2006-06-27)
+- Fix asn1_octet_der to handle writes of zero-length buffers, before
+  it did not write the ASN.1 length for a zero-length buffer.  This caused
+  ASN.1 encodings to be incorrect on 64-bit platforms.
+- Add self test that attempt to trigger the above bug.
+- Fix test of -Wno-pointer-sign.
+- Improve cross-compilation to MinGW by using AC_LIBTOOL_WIN32_DLL.
+
+Version 0.3.4 (released 2006-05-10)
+- Really fix encodings.
+- Add new self test, tests/Test_encoding.c.
+- Self tests are ran under valgrind, if it is available.
+- We test for the -Wno-pointer-sign parameter before using it.
+
+Version 0.3.3 (released 2006-05-07)
+- Add some 'const' to prototypes.
+- Remove some 'unsigned' keywords.
+- Corrected asn1_der_coding() bug introduced when it became reentrant.
+  Now it produces correct encodings.
+
+Version 0.3.2
+- Corrected bug in asn1_der_coding() which overwrited some
+  data in the original structure.
+- The asn1Parser, asn1Coding and asn1Decoding programs are now installed.
+
+Version 0.3.1
+- Support constant size bit strings, as in 'BIT STRING (SIZE(42))'.
+  Reported by Cyril Holweck <cyril.holweck@q-free.com>.
+- Add two more APIs required by GnuTLS.
+- New public APIs:
+  asn1_find_node function
+  asn1_copy_node
+
+Version 0.3.0
+- Export DER utility functions, mostly so that GnuTLS can avoid using
+  libtasn1 internals.
+- The _asn1* symbols are not exported in the shared library file (when
+  using GNU ld).
+- The library can now be built using Visual Studio, and the project
+  files are included in windows/.
+- New public APIs:
+  asn1_get_tag_der
+  asn1_octet_der
+  asn1_get_octet_der
+  asn1_bit_der
+  asn1_get_bit_der
+  asn1_get_length_der
+  asn1_length_der
+
+Version 0.2.18
+- Fix out-of-bounds access in DER decoding, reported by Evgeny Legerov.
+- Add 'const' keyword to some prototypes, thanks to Frediano ZIGLIO.
+- Fixed typo in src/Makefile.am to make it build with objdir != srcdir,
+  thanks to Bernard Leak.
+- Update of gnulib files.
+- Typo fixes in comments, e.g. finish libasn1 to libtasn1 renaming,
+  use LGPL boiler plate on some files in lib/.
+
+Version 0.2.17
+- Fixed typo to make it build.
+
+Version 0.2.16
+- Version script added again.
+
+Version 0.2.15
+- Gnulib is used to implement memmove if your system does not have it.
+- Simplified assert/error handling slightly.
+
+Version 0.2.14
+- Some build fixes.
+- Pkg-config script 'libtasn1.pc' added.
+- Postal address to FSF in license updated.
+
+Version 0.2.13
+- Version number in libtasn1.h updated properly.
+
+Version 0.2.12
+- Manual converted to Texinfo format.
+- Manual in GTK-DOC and DevHelp formats added.
+- Man pages for all functions added.
+- Various internal cleanups.
+
+Version 0.2.11
+- Added the self test with "make check" target
+- Added management of ANY type with null length
+- Corrected some writes to invalid data.
+ 
+Version 0.2.10
+- Added scripts to assist in libtasn1 version detection
+  from configure scripts.
+- Corrected a DER decoding bug which was reported
+  by Max Vozeler <max@hinterhof.net>.
+
+Version 0.2.9
+- Accept negative numbers as range in INTEGER declarations
+
+Version 0.2.8
+- Add asn1_delete_element function
+
+Version 0.2.7
+- Added versioned symbols.
+
+Version 0.2.6
+- ASN.1 parser accepts these kinds of integer definitions:
+  "INTEGER (5 | 10)" and
+  "INTEGER (5)"
+- Comments start at "--" and finish at the "end of line" or
+  with another "--". 
+
+Version 0.2.5
+- Bug fix in ordering procedure for SET OF and SEQUENCE OF
+  types coding.
+- Manage structured format (BER encoding) in
+  asn1_der_decoding, asn1_decoding_element and 
+  asn1_der_decoding_startEnd for OCTET STRING type.
+- Manage SEQUENCE and SET empty structure. 
+- Manage "indefinite length method" in asn1_der_decoding,
+  asn1_decoding_element and asn1_der_decoding_startEnd 
+  for the following types:
+  SEQUENCE, SEQUENCE OF, SET, and SET OF.
+- Bug fix in asn1_read_value with NULL parameter in case
+  of BIT STRING
+
+Version 0.2.4
+- Bug fix in asn1_der_coding with NULL parameter
+- Manage DEFAULT option with OBJECT IDENTIFIER
+
+Version 0.2.3
+- Chenge asn1_find_structure_from_oid prototype
+- Chenge asn1_find_structure_from_oid prototype
+- Add ASN1_MEM_ALLOC_ERROR return value
+
+Version 0.2.2
+- Add vector length check in asn1_der_coding function
+- Add vector length check in asn1_der_coding function
+- Add vector length check in asn1_read_value function
+- Add asn1_check_version function
+
+Version 0.2.1
+- Add asn1_find_structure_from_oid function
+- Add asn1_read_tag function
+
+Version 0.2.0
+- Support for other platforms
+- Change asn1_create_element function interface (dest_name not needed any more)
+- Change OBJECT IDENTIFIER syntax: numbers must be separated by dot in 
+  asn1_write_element and asn1_read_element functions (e.g. "1.2.3.4")
+
+Version 0.1.2
+- Added GeneralString type
+- Fixed a DER encoding bug when nested tags are used
+
+Version 0.1.1
+- Renamed to libtasn1
+- Functions which return a string for error description
+  now accept a NULL argument.
+- License is now GNU Lesser GPL
+
+Version 0.1.0
+- Initial release

@@ -1,0 +1,235 @@
+<?xml version="1.0" ?>
+
+<project name="SupportSpace" default="doall">
+	<tstamp property="build.date" pattern="yyyy_MM_dd" />
+
+	<property name="roots.dir" value="${CCNetArtifactDirectory}\${build.date}(${CCNetLabel})" />
+	<setenv>
+		<variable name="ROOTS" value="${roots.dir}" />
+	</setenv>
+	<property name="source.dir" value="${CCNetWorkingDirectory}" />
+
+	<property name="major.version" value="1" />
+	<property name="minor.version" value="0" />
+	<property name="reserved.version" value="0" />
+  <property name="version" value="${CCNetLabel}"/>
+
+  <script language="C#" prefix="archer">
+		<code>
+		<![CDATA[
+
+		[Function("update-version")]
+		static public string UpdateVersion(string fileName,
+			int major, int minor, int build, int reserved)
+		{
+			FileInfo info = new FileInfo(fileName);
+			info.Attributes = FileAttributes.Normal;
+
+			string ver = major+","+minor+","+build+","+reserved;
+			string sver = "\""+major+"."+minor+"."+build+"."+reserved+"\"";
+
+			string content;
+			using( StreamReader reader = info.OpenText() )
+				content = reader.ReadToEnd();
+
+			RegexOptions opts = RegexOptions.Multiline;
+			Regex rx = new Regex(@"\bFILEVERSION (\d+, *){3}\d+", opts);
+			content = rx.Replace(content, "FILEVERSION "+ver);
+
+			rx = new Regex(@"PRODUCTVERSION (\d+, *){3}\d+", opts);
+			content = rx.Replace(content, "PRODUCTVERSION "+ver);
+
+			rx = new Regex(@"VALUE +""FileVersion"", *"".*?""", opts);
+			content = rx.Replace(content, "VALUE \"FileVersion\", "+sver);
+
+			rx = new Regex(@"VALUE +""ProductVersion"", *"".*?""", opts);
+			content = rx.Replace(content, "VALUE \"ProductVersion\", "+sver);
+
+			using( StreamWriter writer = info.CreateText() )
+				writer.Write(content);
+
+			return String.Format("Version updated: \"{0}\".", fileName );
+		}
+
+		]]>
+		</code>
+	</script>
+
+	<!-- <target name="doall" depends="setup_environment, cleanup, update-sources, update-versions, clean, build, test, deploy" /> -->
+
+  <!-- <target name="doall" depends="setup_environment, cleanup, update-sources, update-versions, build, test, deploy" /> -->
+  <target name="doall" depends="setup_environment, cleanup, update-sources, build, test, deploy" />
+
+  <target name="prepare_url_properties">
+    <property name="deploy_url" value="${'http://max/recent/'+configuration}"/>
+    <property name="deploy_dir" value="${'\\max\wwwroot\recent\'+configuration}"/>
+  </target>
+
+  <target name="prepare">
+    <call target="prepare_url_properties"/>
+    <nant target="prepare">
+      <buildfiles>
+        <include name="${source.dir}\Deploy\Deploy.build"/>
+      </buildfiles>
+    </nant>
+  </target>
+
+  <target name="build_configuration">
+    <setenv>
+      <variable name="CONFIGURATION" value="${configuration}" />
+    </setenv>
+    <nant target="${build.target}">
+      <buildfiles>
+        <include name="${source.dir}\main.build"/>
+			</buildfiles>
+		</nant>
+	</target>
+
+  <target name="clean">
+    <property name="build.target" value="clean" />
+    <property name="configuration" value="dynamic_debug" />
+    <call target="build_configuration" />
+    <property name="configuration" value="dynamic_release" />
+    <call target="build_configuration" />
+    <property name="configuration" value="static_debug" />
+    <call target="build_configuration" />
+    <property name="configuration" value="static_release" />
+    <call target="build_configuration" />
+  </target>
+
+	<target name="build">
+		<property name="build.target" value="build_all" />
+		<property name="configuration" value="dynamic_debug" />
+		<call target="prepare" />
+		<call target="build_configuration" />
+		
+		<property name="configuration" value="dynamic_release" /> 
+		<call target="prepare" />
+		<call target="build_configuration" />
+
+		<property name="configuration" value="static_debug" />
+		<call target="prepare" />
+		<call target="build_configuration" />
+		
+		<property name="configuration" value="static_release" />
+		<call target="prepare" />
+		<call target="build_configuration" />
+	</target>
+
+
+	<target name="test">
+		<property name="build.target" value="run_tests" />
+    		<property name="configuration" value="dynamic_debug" />
+		<call target="build_configuration" />
+		<property name="configuration" value="dynamic_release" />
+		<call target="build_configuration" />
+		<property name="configuration" value="static_debug" />
+		<call target="build_configuration" />
+		<property name="configuration" value="static_release" />
+		<call target="build_configuration" />
+	</target>
+
+
+
+	<target name="update-sources">
+		<svn-update uri="${svn.trunk}" destination="${source.dir}" username="${svn.user}" password="${svn.pass}" />
+	</target>
+
+
+	<target name="update-versions" >
+		<foreach item="File" property="filename">
+			<in>
+				<items>
+					<include name="${source.dir}\**\*.rc" />
+				</items>
+			</in>
+			<do>
+				<echo message="${archer::update-version(filename, major.version, minor.version, CCNetLabel, reserved.version)}" />
+			</do>
+		</foreach>
+	</target>
+
+
+  <target name="deploy">
+    <property name="configuration" value="dynamic_debug" />
+    <call target="prepare_url_properties"/>
+    <nant target="deploy">
+      <buildfiles>
+        <include name="${source.dir}\Deploy\Deploy.build"/>
+      </buildfiles>
+    </nant>
+
+    <property name="configuration" value="dynamic_release" />
+    <call target="prepare_url_properties"/>
+    <nant target="deploy">
+      <buildfiles>
+        <include name="${source.dir}\Deploy\Deploy.build"/>
+      </buildfiles>
+    </nant>
+
+    <property name="configuration" value="static_debug" />
+    <call target="prepare_url_properties"/>
+    <nant target="deploy">
+      <buildfiles>
+        <include name="${source.dir}\Deploy\Deploy.build"/>
+      </buildfiles>
+    </nant>
+
+    <property name="configuration" value="static_release" />
+    <call target="prepare_url_properties"/>
+    <nant target="deploy">
+      <buildfiles>
+        <include name="${source.dir}\Deploy\Deploy.build"/>
+      </buildfiles>
+    </nant>
+
+		<zip zipfile="${roots.dir}\${build.date}(${CCNetLabel}).zip" ziplevel="9">
+			<fileset basedir="${roots.dir}" >
+				<include name="**\*.exe" />
+				<include name="**\*.pdb" />
+				<include name="**\*.dll" />
+				<include name="**\*.log" />
+				<include name="**\*.msi" />
+				<include name="**\*.cab" />
+			</fileset>
+		</zip>
+		<delete>
+			<fileset basedir="${roots.dir}">
+				<include name="**\*" />
+				<exclude name="*.zip" />
+			</fileset>
+		</delete>
+	</target>
+
+
+
+
+	<target name="cleanup">
+		<!-- Removing logs -->
+		<delete>
+			<fileset basedir="${logs.dir}">
+				<include name="*-fxcop.tmp" />
+				<include name="*-nunit.tmp" />
+			</fileset>
+		</delete>
+		<!-- Removing resource files -->
+		<delete>
+			<fileset basedir="${source.dir}">
+				<include name="**\*.rc" />
+			</fileset>
+		</delete>
+	</target>
+
+
+
+
+	<target name="setup_environment">
+		<setenv>
+			<variable name="PATH" value="${path::get-directory-name(nant.path)};%PATH%;" />
+			<variable name="SVN_HOME" value="${svn.path}" />
+			<variable name="VC80CRTDPATH" value="${vc80crtd.path}" />
+			<variable name="VC80CRTPATH" value="${vc80crt.path}" />
+		</setenv>
+	</target>
+	
+</project>

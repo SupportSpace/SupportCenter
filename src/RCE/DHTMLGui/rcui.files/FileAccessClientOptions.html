@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI FileAccessClientOptions frame </TITLE>
+
+</HEAD>
+<script language="JavaScript">
+	/// active service currently bind with this frame
+	var service=null;
+	/// The method activate service object. The object set its state on the UI elements. The function can't invoke as separate function, it must invoke as method service object (for example: service.Activate(true); ).
+	/// @param flag bool parameter. if it's true - session activates, else session deactivetes.
+	function Activate(flag)
+	{	
+		if(flag)//Activate
+		{	
+			//for example:
+			//document.getElementById('srvDisplayMode').selectedIndex=service.m_displayMode;	
+		}
+		else//Deactivate
+		{	
+			
+		}
+	}
+</script>
+<BODY>
+	<span id="srFileAccessClientOptions" align="center" >
+	FileAccessClient OPTIONS stub
+	</span><!-- CServiceRCFileAccessHost pane -->
+</BODY>
+</HTML>

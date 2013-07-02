@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'JabberTest'
+		'JabberTest.EXE'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

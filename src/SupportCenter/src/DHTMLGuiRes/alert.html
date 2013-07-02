@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<script language='Javascript' type='text/javascript' src='js/prototype.js'></script>
+        <script language='Javascript' type='text/javascript' src='js/consts.js'></script>
+        <script language='Javascript' type='text/javascript' src='js/S2Date.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/Customer.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/CallItem.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/alert.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/interface.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/callback.js'></script>
+		<link rel="stylesheet" type="text/css" href="css/alert.css"/>
+	</head>
+
+	<body 
+	style='cursor:default' onload='alertBodyOnLoad()' onmouseenter='CALLBACKS_Alert("EnterAlert")' onmouseleave='CALLBACKS_Alert("LeaveAlert")' scrolling='no' border='0' topmargin='0' leftmargin='0' marginwidth='0' marginheight='0'>
+		<script language='Javascript' type='text/javascript' src='js/wz_tooltip.js'></script>
+		<input type="hidden" id="eCbkEventsHandler" sEvent='' iCallUID='' iWorkflowID='' />
+		<div id="dAlertWindow">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td id="dAlertTL"></td>
+                <td id="dAlertT"></td>
+                <td id="dAlertTR"></td>
+            </tr>
+            <tr>
+                <td id="dAlertML"></td>
+                <td>
+        			<div id="dAlertHeader">
+        			    <div id="dAlertIcon" class="dAlertIconSession" onclick="alertClicked()"></div>
+        				<DIV id="dAlertOriginName" onclick="alertClicked()"></DIV>
+        				<DIV ID="dAlertWindowBtns">
+        					<div id="dAlertWindowCloseBtn" onclick="closeAlert()">
+        					    <img src="img_alert/btn_close_alert_regular_13x12.gif" onmouseover="Tip('Close');this.src='img_alert/btn_close_alert_mouse_over_13x12.gif'" onmousedown="this.src='img_alert/btn_close_alert_press_13x12.gif'" onmouseup="this.src='img_alert/btn_close_alert_regular_13x12.gif'" onmouseout="UnTip();this.src='img_alert/btn_close_alert_regular_13x12.gif'" alt="Close"/>
+        					</div>
+        				</DIV>
+        			</div>
+                    <div id="dAlertRegular" style="display:true">
+            			<div id="dAlertContent" onclick="alertClicked()">
+            				<div id="dAlertCallText1">sdsds<br>dsdasD<br>adasdd</div>
+            				<!--div id="dAlertCallText2">dsds</div-->
+            			</div>
+            			<div id="dAlertActions">
+            			    <div style="float:left"><img src="img_alert/alert_clock.gif" alt="" title=""
+								onmouseover="Tip('You have 45 seconds to start session', WIDTH, 100, FADEIN, 500, FADEOUT, 500)" 
+								onmouseout="UnTip()">							
+							</div>
+            				<!--<div class="dAlertButton" id="dAlertExpandBtn" onclick="expandAlert()">E</div>-->
+            				<div id="dAlertButton" class="dAlertButtonStart" onclick="pickupButtonClicked()" title="Start the session" alt="Start the session" 
+							onmousedown="this.className='dAlertButtonStartPress'" onmouseup="this.className='dAlertButtonStart'" 
+							onmouseover="Tip('Start the session', WIDTH, 100, FADEIN, 500, FADEOUT, 500);this.className='dAlertButtonStartOver'" 
+							onmouseout="UnTip();this.className='dAlertButtonStart'">
+							</div>
+	           			</div>
+                    </div>
+                   <div id="dAlertMissedCalls" style="display:none" onclick="alertClicked(-1)" >
+                        <div id="dAlertMissedCallsImg"><img src="img_alert/logo_missed_calls.gif" alt=""/></div>
+                        <div id="dAlertMissedCallsText">
+							Your status was changed to Busy since you had missed calls. If you would like to change it back to Online and accept calls, <span style="cursor:pointer;text-decoration:underline">click here</span>
+                        </div> 
+                    </div>
+                     <div id="dAlertUpgrade" style="display:none" onclick="alertClicked(-1)" >
+                        <div id="dAlertUpgradeImg"><img src="img_alert/logo_upgrade.gif" alt=""/></div>
+                        <div id="dAlertUpgradeText">
+							A new version of the SupportSpace platfrom is available. You must install it to continue working. <span style="cursor:pointer;text-decoration:underline">Upgrade now</span>.
+                        </div> 
+                    </div>
+                    <div id="dAlertOfflineMsg" style="display:none">
+            			<div id="dAlertContentOfflineMsg" onclick="alertClicked()">
+            				<div id="dAlertOfflineMsgText"></div>
+            				<!--div id="dAlertCallText2">dsds</div-->
+            			</div>
+            			<div id="dAlertActionsOfflineMsg" style="display:true">
+            			    <div style="float:left" onclick="alertOfflineMsgClicked(true)"><span style="cursor:pointer;text-decoration:underline">Read Now</span></div>
+							<div style="text-align:center;width:48px;float:left">|</div>
+            			    <div style="float:right" onclick="alertOfflineMsgClicked(false)"><span style="cursor:pointer;text-decoration:underline">Read Later</span></div>
+	           			</div>
+                    </div>
+                    <div id="dAlertInfoMsg" style="display:none">
+            			<div id="dAlertContentInfoMsg" onclick="alertInfoMsgReportIssue()">
+            				<div id="dAlertInfoMsgText"></div>
+            				<!--div id="dAlertCallText2">dsds</div-->
+            			</div>
+            			<div id="dAlertActionsInfoMsg" style="display:true">
+            			    <div style="float:left" onclick="alertInfoMsgReadMore()"><span style="cursor:pointer;text-decoration:underline">Help</span></div>
+							<div style="text-align:center;width:102px;float:left">|</div>
+            			    <a style="text-align:left;float:right;width:5px" onclick="alertInfoMsgReportIssue()" href="mailto:bugs@supportspace.com?subject=SupportSpace%20Connection%20Quality&body=Dear Expert, %0A%0ATo help us look into your connection issues we kindly ask you to attach the SupportSpace connection log to your email. %0A%0ALocation: ...\SupportSpace\Support Platform\Logs\IMConnectivityQuality.log.%0A%0AThank you,%0AThe SupportSpace.">Report</a>
+	           			</div>
+                    </div>
+
+                 </td>
+                <td id="dAlertMR"></td>
+            </tr>
+            <tr>
+                <td id="dAlertBL"></td>
+                <td id="dAlertB"></td>
+                <td id="dAlertBR"></td>
+            </tr>
+            <table>
+	    </div>
+	</body>
+</html>

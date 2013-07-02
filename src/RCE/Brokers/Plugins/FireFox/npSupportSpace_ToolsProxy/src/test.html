@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<TITLE>Simple Plug-in Test</TITLE>
+</HEAD>
+<BODY>
+
+<a href="file://C:/dev/S2_XPI.xpi" id="installTrigger25114" title="Add BlogRovr to Firefox" addonName="BlogRovr" addonIcon="/en-US/firefox/images/addon_icon/4689" addonHash="sha1:0526f1943a03a09212e2fd245d6b00631b3ccd15" onclick="installIfRequired()" ><span><span><span><strong>Download Now </strong></span></span></span></a>            </p>
+
+<center>
+<h1> XPConnect Scriptable Sample Plug-in </h1>
+</center>
+
+This page contains a testcase which demonstrates the work of scriptable 
+plug-in with Mozilla. This example plug-in has no native GUI and does not 
+draw anything in the plugin window. Clicking on the button will result in calling 
+native plugin method from JavaScript. Show Version will instruct the plug-in 
+to retrieve the Mozilla user agent string and return it to JavaScript to show
+in the alert box.
+
+<br><br>
+
+<center>
+
+<embed type="application/s2f2-plugin" id="CoBrokerProxy" width=1 height=1 hidden="true"><br>
+
+<script>
+var embed = document.embeds[0];
+
+function ShowVersion()
+{
+    try {
+      var aBrokerProxy = document.CoBrokerProxy.nsISupportSpaceProxy;
+	  alert("hello");
+	  
+	  aBrokerProxy.Init("msiPath", "version", "productCode");
+	  aBrokerProxy.InitSession("relaySrv", "sId", "userId", "passwd", "remoteUserId");
+	  aBrokerProxy.HandleRequest("dstUserId", "dstSvcId", "srcUserId", "srcSvcId", "rId", "rType", "param", "params");
+    }
+	catch (ex) {
+
+    }
+}
+
+function NotifyLogMessage(message, severity)
+{
+	//alert("NotifyLogMessage called!!!! message:" + message + "severety:" + severity);
+}
+
+// it's called when request was sent by VBroker
+function OnRequestSent(dstUserId,dstSvcId,srcUserId,srcSvcId,rId,rType,param,params)
+{
+    alert("OnRequestSent called!!!!");
+}
+
+function callbackTest(test1,test2)
+{
+	alert("My function callbackTest" + "param1:" + test1 + ", param2:" + test2);
+}
+
+function installIfRequired()
+{
+	if(embed==null)
+	{
+		return;
+		install(event,document.getElementById('installTrigger25114').getAttribute('addonName'), document.getElementById('installTrigger25114').getAttribute('addonIcon'), document.getElementById('installTrigger25114').getAttribute('addonHash'));
+	}
+	else
+	{
+		alert("Installed");
+	}
+}
+
+</script>
+
+<br>
+<form name="formname">
+<input type=button value="Show Version" onclick='ShowVersion()'>
+</form>
+
+</center>
+
+</BODY>
+</HTML>

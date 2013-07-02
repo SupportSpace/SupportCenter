@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'VBroker'
+		'VBroker.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

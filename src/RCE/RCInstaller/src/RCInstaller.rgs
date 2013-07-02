@@ -1,0 +1,14 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'RCInstaller'
+		{
+            val DllSurrogate = s ''
+    }
+		'RCInstaller.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

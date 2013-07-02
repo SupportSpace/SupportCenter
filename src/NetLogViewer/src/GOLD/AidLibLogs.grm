@@ -1,0 +1,73 @@
+"Name"     = 'AidLib logs'
+"Author"   = 'Max Sogin'
+"Version"  = '1.0'
+"About"    = 'Grammar for aidlib file logs parsing'
+
+"Start Symbol" = <Program>
+
+! ------------------------------------------------- Sets
+
+{ID Head}      = {Letter} + [_]
+{ID Tail}      = {Alphanumeric} + [_]
+{String Chars} = {Printable} + {HT} - ["]
+{String Chars whithout point} = {Printable} + {HT} - ["] - [.]
+{String Chars whithout point coma} = {Printable} + {HT} - ["] - [;]
+!{pointComa} = ';'
+
+! ------------------------------------------------- Terminals
+
+!Identifier    = {ID Head}{ID Tail}*
+!StringLiteral = '"' {String Chars}* '"'
+
+logValue = '.'{String Chars whithout point}({String Chars}|'"'|':'|'\'|{String Chars whithout point coma}({CR}{LF}|{LF}))*';'({CR}{LF}|{LF})
+callStackValue = '..'{String Chars whithout point}({String Chars}|':'|'\'|([0123456789]+{CR}{LF}|[0123456789]+{LF}))*';'({CR}{LF}|{LF})
+sourceFileValue = '...'({String Chars}|':'|'\')*';'({CR}{LF}|{LF})
+
+
+time= 'Time....................'
+process = 'From pid................'
+thread = 'From tid................'
+sourceFile = 'Source file...........'
+lineNumber = 'Line number.............'
+compileDate = 'Compilation date........'
+callStack = 'Call stack.............'
+messageText = 'Message.................'
+systemError = 'System error number.....'
+
+messageHead = '================================ <Message> ================================'({CR}{LF}|{LF})
+messageTail = '============================ END OF <Message> ============================='({CR}{LF}|{LF})
+exceptionHead = '================================ <Exception> ================================'({CR}{LF}|{LF})
+exceptionTail = '============================ END OF <Exception> ============================='({CR}{LF}|{LF})
+warningHead = '================================ <Warning> ================================'({CR}{LF}|{LF})
+warningTail = '============================ END OF <Warning> ============================='({CR}{LF}|{LF})
+errorHead = '================================ <Error> ================================'({CR}{LF}|{LF})
+errorTail = '============================ END OF <Error> ============================='({CR}{LF}|{LF})
+
+! ------------------------------------------------- Rules
+
+<timeValue> ::= logValue
+<processValue> ::= logValue
+<threadValue> ::= logValue
+<messageValue> ::= logValue
+<callStackValue> ::= callStackValue
+<sourceFileValue> ::= sourceFileValue
+<lineNumberValue> ::= logValue
+<compileDateValue> ::= logValue
+<systemErrorValue> ::= logValue
+<message> ::= messageHead time <timeValue> process <processValue> thread <threadValue> messageText <messageValue> messageTail 
+		| messageHead messageText <messageValue> messageTail 
+<exception> ::= exceptionHead time <timeValue> process <processValue> thread <threadValue> sourceFile <sourceFileValue> lineNumber <lineNumberValue> compileDate <compileDateValue> messageText <messageValue> callStack <callStackValue> exceptionTail
+		| exceptionHead time <timeValue> process <processValue> thread <threadValue> sourceFile <sourceFileValue> lineNumber <lineNumberValue> compileDate <compileDateValue> messageText <messageValue> exceptionTail
+<error> ::= errorHead time <timeValue> process <processValue> thread <threadValue> sourceFile <sourceFileValue> lineNumber <lineNumberValue> compileDate <compileDateValue> systemError <systemErrorValue> messageText <messageValue> errorTail
+		| errorHead time <timeValue> process <processValue> thread <threadValue> sourceFile <sourceFileValue> lineNumber <lineNumberValue> compileDate <compileDateValue> messageText <messageValue> errorTail
+
+<warning> ::= warningHead time <timeValue> process <processValue> thread <threadValue> sourceFile <sourceFileValue> lineNumber <lineNumberValue> compileDate <compileDateValue> systemError <systemErrorValue> messageText <messageValue> warningTail
+		| warningHead time <timeValue> process <processValue> thread <threadValue> sourceFile <sourceFileValue> lineNumber <lineNumberValue> compileDate <compileDateValue> messageText <messageValue> warningTail
+
+<Program> ::= <logMessages>
+
+<logMessage> ::= <message> | <warning> | <error> | <exception>
+
+<logMessages> ::=  <logMessage> <logMessages>  
+	|
+

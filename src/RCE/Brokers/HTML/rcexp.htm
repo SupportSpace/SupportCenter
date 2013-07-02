@@ -1,0 +1,35 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+		<title>Remote Control Expert's side</title>
+		<script language=javascript src=rctypes.js></script>
+		<script language=javascript src=rcexp.js></script>
+</head>
+<body onload="InitPage();">
+	SID <input id="uiSid" type="text" size="10" value="E_NOTIMPL" />
+	ID: <input id="uiUser" type="text" size="10" value="eran">
+	Password: <input id="uiPasswd" type="text" size="10" value="eran">
+	<!--<input type="button" value="Login" id="btnlogin" onClick="alert('E_NOTIMPL');">
+	<input type="button" value="Logout" id="btnlogout" onClick="alert('E_NOTIMPL');">
+		<input type=button value="CreateFeature" onclick="CoVBroker.StartFeature('','','','','',1);" />-->
+	PeerID: <input id="uiRemoteUser" type="text" size="15" value="doron">
+	<select id="srvTypeSelect"></select>
+	<input type="button" value="Create Service" onClick="StartFeature(srvTypeSelect.options[srvTypeSelect.selectedIndex].value);">
+	<input type=button value="Clear Log" onclick="logger.innerHTML='';" />
+	<input id=ChatEdit type=text size="15" value="Chat Here" />
+	<input type=button value=Send onclick="SendChatMessage(ChatEdit.value);" />
+	<OBJECT ID="CoVBroker" CLASSID="CLSID:ED2B90B2-9124-4D63-8FEB-E9203FCA1BCE" height="0%" width="0%"></OBJECT>
+	<br />
+	<div style="color:Gray; font-size:65%">
+		<b>RemoteSending:</b><br/>
+		<div id="spanRemoteSending"></div><br />
+	</div>
+	<b>Chat:</b><br/>
+	<div id="spanChat">
+	</div>
+	<br /><br />
+	<span id="ServicesHosts"></span>
+	<!--<div id="ViewerHostObject" STYLE="width: 100%; height: 80%"></div>-->
+	<span id="logger" style="font-size:65%"></span>
+</body>
+</html>

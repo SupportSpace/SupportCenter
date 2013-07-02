@@ -1,0 +1,15 @@
+[Version]
+Signature="$CHICAGO$"
+ClassGUID={661f7a4b-6543-4616-925a-9cb0c4099500}
+;LayoutFile=layout.inf
+SetupClass=BASE
+AdvancedINF=2.0
+
+[Setup Hooks]
+hook1=hook1
+
+
+[hook1]
+;run=msiexec /i http:\\pigeon\msi_test4\RCComponents.msi ADDLOCAL=ALL
+run=msiexec /i http:\\pigeon\msi_test4\RCComponents.msi ADDLOCAL=NWL,RCInstaller /qn
+

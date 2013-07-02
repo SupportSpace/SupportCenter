@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<!-- Product code must be changed (Major upgrade) by remove a component from a feature. 
+       Debug and Release installations have different component  composition in feature and MUST have different Product code.
+       See for detail http://msdn2.microsoft.com/en-us/library//aa367850.aspx (MSDN Changing the Product Code) 630B0A7E-FBBF-4755-BD9E-A899E72C6BF5-->
+	<!-- 630B0A7E-FBBF-4755-BD9E-A899E72C6BF5 -->
+	<!-- 1457D693-4B1C-4d7e-B592-FB650A0C8C42 -->
+	<!-- 0C87E14D-4920-430c-BCFB-1E8589D12D1E 14.12.2007 -->
+  <!-- EEC2F636-1D71-4236-872B-D9FBF80B558D 20.12.2007 -->
+  <!-- CA94B61C-177B-4c5a-8419-961961E71065 26.12.2007 -->
+  <!-- 7D5D35BF-D664-434b-8B53-EA6C9744612C 15.10.2008 -->
+  <!-- 1AD095AA-C930-40CB-9402-C171C838E49D 14.09.2011 -->             
+  <Product Id="1AD095AA-C930-40CB-9402-C171C838E49D" UpgradeCode="B359C619-3526-4216-BA49-7022953D0C8E" Version="14.0.0.0"                                                                                 
+		Name="SupportSpace Support Platform" Language="1033" Manufacturer="SupportSpace, Inc.">
+		<Package Description="SupportSpace Support Tools (Expanded)"  
+			Comments="This will appear in the file summary stream." InstallerVersion="200" Compressed="yes" />
+		<Upgrade Id="B359C619-3526-4216-BA49-7022953D0C8E">
+			<UpgradeVersion ExcludeLanguages="yes" Minimum="0.0.0.0" Property="OLDPRODUCTSCODES"/>
+		</Upgrade>
+		<Property Id="OLDPRODUCTSCODES" Secure="yes"/>
+
+		<!-- Dynamic configurations-->
+		<?if $(var.Configuration)="dynamic_release" or $(var.Configuration)="dynamic_debug"?>
+		<?define dynamic=""?>
+		<?endif?>
+
+		<!-- CompressLevel -->
+		<?ifdef dynamic>
+    <?define compressLevel="high" ?>
+		<?else ?>
+		<?define compressLevel="mszip" ?>
+		<?endif ?>
+
+		<!-- includs -->
+		<?include SupportMessenger.wxi?>
+    
+    <!--<Media Id="10"	Cabinet="RCInst.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+    <!--<Media Id="20" Cabinet="RCUI.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)" />-->
+    <!--<Media Id="30" Cabinet="FTUI.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+		<!--<Media Id="40" Cabinet="NetLogLb.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+    <!--<Media Id ="45" Cabinet="NLWiever.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+		<!--<Media Id="50" Cabinet="VBroker.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+    <!--<Media Id="51" Cabinet="HlpSvc.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+		<!--<Media Id="60" Cabinet="ScEngine.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+    <!--<Media Id="65" Cabinet="Scripts.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>-->
+		<?ifdef dynamic?>
+    <Media Id="1"	Cabinet="NWL.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>
+		<Media Id="2"	Cabinet="CRT.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>
+		<?endif?>
+
+		<!--per-machine installation. Vista integrity level elevation demand of HKLM COM registration.-->
+		<Property Id="ALLUSERS" Value="1"/>
+		<!-- prevents the installer from registering any media source -->
+		<Property Id="DISABLEMEDIA" Value="1"/>
+		<!-- IE Security settings by default cAddToSupportSpaceZoneHKLM install -->
+		<!-- <Property Id="IESECURITY" Value="AddToSupportSpaceZoneHKLM"/> -->
+		<Property Id="IESECURITY" Value="null"/>
+		<!-- the primary icon for the Windows Installer package-->
+		<Property Id="ARPPRODUCTICON" Value="main"/>
+		<!-- Turn off Restart Manager (WIv4). HelperService is running when InstallValidate action is carrying out. RM can define FilesInUse by system services. It is crutch.-->
+		<Property Id="MSIRESTARTMANAGERCONTROL" Value="Disable"/>
+
+    <!-- InitialInstaller (supportspace_tools.dll) deleting by full uninstallation -->
+		<InstallExecuteSequence>
+			<Custom Action="stopSupportMessenger" Before="InstallValidate"></Custom>
+			<!-- InitialInstaller (supportspace_tools.dll) deleting by full uninstallation UPGRADINGPRODUCTCODE indicator of RemoveExistingProducts action-->
+			<Custom Action="ssinitRemove" After="InstallFinalize">REMOVE="ALL" AND UPGRADINGPRODUCTCODE=""</Custom>
+			<!--<RemoveExistingProducts After="InstallFinalize"/>-->
+			<RemoveExistingProducts Before="InstallInitialize"/>
+			<!--<Custom Action="startSupportMessenger" After="RemoveExistingProducts">UPGRADINGPRODUCTCODE=""</Custom>-->
+			<Custom Action="startSupportMessenger" After="InstallFinalize">UPGRADINGPRODUCTCODE=""</Custom>
+         
+    </InstallExecuteSequence>
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<!--folders values use for uninstall shortcut-->
+			<Directory Id="DesktopFolder"/>
+			<Directory Id="SystemFolder"/>
+			<Directory Id="ProgramMenuFolder"/>
+			<Directory Id="WindowsFolder">
+				<Directory Id="DownloadedProgramFiles" Name="Downloaded Program Files"/>
+			</Directory>
+			<Directory Id="ProgramFilesFolder">
+				<!--main target installation folder-->
+				<Directory Id="SupportSpaceFolder" ShortName="SupSpace" Name ="SupportSpace">
+					<Directory Id="INSTALLLOCATION" ShortName="SupPltfm" Name="Support Platform"/>
+				</Directory>
+			</Directory>
+		</Directory>
+
+		
+		<!--<Feature Id="RCInstaller" Title="Remote Control Installer Feature" Level="1">-->
+			<!--<ComponentRef Id="cRCInstaller" Primary="yes"/>-->
+			<!--<?if $(var.Configuration)="static_debug" or $(var.Configuration)="dynamic_debug"?>-->
+			<!--<ComponentRef Id="cNetLogLib"/>-->
+			<!--<?endif?>-->
+			<!-- IE Security settings work by condition IESECURITY property -->
+			<!--<ComponentRef Id="cAddToTrusted"/>
+			<ComponentRef Id="cAddToSupportSpaceZone"/>
+			<ComponentRef Id="cAddToSupportSpaceZoneHKLM"/>
+		</Feature>-->
+    <!-- the primary icon for the Windows Installer package-->
+		<Icon Id="main" SourceFile="SupportMessenger.ico"/>
+		<!-- UI see for detail WiX help "Using the WixUI dialog library" or http://www.tramontana.co.hu/wix/lesson2.php#2.3 (last WiX v2)-->
+		<UIRef Id="WixUI_InstallDir" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+		<!-- using custom license text and bitmaps-->
+		<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+		<WixVariable Id="WixUIDialogBmp" Value="background_image_493x312.bmp"/>
+		<WixVariable Id="WixUIBannerBmp" Value="top_banner_image_493x58.bmp"/>
+	</Product>
+</Wix>

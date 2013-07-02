@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+
+<project name="SupportSpace" default="extend_locale">
+
+  <script language="C#" prefix="archer">
+    <code>
+      <![CDATA[
+    
+    [Function("get_err_strings")]
+    static public string GetErrorStrings(string fileName, string localeStringsFile, string prefix, string postfix, string regExPrefix, string regExPostfix, bool report)
+    {
+		FileInfo info = new FileInfo(fileName);
+		info.Attributes = FileAttributes.Normal;
+
+		string content, stringsContent;
+		using( StreamReader reader = info.OpenText() )
+		content = reader.ReadToEnd();
+    FileInfo stringsInfo = new FileInfo(localeStringsFile);
+    try
+    {
+  		stringsInfo.Attributes = FileAttributes.Normal;
+		  using( StreamReader reader = stringsInfo.OpenText() )
+		  stringsContent = reader.ReadToEnd();
+    }
+    catch
+    {
+      stringsContent = "";
+    }
+
+		//RegexOptions opts = RegexOptions.Multiline | RegexOptions.ExplicitCapture;
+    RegexOptions opts = RegexOptions.Multiline;
+		// MLocalize(_T("Connect aborted"));
+		
+		Regex rx = new Regex(string.Format("{0}.*{1}",regExPrefix,regExPostfix), opts);
+		// Getting string from regEx
+		for(Match m = rx.Match(content); m.Success; m = rx.Match(content,m.Index + 1))
+		{
+			foreach(Capture c in m.Captures)
+			{
+				string str = c.Value;
+				str = str.Remove(0, prefix.Length);
+				str = str.Remove(str.Length - postfix.Length, postfix.Length);
+				Regex rx1 = new Regex(string.Format(".*{0}\t\t\t\t{1}.*",str,str), opts);
+				if (!rx1.Match(stringsContent).Success)
+				{
+					// Adding new string to strings
+					stringsContent += string.Format("\r\n{0}\t\t\t\t{1}",str,str);
+				}
+			}
+		}
+		using( StreamWriter writer = stringsInfo.CreateText() )
+		writer.Write(stringsContent);
+
+		if (report)
+      return String.Format("Exception strings are taken from: \"{0}\".", fileName );
+     else
+      return "";
+    }
+
+		]]>
+    </code>
+  </script>
+
+
+  <target name="extend_locale">
+    <foreach item="File" property="filename">
+      <in>
+        <items>
+          <include name="${'.\**\*.h'}" />
+          <include name="${'.\**\*.cpp'}" />
+        </items>
+      </in>
+      <do>
+	<echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCException(Format(_T(&quot;', '&quot;)', 'MCException\(Format\(_T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException_Win( Format(_T(&quot;', '&quot;)', 'MCStreamException_Win\( Format\(_T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException( Format(_T(&quot;', '&quot;)', 'MCStreamException\( Format\(_T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException( _T(&quot;', '&quot;)', 'MCStreamException\( _T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException(_T(&quot;', '&quot;)', 'MCStreamException\(_T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException(&quot;', '&quot;)', 'MCStreamException\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException_Win( _T(&quot;', '&quot;)', 'MCStreamException_Win\( _T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException_Win(_T(&quot;', '&quot;)', 'MCStreamException_Win\(_T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCStreamException_Win(&quot;', '&quot;)', 'MCStreamException_Win\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCException(_T(&quot;', '&quot;)', 'MCException\(_T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCException(&quot;', '&quot;)', 'MCException\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCException_Win(_T(&quot;', '&quot;)', 'MCException_Win\(_T\(&quot;', '&quot;\)',false)}" />
+        <echo message="${archer::get_err_strings(filename, './error_strings.txt', 'MCException_Win(&quot;', '&quot;)', 'MCException_Win\(&quot;', '&quot;\)',true)}" />
+      </do>
+    </foreach>
+  </target>
+
+</project>

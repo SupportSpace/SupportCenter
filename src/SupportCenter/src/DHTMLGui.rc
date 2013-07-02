@@ -1,0 +1,124 @@
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//	DHTMLGui.rc file may be always syncronized (manually in this version) 
+//	with the DHTMLGuiRes folder context. 
+//  Each file used by DHTMLGui may be stored in the DHTMLGuiRes folder under correspondent 
+//  folder (CSS, JS, IMG). HTML files may be stored under the root folder. 
+//  In such way each file used by DHTMLGui will be added to resource file and will get ResourceID.
+//  The ResourceId full path wil be: 
+//  res://SupportMessenger.exe/IMG/close.gif
+//  Using this approach SupportMessenger C++ application will be able to find resources if they 
+//  mentioned in the html files 
+//  as		"res://SupportMessenger.exe/IMG/close.gif"
+//  or just "IMG/close.gif" 
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+IDR_HTML_INDEX							HTML    "DHTMLGuiRes\\index.html"
+IDR_HTML_ALERT							HTML    "DHTMLGuiRes\\alert.html"
+IDR_HTML_IE6NOTIF_MSG					HTML    "DHTMLGuiRes\\ie6notif_msg.html"
+IDR_HTML_TEAMVIEWERINSTALL_MSG			HTML    "DHTMLGuiRes\\TeamViewerInstallWarning.html"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// CSS
+//
+
+alert.css								CSS     "DHTMLGuiRes\\css\\alert.css"
+index.css  								CSS		"DHTMLGuiRes\\css\\index.css"
+global.css								CSS		"DHTMLGuiRes\\css\\global.css"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// JS
+//
+
+alert.js								JS      "DHTMLGuiRes\\js\\alert.js"
+callback.js								JS      "DHTMLGuiRes\\js\\callback.js"
+CallItem.js								JS      "DHTMLGuiRes\\js\\CallItem.js"
+Customer.js								JS      "DHTMLGuiRes\\js\\Customer.js"
+index.js								JS      "DHTMLGuiRes\\js\\index.js"
+interface.js							JS      "DHTMLGuiRes\\js\\interface.js"
+consts.js								JS      "DHTMLGuiRes\\js\\consts.js"
+S2Date.js								JS      "DHTMLGuiRes\\js\\S2Date.js"	
+prototype.js							JS      "DHTMLGuiRes\\js\\prototype.js"
+tip_centerwindow.js						JS      "DHTMLGuiRes\\js\\tip_centerwindow.js"
+tip_followscroll.js						JS      "DHTMLGuiRes\\js\\tip_followscroll.js"
+wz_tooltip.js							JS      "DHTMLGuiRes\\js\\wz_tooltip.js"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// IMG
+//
+btn_status_menu_away_14x14.gif				IMG "DHTMLGuiRes\\img\\btn_status_menu_away_14x14.gif"
+btn_status_menu_busy_14x14.gif				IMG "DHTMLGuiRes\\img\\btn_status_menu_busy_14x14.gif"
+check_box_active_13x12.gif					IMG "DHTMLGuiRes\\img\\check_box_active_13x12.gif"
+check_box_non_active_13x12.gif				IMG "DHTMLGuiRes\\img\\check_box_non_active_13x12.gif"
+corner_8x7.gif								IMG "DHTMLGuiRes\\img\\corner_8x7.gif"
+pattern_8x7.gif								IMG "DHTMLGuiRes\\img\\pattern_8x7.gif"
+frame_top_left_corner.gif					IMG "DHTMLGuiRes\\img\\frame_top_left_corner.gif"
+frame_2_corners_left.gif					IMG "DHTMLGuiRes\\img\\frame_2_corners_left.gif"
+frame_2_corners_right.gif					IMG "DHTMLGuiRes\\img\\frame_2_corners_right.gif"
+btn_span_300x63.gif							IMG "DHTMLGuiRes\\img\\btn_span_300x63.gif"
+btn_minimize_mouse_over_15x14.gif			IMG "DHTMLGuiRes\\img\\btn_minimize_mouse_over_15x14.gif"
+frame_left_side_bkg.gif						IMG "DHTMLGuiRes\\img\\frame_left_side_bkg.gif"
+btn_a_7x21.gif								IMG "DHTMLGuiRes\\img\\btn_a_7x21.gif"
+frame_bottom_left_corner.gif				IMG "DHTMLGuiRes\\img\\frame_bottom_left_corner.gif"
+frame_bottom_right_corner.gif				IMG "DHTMLGuiRes\\img\\frame_bottom_right_corner.gif"
+btn_minimize_regular_15x14.gif				IMG "DHTMLGuiRes\\img\\btn_minimize_regular_15x14.gif"
+frame_right_side_bkg.gif					IMG "DHTMLGuiRes\\img\\frame_right_side_bkg.gif"
+frame_bottom_side_bkg.gif					IMG "DHTMLGuiRes\\img\\frame_bottom_side_bkg.gif"
+btn_open_mouse_over_15x14.gif				IMG "DHTMLGuiRes\\img\\btn_open_mouse_over_15x14.gif"
+btn_minimize_press_15x14.gif				IMG "DHTMLGuiRes\\img\\btn_minimize_press_15x14.gif"
+btn_close_mouse_over_15x14.gif				IMG "DHTMLGuiRes\\img\\btn_close_mouse_over_15x14.gif"
+btn_open_regular_15x14.gif					IMG "DHTMLGuiRes\\img\\btn_open_regular_15x14.gif"
+logo_185x36.gif								IMG "DHTMLGuiRes\\img\\logo_185x36.gif"
+frame_top_right_corner.gif					IMG "DHTMLGuiRes\\img\\frame_top_right_corner.gif"
+btn_open_press_15x14.gif					IMG "DHTMLGuiRes\\img\\btn_open_press_15x14.gif"
+frame_top_side_bkg.gif						IMG "DHTMLGuiRes\\img\\frame_top_side_bkg.gif"
+logo_about_68x75.gif						IMG "DHTMLGuiRes\\img\\logo_about_68x75.gif"
+btn_close_press_15x14.gif					IMG "DHTMLGuiRes\\img\\btn_close_press_15x14.gif"					
+btn_close_regular_15x14.gif					IMG "DHTMLGuiRes\\img\\btn_close_regular_15x14.gif"  
+frame_separator_bkg.gif						IMG "DHTMLGuiRes\\img\\frame_separator_bkg.gif"																			
+test_test_icon.gif							IMG "DHTMLGuiRes\\img\\test_test_icon.gif"
+help_icon.gif								IMG "DHTMLGuiRes\\img\\help_icon.gif"
+test_ok_icon.gif							IMG "DHTMLGuiRes\\img\\test_ok_icon.gif"
+test_fail_icon.gif							IMG "DHTMLGuiRes\\img\\test_fail_icon.gif"
+ie6_notification_icon.gif					IMG "DHTMLGuiRes\\img\\ie6_notification_icon.gif"
+info_msg_icon.gif							IMG "DHTMLGuiRes\\img\\info_msg_icon.gif"
+
+alert_frame_bottom_left_corner_14x14.gif	IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_bottom_left_corner_14x14.gif"
+alert_frame_bottom_right_corner_14x14.gif	IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_bottom_right_corner_14x14.gif"
+alert_frame_bottom_side_1x14.gif			IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_bottom_side_1x14.gif"
+alert_frame_left_side_14x1.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_left_side_14x1.gif"
+alert_frame_right_side_14x1.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_right_side_14x1.gif"
+alert_frame_top_left_corner_14x14.gif		IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_top_left_corner_14x14.gif"
+alert_frame_top_right_corner_14x14.gif		IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_top_right_corner_14x14.gif"
+alert_frame_top_side_1x14.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_frame_top_side_1x14.gif"
+alert_tab_panel_185x36.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_tab_panel_185x36.gif"
+btn_close_alert_mouse_over_13x12.gif		IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_close_alert_mouse_over_13x12.gif"
+btn_close_alert_press_13x12.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_close_alert_press_13x12.gif"
+btn_close_alert_regular_13x12.gif			IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_close_alert_regular_13x12.gif"
+btn_report_mouse_over_83x26.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_report_mouse_over_83x26.gif"
+btn_report_press_83x26.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_report_press_83x26.gif"
+btn_report_regular_83x26.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_report_regular_83x26.gif"
+btn_start_mouse_over_83x26.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_start_mouse_over_83x26.gif"
+btn_start_press_83x26.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_start_press_83x26.gif"
+btn_start_regular_83x26.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_start_regular_83x26.gif"
+button_panel_bkg_1x33.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\button_panel_bkg_1x33.gif"
+chat_alert_icon_24x20.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\chat_alert_icon_24x20.gif"
+connect_alert_icon_24x20.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\connect_alert_icon_24x20.gif"
+consult_alert_icon_24x20.gif				IMG_ALERT "DHTMLGuiRes\\img_alert\\consult_alert_icon_24x20.gif"
+alert_clock.gif								IMG_ALERT "DHTMLGuiRes\\img_alert\\alert_clock.gif"
+logo_upgrade.gif							IMG_ALERT "DHTMLGuiRes\\img_alert\\logo_upgrade.gif"
+logo_missed_calls.gif						IMG_ALERT "DHTMLGuiRes\\img_alert\\logo_missed_calls.gif"
+btn_consult_26x16.gif						IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_consult_26x16.gif"
+btn_session_26x16.gif						IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_session_26x16.gif"
+btn_offline_msgs_26x16.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_offline_msgs_26x16.gif"
+btn_system_msgs_26x16.gif					IMG_ALERT "DHTMLGuiRes\\img_alert\\btn_system_msgs_26x16.gif"

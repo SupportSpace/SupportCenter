@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+
+<project name="SupportSpace" default="extend_locale">
+
+  <script language="C#" prefix="archer">
+    <code>
+      <![CDATA[
+    
+    [Function("extend_locale")]
+    static public string ExtendLocale(string fileName, string localeStringsFile)
+    {
+		FileInfo info = new FileInfo(fileName);
+		FileInfo stringsInfo = new FileInfo(localeStringsFile);
+		info.Attributes = FileAttributes.Normal;
+		stringsInfo.Attributes = FileAttributes.Normal;
+
+		string content, stringsContent;
+		using( StreamReader reader = info.OpenText() )
+		content = reader.ReadToEnd();
+		using( StreamReader reader = stringsInfo.OpenText() )
+		stringsContent = reader.ReadToEnd();
+
+		//RegexOptions opts = RegexOptions.Multiline | RegexOptions.ExplicitCapture;
+    RegexOptions opts = RegexOptions.Multiline;
+		// MLocalize(_T("Connect aborted"));
+		string prefix = "MLocalize(_T(\"";
+		string regExPrefix = "MLocalize\\(_T\\(\"";
+		string postfix = "\")";
+		string regExPostfix = "\"\\)";
+		Regex rx = new Regex(string.Format("{0}.*{1}",regExPrefix,regExPostfix), opts);
+		// Getting string from regEx
+		for(Match m = rx.Match(content); m.Success; m = rx.Match(content,m.Index + 1))
+		{
+			foreach(Capture c in m.Captures)
+			{
+				string str = c.Value;
+				str = str.Remove(0, prefix.Length);
+				str = str.Remove(str.Length - postfix.Length, postfix.Length);
+				Regex rx1 = new Regex(string.Format("MSetString\\(_T\\(\"{0}\"\\),.*",str), opts);
+				if (!rx1.Match(stringsContent).Success)
+				{
+					// Adding new string to strings
+					stringsContent += string.Format("\r\nMSetString(_T(\"{0}\"),_T(\"{1}\"));",str,str);
+				}
+			}
+		}
+		using( StreamWriter writer = stringsInfo.CreateText() )
+		writer.Write(stringsContent);
+
+		return String.Format("Localization requests are taken from: \"{0}\".", fileName );
+    }
+
+		]]>
+    </code>
+  </script>
+
+  
+  <target name="extend_locale">
+    <foreach item="File" property="filename">
+      <in>
+        <items>
+          <include name="${'.\**\*.h'}" />
+          <include name="${'.\**\*.cpp'}" />
+        </items>
+      </in>
+      <do>
+        <echo message="${archer::extend_locale(filename, './public/locale/local_strings.h')}" />
+      </do>
+    </foreach>
+  </target>
+	
+</project>

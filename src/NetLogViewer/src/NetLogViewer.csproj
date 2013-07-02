@@ -1,0 +1,183 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9908DEE4-9F92-4DFE-9175-81B578CCB18F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetLogViewer</RootNamespace>
+    <AssemblyName>NetLogViewer</AssemblyName>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'dynamic_debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\out\bin\dynamic_debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'dynamic_release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\out\bin\dynamic_release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'static_debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\out\bin\static_debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'static_release|AnyCPU' ">
+    <OutputPath>..\out\bin\static_release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.NetLogViewerLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ref\Interop.NetLogViewerLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions.cs" />
+    <Compile Include="Attach2ClientAction.cs" />
+    <Compile Include="CloseClientTabAction.cs" />
+    <Compile Include="DetachFromClientAction.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GOLD\Engine\DfaState.cs" />
+    <Compile Include="GOLD\Engine\Grammar.cs" />
+    <Compile Include="GOLD\Engine\LRAction.cs" />
+    <Compile Include="GOLD\Engine\LRState.cs" />
+    <Compile Include="GOLD\Engine\LRStateAction.cs" />
+    <Compile Include="GOLD\Engine\ObjectMap.cs" />
+    <Compile Include="GOLD\Engine\ParseMessage.cs" />
+    <Compile Include="GOLD\Engine\Parser.cs" />
+    <Compile Include="GOLD\Engine\Rule.cs" />
+    <Compile Include="GOLD\Engine\SourceLineReadCallback.cs" />
+    <Compile Include="GOLD\Engine\SR.cs" />
+    <Compile Include="GOLD\Engine\Symbol.cs" />
+    <Compile Include="GOLD\Engine\SymbolType.cs" />
+    <Compile Include="LoadMessagesAction.cs" />
+    <Compile Include="Log2DataSet.cs" />
+    <Compile Include="LogClient.cs" />
+    <Compile Include="MsgSeverity.cs" />
+    <Compile Include="NetLogClientView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NetLogClientView.Designer.cs">
+      <DependentUpon>NetLogClientView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NetLogClientView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NetLogClientView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="GOLD\AidLibLogs.cgt" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="res\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SaveMessagesAction.cs" />
+    <Compile Include="SetDelayModeAction.cs" />
+    <Compile Include="SetVerbosityAction.cs" />
+    <Compile Include="TabObjectsCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\Error.ico" />
+    <EmbeddedResource Include="res\Exception.ico" />
+    <EmbeddedResource Include="res\FunctionalTestCase.ico" />
+    <EmbeddedResource Include="res\FunctionalTestSuite.ico" />
+    <EmbeddedResource Include="res\Message.ico" />
+    <EmbeddedResource Include="res\Resource1.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\UnitTestCase.ico" />
+    <EmbeddedResource Include="res\UnitTestSuite.ico" />
+    <EmbeddedResource Include="res\Warning.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\attach.bmp" />
+    <EmbeddedResource Include="res\delay.bmp" />
+    <EmbeddedResource Include="res\detach.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\close tab.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\clear messages.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\set verbosity.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\save.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>cd ..
+rem nant -t:net-2.0 -D:configuration=$(ConfigurationName) prebuild
+</PreBuildEvent>
+    <PostBuildEvent>cd ..
+rem nant -t:net-2.0 -D:configuration=$(ConfigurationName) postbuild
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

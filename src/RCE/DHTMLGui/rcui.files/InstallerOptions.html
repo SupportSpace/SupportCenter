@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI InstallerOptions frame </TITLE>
+
+</HEAD>
+<script language="JavaScript">
+	/// active service currently bind with this frame
+	var service=null;
+	/// The method activate service object. The object set its state on the UI elements. The function can't invoke as separate function, it must invoke as method service object (for example: service.Activate(true); ).
+	/// @param flag bool parameter. if it's true - session activates, else session deactivetes.
+	function Activate(flag)
+	{	
+		if(service.m_installerObject==null)service.Init();//Initialize by first activation.
+		if(flag)//Activate
+		{	
+			//for example
+			//document.getElementById('srvDisplayMode').selectedIndex=service.m_displayMode;
+			service.m_feature=document.getElementById('srvInstallerFeatures').options(document.getElementById('srvInstallerFeatures').selectedIndex).innerText;
+		}
+		else//Deactivate
+		{	
+			//document.getElementById('srvRecordStart').disabled=true;
+			//document.getElementById('srvRecordStop').disabled=true;
+		}
+	}
+</script>
+<BODY>
+	<span id="srInstallerOptions" align="center" >
+		<table>
+			<tr>
+				<td>
+					Feature:
+				</td>
+				<td>
+					<select id="srvInstallerFeatures" style="width: 150px" onfocusout="service.m_feature= document.getElementById('srvInstallerFeatures').options(document.getElementById('srvInstallerFeatures').selectedIndex).innerText;"><option>b</option></select>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+		</table>
+	</span>
+</BODY>
+</HTML>

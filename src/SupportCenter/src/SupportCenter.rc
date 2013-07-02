@@ -1,0 +1,451 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SupportMessenger_DIALOG DIALOGEX 0, 0, 84, 25
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Support Center"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+END
+
+IDD_ALERT_DIALOG DIALOGEX 0, 0, 154, 82
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_SETTINGS_DIALOG DIALOGEX 0, 0, 186, 260
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_WORKBENCH_DIALOG DIALOGEX 0, 0, 134, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_WINDOWEDGE
+CAPTION "SupportCenter "
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_ONLINE4CUSTOMER_DIALOG DIALOGEX 0, 0, 164, 132
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_SYSMENU | WS_THICKFRAME
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_DHTMLDIALOG_MSG DIALOGEX 0, 0, 279, 83
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SupportSpace Support Center"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SupportMessenger_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 77
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 18
+    END
+
+    IDD_ALERT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 147
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 75
+    END
+
+    IDD_SETTINGS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 253
+    END
+
+    IDD_WORKBENCH_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_ONLINE4CUSTOMER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 154
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 97
+    END
+
+    IDD_DHTMLDIALOG_MSG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 76
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)\r\n"
+    "LANGUAGE 13, 1\r\n"
+    "#pragma code_page(1255)\r\n"
+    "#include ""res\\SupportMessenger.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\SupportMessenger.ico"
+IDI_MYSTATUS_AVAILIBLE  ICON                    "res\\Status_Availible.ico"
+IDI_MYSTATUS_BUSY       ICON                    "res\\Status_Busy.ico"
+IDI_MYSTATUS_AWAY       ICON                    "res\\Status_Away.ico"
+IDI_MYSTATUS_OFFLINE    ICON                    "res\\Status_Offline.ico"
+IDI_NEWCALLANIMATED1    ICON                    "res\\StatusNewCallAnimated1.ico"
+IDI_NEWCALLANIMATED2    ICON                    "res\\StatusNewCallAnimated2.ico"
+IDI_NEW_CALLS           ICON                    "res\\Status_NewCalls.ico"
+IDI_UPDATE_REQUIRED     ICON                    "res\\status_update.ico"
+IDI_CONNECTINGANIMATED1 ICON                    "res\\StatusConnectingAnimated1.ico"
+IDI_CONNECTINGANIMATED2 ICON                    "res\\StatusConnectingAnimated2.ico"
+IDI_MYSTATUS_ONNLINEFORCUSTOMER ICON                    "res\\Status_AvailibleForCustomer.ico"
+IDI_MYSTATUS_AVAILIBLE_LIMITED_CON ICON                    "res\\Status_AvailibleLimitedCon.ico"
+IDI_MYSTATUS_AWAY_LIMITED_CON ICON                    "res\\Status_AwayLimitedCon.ico"
+IDI_MYSTATUS_BUSY_LIMITED_CON ICON                    "res\\Status_BusyLimitedCon.ico"
+IDI_MYSTATUS_OFFLINE_LIMITED_CON ICON                    "res\\Status_OfflineLimitedCon.ico"
+IDI_MYSTATUS_ONNLINEFORCUSTOMER_LIMITED_CON ICON                    "res\\Status_AvailibleForCustomerLimitedCon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP_MENU"
+    BEGIN
+        MENUITEM "Open",                        ID_POPUP_OPEN
+        POPUP "Dock", GRAYED
+        BEGIN
+            MENUITEM "Right",                       ID_DOCK_RIGHT, GRAYED
+            MENUITEM "Left",                        ID_DOCK_LEFT, GRAYED
+        END
+        MENUITEM SEPARATOR
+        POPUP "My Status"
+        BEGIN
+            MENUITEM " Available",                  IDI_MYSTATUS_AVAILIBLE
+            MENUITEM " Online for Customer",        IDI_MYSTATUS_ONNLINEFORCUSTOMER
+            MENUITEM " Busy",                       IDI_MYSTATUS_BUSY
+            MENUITEM " Appear Offline",             IDI_MYSTATUS_AWAY
+        END
+        MENUITEM "Settings...",                 ID_POPUP_SETTINGS
+        MENUITEM "View History...",             ID_POPUP_VIEWHISTORY
+        POPUP "Links"
+        BEGIN
+            MENUITEM "My Account",                  ID_LINKS_MYACCOUNT, GRAYED
+            MENUITEM "My Profile",                  ID_LINKS_MYPROFILE
+            MENUITEM "My Messages",                 ID_LINKS_MYMESSAGES
+            MENUITEM "My Sessions History",         ID_LINKS_SESSIONSHISTORY
+            MENUITEM SEPARATOR
+            MENUITEM "Expert Forum",                ID_LINKS_EXPERTFORUM
+            MENUITEM "Expert Portal",               ID_LINKS_EXPERTPORTAL
+            MENUITEM "SupportSpace Homepage",       ID_LINKS_SUPPORTSPACEHOMEPAGE
+        END
+        POPUP "Help"
+        BEGIN
+            MENUITEM "Help",                        ID_HELP_HELP
+            MENUITEM "About",                       ID_HELP_ABOUT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Sign in",                     ID_POPUP_SIGNIN
+        MENUITEM "Sign Out",                    ID_POPUP_SINGOUT
+        MENUITEM "Exit",                        ID_POPUP_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\Top-219x10.bmp"
+IDB_BITMAP2             BITMAP                  "res\\Bottom-219x10.bmp"
+IDB_BITMAP3             BITMAP                  "res\\Middle-219x12.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDW_WAVE_MESSAGE        WAVE                    "res\\Message.wav"
+IDW_WAVE_ONPICKUP       WAVE                    "res\\OnPickup.wav"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_INFO_UNATTENDED_CALLS_IN_INBOX 
+                            "You have unattended service requests. Are you sure you would like to sign out? "
+    IDS_INFO_SNOOZING_CALLS_IN_INBOX 
+                            "There are snoozing calls in your Inbox, are you sure you wish to logout?"
+    IDS_INFO_CALL_WAS_TAKEN_CANNOT_SNOOZED 
+                            "The call was taken by another supporter and therefore cannot be snoozed/forwarded"
+    IDS_INFO_CONNECTION_TEST_TAB 
+                            "The current connection setting wasn't tested succesfully. Therefore it might not work"
+    IDS_ERROR_PASSWORD_INCORRECT "Incorrect password"
+    IDS_ERROR_SETTINGS_SHOWAWAY_NOT_CORRECT 
+                            "You may appear offline after 1:60 minutes of being idle. Please select a number within this range"
+    IDS_MENU_ITEM_OPEN_TEXT_ONE_NEW_CALL "Open (1) new call"
+    IDS_MENU_ITEM_OPEN_TEXT_X_NEW_CALLS "Open (%1!d!) new calls"
+    IDS_TRAY_ICON_TOOLTIP_CONNECTING "SupportSpace (Connecting...)"
+    IDS_ERROR_PASSWORD_MISSEED "Please enter a password"
+    IDS_ERROR_USERNAME_MISSED "Please enter an email"
+    IDS_ERROR_ALREADY_SIGNEDIN "You are already signed in to SupportSpace"
+    IDS_ERROR_AUTHENTICATION_FAILED "The email and password do not match"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRAY_ICON_TOOLTIP_LIMITED_CONNECTION 
+                            "Your connection quality may be too poor to provide service"
+    IDS_TRAY_ICON_TOOLTIP_LIMITED_CONNECTION_IMPROVED 
+                            "Your connection quality has improved"
+    IDS_TRAY_ICON_TOOLTIP_AVAILIBLE_LIMITED_CON 
+                            "SupportSpace (Available - poor connection quality)"
+    IDS_TRAY_ICON_TOOLTIP_X_NEW_CALLS 
+                            "SupportSpace (%1!d! New Service Requests)"
+    IDS_TRAY_ICON_TOOLTIP_ONE_NEW_CALL "SupportSpace (1 New Service Request)"
+    IDS_TRAY_ICON_TOOLTIP_AVAILIBLE "SupportSpace (Available)"
+    IDS_TRAY_ICON_TOOLTIP_BUSY "SupportSpace (Busy)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRAY_ICON_TOOLTIP_AWAY "SupportSpace (Away)"
+    IDS_TRAY_ICON_TOOLTIP_OFFLINE "SupportSpace (Offline)"
+    IDS_TRAY_ICON_TOOLTIP_NEW_CALL_ANIMATION 
+                            "SupportSpace (Incoming Service Request)"
+    IDS_TRAY_ICON_TOOLTIP_UPDATE_REQUIRED "SupportSpace (Upgrade Required)"
+    IDS_TRAY_ICON_TOOLTIP_IS_SIGNEDIN "You are now ready to start supporting"
+    IDS_TRAY_ICON_TOOLTIP_IS_SIGNEDOUT "You are currently signed out"
+    IDS_MENU_ITEM_OPEN_TEXT "Open"
+    IDS_MENU_ITEM_SIGNOUT_TEXT "Sign Out"
+    IDS_MENU_ITEM_SIGNIN_TEXT "Sign In"
+    IDS_APP_FULL_NAME       "SupportSpace Support Center"
+    IDS_TRAY_ICON_TOOLTIP_ONNLINE4CUSTOMER "Online for %1"
+    IDS_TRAY_ICON_TOOLTIP_BUSY_LIMITED_CON 
+                            "SupportSpace (Busy- poor connection quality) "
+    IDS_TRAY_ICON_TOOLTIP_AWAY_LIMITED_CON 
+                            "SupportSpace (Away - poor connection quality)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERROR_CONFIG_PORT_WITH_UPNP_FAILED "Port configuration failed"
+    IDS_ERROR_CONNECT_FAILED_LAST_ATTEPMT 
+                            "Could not connect. Please try to sign in again"
+    IDS_ERROR_YOU_ARE_SIGNIN_ON_ANOTHER_COMPUTER 
+                            "You have signed in with these details on another computer"
+    IDS_UPGRADE_ALERT_TEXT  "A new version of the SupportSpace platfrom is available. Click here here to upgrade now"
+    IDS_ERROR_ERROR_CODE_PREFIX "Code# "
+    IDS_INFO_MSG_UPDATE_SUCCESSFULLY_COMPLETED 
+                            "SupportSpace platform was upgraded successfully"
+    IDS_ERROR_TEST_FAILED   "Test failed"
+    IDS_ERROR_TEST_SUCCESSED "Test succeeded"
+    IDS_ERROR_YOU_MAYBE_AUTHENTICATED_ONCE_ON_THIS_COMPUTER 
+                            "You have to sign in at least once before accessing the Setting options"
+    IDS_INFO_CALLS_IN_INSESSION "You cannot sign out while in a session"
+    IDS_MISSEDCALLS_ALERT_TEXT 
+                            "Your status was changed to Busy since you had missed calls. If you would like to change it back to Online and accept calls, "
+    IDS_MISSEDCALLS_OFFLINE_ALERT_TEXT 
+                            "Your status was changed to Offline since you had missed calls and was idle for %1!d! min. To go back Online and accept calls, "
+    IDS_TRAY_ICON_TOOLTIP_IS_OFFLINE_DUE_IDLE 
+                            "Your status was changed to Offline since you was idle."
+    IDS_TRAY_ICON_TOOLTIP_CONNECTED_NOT_AVAILIBLE 
+                            "You are signed in, but not availible"
+    IDS_WARNING_CLOSE_WORKBENCH 
+                            "Are you sure you want to close SupportCenter? Closing this window will end your SupportSpace service session."
+    IDS_ERROR_IE7_VERSION_REQUIRED 
+                            "Sorry, we do not support Intenet Epxlorer 6 anymore."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRAY_ICON_TOOLTIP_OFFLINE_LIMITED_CON 
+                            "SupportSpace (Offline - poor connection quality)"
+    IDS_TRAY_ICON_TOOLTIP_ONNLINE4CUSTOMER_LIMITED_CON 
+                            "Online for %1 limited connection"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 14,0,0,0
+ PRODUCTVERSION 14,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "SupportSpace Ltd"
+            VALUE "FileDescription", "SupportSpace Support Center"
+            VALUE "FileVersion", "14.0.0.0"
+            VALUE "InternalName", "SupportCenter.exe"
+            VALUE "LegalCopyright", "Copyright © 2006-2011 SupportSpace Ltd All rights reserved."
+            VALUE "OriginalFilename", "SupportCenter.exe"
+            VALUE "ProductName", "Support Center"
+            VALUE "ProductVersion", "14.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+IDR_HTML_SupportMessenger_DIALOG HTML                    "SupportMessenger.htm"
+#endif    // Hebrew resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+LANGUAGE 13, 1
+#pragma code_page(1255)
+#include "res\SupportMessenger.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

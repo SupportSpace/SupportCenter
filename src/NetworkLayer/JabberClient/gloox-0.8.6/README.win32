@@ -1,0 +1,49 @@
+Building on Win32
+-----------------
+
+gloox compiles on
+- MinGW (http://mingw.org)
+- MSVC 6
+No other compilers have been tested.
+
+Project files for Bloodshed Dev-C++ (gloox.dev) and MSVC 6 (gloox.dsp) are included.
+
+- Edit config.h.win to suit your needs.
+- Add additional libs you have available to the project.
+
+Note: SRV resolving is disabled on Windows until I find a way to actually do this on that platform.
+
+
+Building Iksemel
+----------------
+- add the following lines to iksemel/include/common.h
+
+#ifdef WIN32
+#include <stdarg.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#define strncasecmp strnicmp
+#define strcasecmp stricmp
+#endif
+
+- create a new project for a static library
+- add Iksemel's source files and headers
+- add winsock (wsock32.lib or ws2_32.lib) to the list of used libs for the linker
+- build
+
+
+Building gloox on MinGW
+-----------------------
+gloox should build out of the box on MinGW if you have Iksemel installed.
+
+
+Building gloox on MSVC
+----------------------
+- use the included project file or create your own
+- correct the path to iksemel.lib
+- add the path to iksemel's header files (or at least iksemel.h)
+- don't forget to switch 'include RTTI information' on
+- to receive any debug output you should use the LogSink facilities (this is not win32-specific)
+- build
+- if you get C4541 warnings, you forgot RTTI ;)

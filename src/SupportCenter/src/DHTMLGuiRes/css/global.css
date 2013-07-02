@@ -1,0 +1,46 @@
+.VSBT { font-family: Tahoma, Verdana, Arial; font-size: 10px; color: #000000; line-height: 135%;}
+.VSBBT { font-family: Tahoma, Verdana, Arial; font-size: 10px; color: #000000; font-weight: bold; line-height: 135%;}
+
+/********** Buttons **************/
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+a.button {
+    background: transparent url('../img/btn_a_7x21.gif') no-repeat scroll top right;
+    color: #6C6C6C;
+    display: block;
+    float: left;
+    margin-left:6px;
+    font: bold 11px Verdana, Geneva, Arial, Helvetica, sans-serif;
+    height: 21px;
+    padding-right: 7px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('../img/btn_span_300x63.gif') no-repeat;
+    display: block;
+    line-height: 11px;
+    padding: 5px 0 5px 7px;
+}
+
+a.button:active:hover {
+    background-position: center right;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active:hover span {
+    background-position: center left;
+    padding: 6px 0 4px 7px; /* push text down 1px */
+}
+
+a.button:hover {
+    background-position: bottom right;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:hover span {
+    background-position: bottom left;
+}

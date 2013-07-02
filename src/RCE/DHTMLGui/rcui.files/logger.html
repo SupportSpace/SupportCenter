@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI logger frame </TITLE>
+</HEAD>
+<script language=JavaScript>
+	/// invoke default mail program and pass it logger information
+	//TODO check for a big log information, don't work?
+	function MailTo()
+	{
+		var str=document.getElementById('logger').innerText;
+		//str='mailto:kirill@archer-soft.com?subject=RCE%20Logger%20Information&body='+encodeURIComponent(str);
+		//str=str.substr(0,2048);
+		//alert(str+"\n"+str.length);
+		//window.open(str);
+		//alert(encodeURIComponent(str));
+		window.open('mailto:kirill@archer-soft.com?subject=RCE%20Logger%20Information&body='+encodeURIComponent(str));
+	}
+
+	/// save logger text in cookie
+	function SaveLog()
+	{	
+		document.cookie="logger="+escape(document.getElementById("logger").innerText)+";";
+	}
+	//load saved earlier logger text
+	function LoadLog()
+	{
+		//alert(document.cookie);
+		var aCookie = document.cookie.split("; ");
+		for (var i=0; i < aCookie.length; i++)
+		  { 
+			var aCrumb = aCookie[i].split("=");
+			if(aCrumb[0]=="logger")document.getElementById("logger").innerText="* * * RELOAD * * *\n"+unescape(aCrumb[1]);
+		  }
+	}
+</script>
+<BODY onload="LoadLog();" onunload="SaveLog();">
+	<input type="button"  width="10" onClick="document.getElementById('logger').innerText=' ';"> 
+	<span id="logger" style="font-size:65%">
+	</span>	
+	<br>
+	<a href="#" onclick="MailTo();">Click here to send log information to the Archer Software.</a>
+</BODY>
+</HTML>

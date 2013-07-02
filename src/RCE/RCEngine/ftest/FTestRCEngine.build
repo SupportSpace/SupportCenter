@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+
+<project name="FTestRCEngine" default="build_all">
+
+  <!-- Main targers -->
+
+  <!-- Setup environment variables -->
+  <target name="setup_environment">
+    <property name="roots.dir" value="${environment::get-variable('ROOTS')}" />
+    <if test="${property::exists('configuration')}">
+      <setenv>
+        <variable name="CONFIGURATION" value="${configuration}" />
+      </setenv>
+    </if>
+    <if test="${not property::exists('configuration')}">
+      <property name="configuration" value="${environment::get-variable('CONFIGURATION')}" />
+    </if>
+    <property name="install.dir" value="${roots.dir}\console_${configuration}" />
+    <if test="${not property::exists('failontesterror')}">
+      <property name="failontesterror" value="true" />
+    </if>
+  </target>
+
+
+  <!-- Cleaning project -->
+  <target name="clean" >
+    <nant target="clean">
+      <buildfiles>
+        <include name="FTestFrameRateGenerator\FTestFrameRateGenerator.build" />
+        <include name="FTestFrameRateServer\FTestFrameRateServer.build" />
+        <include name="FTestFrameRateClient\FTestFrameRateClient.build" />
+        <include name="FTestNWLGarbageServer\FTestNWLGarbageServer.build" />
+        <include name="FTestNWLGarbageClient\FTestNWLGarbageClient.build" />
+        <include name="FTestResolutionServer\FTestResolutionServer.build" />
+        <include name="FTestResolutionClient\FTestResolutionClient.build" />
+        <include name="FTestQualityServer\FTestQualityServer.build" />
+        <include name="FTestQualityClient\FTestQualityClient.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Installing project -->
+  <target name="install">
+    <nant target="install">
+      <buildfiles>
+        <include name="FTestFrameRateGenerator\FTestFrameRateGenerator.build" />
+        <include name="FTestFrameRateServer\FTestFrameRateServer.build" />
+        <include name="FTestFrameRateClient\FTestFrameRateClient.build" />
+        <include name="FTestNWLGarbageServer\FTestNWLGarbageServer.build" />
+        <include name="FTestNWLGarbageClient\FTestNWLGarbageClient.build" />
+        <include name="FTestResolutionServer\FTestResolutionServer.build" />
+        <include name="FTestResolutionClient\FTestResolutionClient.build" />
+        <include name="FTestQualityServer\FTestQualityServer.build" />
+        <include name="FTestQualityClient\FTestQualityClient.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Building project and tests -->
+  <target name="build_all">
+    <nant target="build_all">
+      <buildfiles>
+        <include name="FTestFrameRateGenerator\FTestFrameRateGenerator.build" />
+        <include name="FTestFrameRateServer\FTestFrameRateServer.build" />
+        <include name="FTestFrameRateClient\FTestFrameRateClient.build" />
+        <include name="FTestNWLGarbageServer\FTestNWLGarbageServer.build" />
+        <include name="FTestNWLGarbageClient\FTestNWLGarbageClient.build" />
+        <include name="FTestResolutionServer\FTestResolutionServer.build" />
+        <include name="FTestResolutionClient\FTestResolutionClient.build" />
+        <include name="FTestQualityServer\FTestQualityServer.build" />
+        <include name="FTestQualityClient\FTestQualityClient.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Building project -->
+  <target name="build">
+    <nant target="build">
+      <buildfiles>
+        <include name="FTestFrameRateGenerator\FTestFrameRateGenerator.build" />
+        <include name="FTestFrameRateServer\FTestFrameRateServer.build" />
+        <include name="FTestFrameRateClient\FTestFrameRateClient.build" />
+        <include name="FTestNWLGarbageServer\FTestNWLGarbageServer.build" />
+        <include name="FTestNWLGarbageClient\FTestNWLGarbageClient.build" />
+        <include name="FTestResolutionServer\FTestResolutionServer.build" />
+        <include name="FTestResolutionClient\FTestResolutionClient.build" />
+        <include name="FTestQualityServer\FTestQualityServer.build" />
+        <include name="FTestQualityClient\FTestQualityClient.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Building project without dependent projects -->
+  <target name="build_shallow">
+    <nant target="build_shallow">
+      <buildfiles>
+        <include name="FTestFrameRateGenerator\FTestFrameRateGenerator.build" />
+        <include name="FTestFrameRateServer\FTestFrameRateServer.build" />
+        <include name="FTestFrameRateClient\FTestFrameRateClient.build" />
+        <include name="FTestNWLGarbageServer\FTestNWLGarbageServer.build" />
+        <include name="FTestNWLGarbageClient\FTestNWLGarbageClient.build" />
+        <include name="FTestResolutionServer\FTestResolutionServer.build" />
+        <include name="FTestResolutionClient\FTestResolutionClient.build" />
+        <include name="FTestQualityServer\FTestQualityServer.build" />
+        <include name="FTestQualityClient\FTestQualityClient.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Compiling project -->
+  <target name="compile">
+    <nant target="compile">
+      <buildfiles>
+        <include name="FTestFrameRateGenerator\FTestFrameRateGenerator.build" />
+        <include name="FTestFrameRateServer\FTestFrameRateServer.build" />
+        <include name="FTestFrameRateClient\FTestFrameRateClient.build" />
+        <include name="FTestNWLGarbageServer\FTestNWLGarbageServer.build" />
+        <include name="FTestNWLGarbageClient\FTestNWLGarbageClient.build" />
+        <include name="FTestResolutionServer\FTestResolutionServer.build" />
+        <include name="FTestResolutionClient\FTestResolutionClient.build" />
+        <include name="FTestQualityServer\FTestQualityServer.build" />
+        <include name="FTestQualityClient\FTestQualityClient.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Running tests -->
+  <target name="run_tests" depends="setup_environment" />
+  
+</project>

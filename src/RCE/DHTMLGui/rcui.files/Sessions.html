@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI Sessions frame </TITLE>
+</HEAD>
+<script language=JavaScript>
+	/// active session currently bind with this frame
+	var session=null;
+	/// The method activate service object. The object set its state on the UI elements. The function can't invoke as separate function, it must invoke as method service object (for example: service.Activate(true); ).
+	/// @param flag bool parameter. if it's true - session activates, else session deactivetes.
+	function Activate(flag)
+	{	
+		if(flag)//Activate
+		{	
+			//for example
+			//document.getElementById('srvDisplayMode').selectedIndex=session.m_displayMode;
+		}
+		else//Deactivate
+		{	
+			//document.getElementById('srvRecordStart').disabled=true;
+			//document.getElementById('srvRecordStop').disabled=true;
+		}
+	}	
+</script>
+<BODY>
+	<table>
+		<tr>
+			<td>
+
+			</td>
+			<td>
+				<input id="cursession" type="text" value="" disabled="true">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Type:
+			</td>
+			<td>
+				<select id="srtype" style="width: 150px" disabled="true" onchange="session.ChangeType(document.getElementById('srtype').selectedIndex);">
+					<option id="0" value="5">InitInstaller</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right">
+				<input id="srstart" type="button" value="Start" disabled="true" onClick="session.Start();">&nbsp;&nbsp;
+				<input id="srstop" type="button" value="Stop" disabled="true" onClick="session.Stop();">
+			</td>
+		</tr>
+	</table>
+</BODY>
+</HTML>

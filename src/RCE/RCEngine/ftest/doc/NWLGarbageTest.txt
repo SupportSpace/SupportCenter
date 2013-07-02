@@ -1,0 +1,19 @@
+NWL Garbage test user guide.
+============================
+
+
+1. FTestNWLGarbageServer.exe - server part of the test
+Usage: FTestNWLGarbageServer.exe [-sg] [-gt] [-t=<time>] [-p=<port>]
+-sg		- send garbage to stream; default: false
+-gt		- use separated thread to send garbage; default: false
+-t=<time>	- test time; default: 60000 msecs
+-p=<port>	- local port; default: 3000
+
+2. FTestNWLGarbageClient.exe - client part of the test
+Usage: FTestNWLGarbageClient.exe [-a=<address>] [-p=<port>] [-as] [-m=0|1] [-sg] [-gt]
+-a=<ip>		- remote ip address; default: 127.0.0.1
+-p=<port>	- remote port; default: 3000
+-as		- auto connect to server at startup; default: false
+-m=0|1		- display mode (0 - scale mode, 1 - scroll mode); default: 0
+-sg		- send garbage to stream; default: false
+-gt		- use separated thread to send garbage; default: false

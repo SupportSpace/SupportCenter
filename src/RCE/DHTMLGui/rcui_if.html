@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>RCUI</title>
+		<script language="JavaScript" src="bin/versions.js"></script>
+		<script language="JavaScript" src="rcui_if.js"></script>
+		<script language="JavaScript" type="text/javascript" src="imwrapper.js"></script>
+		<script language="JavaScript">
+			MyInclude(relayJabber+"sha1.js");
+			MyInclude(relayJabber+"xmlextras.js");
+			MyInclude(relayJabber+"JSJaCConnection.js");
+			MyInclude(relayJabber+"JSJaCPacket.js");
+			MyInclude(relayJabber+"JSJaCHttpPollingConnection.js");
+			MyInclude(relayJabber+"JSJaCHttpBindingConnection.js");
+		</script>
+		<style src="style.css"></style>
+	</head>
+	<script language="javascript">
+		function _OnUnloadPage()
+		{
+			OnUnloadPage();
+			DeinitPage();
+		}
+	</script>
+	<body onload="InitPage(0x2);" onunload="_OnUnloadPage();" onbeforeunload="ConnectCheck()" ><!--  -->
+		<OBJECT ID="SSInitialInstaller" CLASSID="CLSID:08653405-44A9-4E99-9C09-DD00770AAA08" codebase="bin/supportspace_tools.dll#version=-1,-1,-1,-1" width="0" height="0" ></OBJECT>
+		<span id="spanInstallerObject"></span>
+		<span id="spanHostObject" ></span>
+		<span id="spanAddToTrusted" style="font-size:150%;color:red;width:100%;height:100%" >
+			This site should be added to trusted zone, in order to work properly. <br>
+			To add this site to trusted zone folowing steps should be performed: <br>
+			<span style="font-size:70%;color:black" >
+				Go to Tools-Internet Options-Security<br>
+				Click the "Security" tab and choose the "Trusted Sites" icon<br>
+				Then click on the button "Sites". Be sure to remove the check by the entry "Require server verification (https:)...."<br>
+				Enter this site url in the line provided, then "Add" button.<br>
+				<a href="http://www.microsoft.com/windows/ie/ie6/using/howto/security/settings.mspx">To get more details, on IE 6 security settings see this page</a>
+			</span>
+			<br>
+			<br>
+			One more thing you should to do, while activex aren't signed with valid sertificate, is to allow download unsigned ActiveX controls:
+			<span style="font-size:70%;color:black">
+				Go to Tools-Internet Options-Security<br>
+				Click the "Security" tab and press custom level button<br>
+				Select "prompt" for "download unsigned ActiveX controls" item"<br>
+			</span>
+			<br>
+		</span>
+		<span id="spanInstallation" style="font-size:200%;color:green;width:100%;height:10%"></span>
+		<table  cellpadding="0" cellspacing="0" width="100%" height="98%" border> <!-- cellpadding="1" cellspacing="0"-->
+			<tr><!-- session management pane -->
+				<td  colspan="2" nowrap height="40">
+					&nbsp;&nbsp;&nbsp;&nbsp;ID: <input id="userid" type="text" size="10" value="eran">&nbsp;&nbsp;&nbsp;&nbsp; 
+					Password: <input id="password" type="text" size="10" value="eran">&nbsp;&nbsp;&nbsp;&nbsp;  
+					<input type="button" value="Login" id="btnlogin" onClick="IMLogin();">&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="button" value="Logout" id="btnlogout" onClick="IMLogout();">
+					PeerID: <input id="peerid" type="text" size="15" value="doron">&nbsp;&nbsp; 
+					<!-- TODO disabled New button, until logon has performed.-->
+					<input id="bsnew" type="button" value="New"   onClick="NewSession($('userid').value,$('password').value,$('peerid').value);">&nbsp;
+					<input id="bsclose"type="button" value="Close" disabled="true" onClick="CloseSession(currentSession)">&nbsp;
+				</td>
+			</tr><!-- session management pane   -->
+			<tr>
+				<td width="10%"   valign="top"> <!-- Peer pane rowspan="2"-->
+					<span id="peerContainer"></span>
+				</td><!-- Peer pane -->
+				<td  valign="center"> <!-- Attributes pane -->
+					<table width="100%" height="100%"  cellpadding="0" cellspacing="0" > <!-- bordercolor="crimson" border-->
+						<tr height="245">
+							<td>
+								<table height="100%" width="100%" > <!-- cellpadding="0" cellspacing="2"-->
+									<tr>
+										<td> <!-- Start/Stop service pane -->
+											<iframe id="frameSessions" src="rcui.files/Sessions.html" width="235" frameborder="0"  onload="OnLoadIframe();"></iframe>
+										</td><!-- Start/Stop service pane -->
+										<td align="center" valign="center" width="100%" > <!-- Custom service attributes pane -->
+											<!-- CServiceRCViewer pane -->
+											<iframe id="frameViewerOptions" align="center"  style="display:none" width="100%" height="100%" src="rcui.files/ViewerOptions.html" frameborder="0" onload="OnLoadIframe();"></iframe>
+											<!-- CServiceRCPlayback pane -->
+											<iframe id="framePlaybackOptions" align="center"  style="display:none" width="100%" src="rcui.files/PlaybackOptions.html" frameborder="0" onload="OnLoadIframe();"></iframe>
+											<!-- CServiceRCHost pane -->
+											<iframe id="frameHostOptions" align="center" style="display:none" width="100%" src="rcui.files/HostOptions.html" frameborder="0" onload="OnLoadIframe();"></iframe>
+											<!-- CServiceRCFileAccessClient pane -->
+											<iframe id="frameFileAccessClientOptions" align="center"  style="display:none" width="100%" src="rcui.files/FileAccessClientOptions.html" frameborder="0" onload="OnLoadIframe();"></iframe>
+											<!-- CServiceRCFileAccessHost pane -->
+											<iframe id="frameFileAccessHostOptions" align="center"  style="display:none" width="100%" src="rcui.files/FileAccessHostOptions.html" frameborder="0" onload="OnLoadIframe();"></iframe>
+											<!-- CServiceRCInstaller pane -->
+											<iframe id="frameInstallerOptions" align="center" style="display:none" width="100%" src="rcui.files/InstallerOptions.html" frameborder="0" onload="OnLoadIframe();"></iframe>
+										</td> <!-- Custom service attributes pane -->
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td> <!-- ActiveX pane -->
+								<!-- TODO innerHTML -->
+								<iframe id="frameActiveX" width="0%" height= "0%" src="rcui.files/ActiveX.html" frameborder="0" onload="OnLoadIframe();"></iframe>
+								<iframe id="frameProgress" width="100%" src="rcui.files/Progress.html" frameborder="0" style="display:none"  onload="OnLoadIframe();"></iframe><!--onload="checkIframe(document.getElementById('frameProgress'));"-->
+								
+							</td><!-- ActiveX pane -->
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<iframe id="frameLogger" src="rcui.files/logger.html" width="100%" height="100%" frameborder="0" onload="OnLoadIframe();" > <!--onload="checkIframe(document.getElementById('frameLogger'));"-->
+		</iframe>
+		<!-- <br>
+		<a href="http://pigeon/msi_test4/setup.exe">Installation through bootstrapper (360kB bootstrapper, 2530kB Windows installer v3.1)</a>
+		-->
+	</body>
+</html>

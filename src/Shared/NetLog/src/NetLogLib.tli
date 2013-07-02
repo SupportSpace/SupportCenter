@@ -1,0 +1,35 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.00.50727.762 (aa5c5dd5).
+//
+// d:\users\max\work\supportspace\clients\win32\shared\netlog\out\obj\static_debug\netloglib.tli
+//
+// Wrapper implementations for Win32 type library D:\Users\Max\WORK\SupportSpace\roots\console_static_debug\bin\NetLogLib.dll
+// compiler-generated file created 10/30/07 at 18:07:26 - DO NOT EDIT!
+
+#pragma once
+
+//
+// dispinterface _IComUDPListenerEvents wrapper method implementations
+//
+
+inline HRESULT _IComUDPListenerEvents::OnDatagramReceived ( _bstr_t addr, long port ) {
+    HRESULT _result = 0;
+    _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_ERROR, (void*)&_result, 
+        L"\x0008\x0003", (BSTR)addr, port);
+    return _result;
+}
+
+//
+// interface IComUDPListener wrapper method implementations
+//
+
+inline HRESULT IComUDPListener::Listen ( long port ) {
+    HRESULT _hr = raw_Listen(port);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IComUDPListener::AddWatch ( long pid ) {
+    HRESULT _hr = raw_AddWatch(pid);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}

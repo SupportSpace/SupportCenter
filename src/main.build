@@ -1,0 +1,267 @@
+<?xml version="1.0" ?>
+
+<project name="Main" default="build_all">
+
+  <!-- Main targers -->
+
+  <!-- Outputs help message -->
+  <target name="help">
+    <echo>
+      required parameters:
+        roots         --  path for output
+                          must be set as environment variable
+
+        configuration --  name of configuration to build
+                          can be set as environment variable or as input script parameter
+
+      optional parameters:
+        VC80CRTPATH   --  path to CRT dll's.
+                          can be set as environment variable
+        VC80CRTDPATH  --  path to debug CRT dll's.
+                          can be set as environment variable
+	SS_PFX_PATH   --  path to certificate
+                          can be set as environment variable
+
+      dependencies:
+        NAnt contrib  --  extra tasks for nant (including msbuild task)
+                          You can get it from http://nantcontrib.sourceforge.net
+
+        WiX           --  Windows Installer XML (WiX) toolset
+                          see http://wix.sourceforge.net/ for details
+        MSI SDK       --  MsiIntel.SDK, or any other SDK, containing msi.lib
+                          can be downloaded from:
+                          http://www.microsoft.com/downloads/thankyou.aspx?familyId=e96f8abc-62c3-4cc3-93ad-bfc98e3ae4a3&amp;displayLang=en
+
+      task list:
+        build_all       --  checks integritym builds all stuff, runs all tests and then installs it
+        build           --  the same as builds, except for running tests
+        check_integrity --  checks environment integrity
+        clean           --  perform clean
+        install         --  copies compiled stuff to roots folder
+        run_tests       --  run all tests
+    </echo>
+  </target>
+
+  <!-- Check NANTContrib -->
+  <target name="check_nant_contrib">
+    <cd dir="."/>
+    <property name="nant_contrib_is_ok" value="ok"/>
+  </target>
+
+  <!-- Check MSI presence -->
+  <target name="check_msi" depends="setup_environment">
+    <delete dir="CheckMSI\Debug" failonerror="true" if="${directory::exists('CheckMSI\Debug')}"/>
+    <property name="config_old" value="${environment::get-variable('CONFIGURATION')}"/>
+    <setenv>
+      <variable name="CONFIGURATION" value="Debug" />
+    </setenv>
+    <msbuild project = "CheckMSI\CheckMSI.vcproj" verbosity="Minimal" failonerror="false"/>
+    <if test="${not file::exists('CheckMSI\Debug\CheckMSI.exe')}">
+      <echo>
+        Integrity error:
+        MSI library doesn't detected. It should be installed and accessible through MS visual studio
+        libraries pathes. See nant help for details.
+      </echo>
+      <fail/>
+    </if>
+    <setenv>
+      <variable name="CONFIGURATION" value="${config_old}" />
+    </setenv>
+  </target>
+
+  <!-- Check MSBuild -->
+  <target name="check_msbuild" depends="setup_environment">
+    <!-- checking vs 8 msbuild presence -->
+    <readregistry property="msbuild.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\MSBuild\MSBuildBinPath" hive="LocalMachine CurrentUser" failonerror="false" />
+    <if test="${(not property::exists('msbuild.dir')) or (not file::exists(msbuild.dir+'MSBuild.exe')) }">
+      <echo>
+        Integrity error:
+        seems like msbuild.exe for visaul studio is inaccessible. further building impossible
+      </echo>
+      <fail/>
+    </if>
+    <!-- checking test project build -->
+    <delete dir="CheckMSI\Release" failonerror="true" if="${directory::exists('CheckMSI\Release')}"/>
+    <property name="config_old" value="${environment::get-variable('CONFIGURATION')}"/>
+    <setenv>
+      <variable name="CONFIGURATION" value="Release" />
+    </setenv>
+    <msbuild project = "CheckMSI\CheckMSI.vcproj" verbosity="Minimal" failonerror="false"/>
+    <if test="${not file::exists('CheckMSI\Release\CheckMSI.exe')}">
+      <echo>
+        Integrity error:
+        msbuild task doesn't work. May be you should use param -t:net-2.0 (nant -t:net-2.0)
+        note: this param could also be configured at NAnt.exe.config in tag platform:
+        &lt;platform name=&quot;win32&quot; default=&quot;net-2.0&quot;&gt;
+    </echo>
+      <fail/>
+    </if>
+    <setenv>
+      <variable name="CONFIGURATION" value="${config_old}" />
+    </setenv>
+  </target>
+
+  <!-- Checks integrity -->
+  <target name="check_integrity">
+    <!-- check roots -->
+    <if test="${not environment::variable-exists('ROOTS')}">
+      <echo>
+        Integrity error:
+        ROOTS environment variable doesn't set. Try nant help for more information.
+      </echo>
+      <fail/>
+    </if>
+    <!-- check configuration -->
+    <if test="${not environment::variable-exists('Configuration')}">
+      <if test="${not property::exists('configuration')}">
+        <echo>
+          Integrity error:
+          CONFIGURATION environment variable doesn't set. Try nant help for more information.
+        </echo>
+        <fail/>
+      </if>
+    </if>
+    <!-- check wix -->
+    <!-- <readregistry property="wix.dir" key="SOFTWARE\Windows Installer XML 3\ClickThrough\Installed" hive="LocalMachine CurrentUser" failonerror="false" /> -->
+    <readregistry property="wix.name" key="Installer\Products\55FCF1A6A33E534459E8FAA8456C760C\ProductName" hive="ClassesRoot" failonerror="false" />
+    <if test="${(not property::exists('wix.name')) or (not (property::get-value('wix.name') == 'Windows Installer XML v3')) }">
+    <echo>
+        Integrity error:
+        WiX doesn't found. Try nant help for more information.
+      </echo>
+      <fail/>
+    </if>
+    <!-- checking nant contrib -->
+    <call target="check_nant_contrib" failonerror="false"/>
+    <if test="${not property::exists('nant_contrib_is_ok')}">
+      <echo>
+        Integrity error:
+        NAnt contrib is required for build.
+        You can get it from http://nantcontrib.sourceforge.net
+      </echo>
+      <fail/>
+    </if>
+    <!--checking msbuild-->
+    <call target="check_msbuild"/>
+    <!-- check msi lib -->
+    <call target="check_msi" />
+  </target>
+  
+  <!-- Setup environment variables -->
+  <target name="setup_environment">
+    <property name="roots.dir" value="${environment::get-variable('ROOTS')}" />
+    <if test="${property::exists('configuration')}">
+      <setenv>
+        <variable name="CONFIGURATION" value="${configuration}" />
+      </setenv>
+    </if>
+    <if test="${not property::exists('configuration')}">
+      <property name="configuration" value="${environment::get-variable('CONFIGURATION')}" />
+    </if>
+    <property name="install.dir" value="${roots.dir}\console_${configuration}" />
+    <if test="${not property::exists('failontesterror')}">
+      <property name="failontesterror" value="true" />
+    </if>
+  </target>
+
+
+  <!-- Cleaning project -->
+  <target name="clean" depends="setup_environment" >
+    <nant target="clean">
+      <buildfiles>
+        <include name="Shared\Shared.build" />
+        <include name="NetworkLayer\NetworkLayer.build" />
+        <include name="SupportCenter\SupportCenter.build"/>
+        <include name="RCE\rce.build" />
+        <include name="Jabber\jabber.build" />
+      </buildfiles>
+    </nant>
+    <!-- Remove instalation directory  -->
+    <!-- <delete dir="${install.dir}" if="${directory::exists(install.dir)}" /> -->
+  </target>
+
+  <!-- Installing project -->
+  <target name="install">
+    <nant target="install">
+      <buildfiles>
+        <include name="NetLogViewer\NetLogViewer.build" />
+        <include name="Shared\Shared.build" />
+        <include name="NetworkLayer\NetworkLayer.build" />
+        <include name="SupportCenter\SupportCenter.build"/>
+        <include name="RCE\rce.build" />
+        <include name="Jabber\jabber.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Building project and tests -->
+  <target name="build_all" depends="check_integrity">
+    <nant target="build_all">
+      <buildfiles>
+        <include name="NetLogViewer\NetLogViewer.build" />
+        <include name="Shared\Shared.build" />
+        <include name="NetworkLayer\NetworkLayer.build" />
+        <include name="SupportCenter\SupportCenter.build"/>
+        <include name="RCE\rce.build" />
+        <include name="Jabber\jabber.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Building project -->
+  <target name="build" depends="check_integrity">
+    <nant target="build">
+      <buildfiles>
+        <include name="NetLogViewer\NetLogViewer.build" />
+        <include name="Shared\Shared.build" />
+        <include name="NetworkLayer\NetworkLayer.build" />
+        <include name="SupportCenter\SupportCenter.build"/>
+        <include name="RCE\rce.build" />
+        <include name="Jabber\jabber.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Building project without dependent projects -->
+  <target name="build_shallow" depends="check_integrity">
+    <nant target="build_shallow">
+      <buildfiles>
+        <include name="NetLogViewer\NetLogViewer.build" />
+        <include name="Shared\Shared.build" />
+        <include name="NetworkLayer\NetworkLayer.build" />
+        <include name="SupportCenter\SupportCenter.build"/>
+        <include name="RCE\rce.build" />
+        <include name="Jabber\jabber.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Compiling project -->
+  <target name="compile">
+    <nant target="compile">
+      <buildfiles>
+        <include name="NetLogViewer\NetLogViewer.build" />
+        <include name="Shared\Shared.build" />
+        <include name="NetworkLayer\NetworkLayer.build" />
+        <include name="SupportCenter\SupportCenter.build"/>
+        <include name="RCE\rce.build" />
+        <include name="Jabber\jabber.build" />
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Running tests -->
+  <target name="run_tests" depends="setup_environment" >
+    <nant target="run_tests" failonerror="${failontesterror}">
+      <buildfiles>
+        <include name="NetLogViewer\NetLogViewer.build" />
+        <include name="Shared\Shared.build" />
+        <include name="NetworkLayer\NetworkLayer.build" />
+        <include name="SupportCenter\SupportCenter.build"/>
+        <include name="RCE\rce.build" />
+        <include name="Jabber\jabber.build" />
+      </buildfiles>
+    </nant>
+  </target>
+  
+</project>

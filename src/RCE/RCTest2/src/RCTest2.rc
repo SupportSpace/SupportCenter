@@ -1,0 +1,450 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CURSOR              BITMAP                  "res\\cursor.bmp"
+IDB_CURSOR_LC           BITMAP                  "res\\cursor left btn.bmp"
+IDB_CURSOR_RC           BITMAP                  "res\\cursor right btn.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FAKED_CHAT DIALOGEX 0, 0, 297, 226
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Test Faked Chat"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_CHAT_CHATBOARD,2,2,238,208,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
+    EDITTEXT        IDC_CHAT_SENDLINE,2,212,238,12,ES_AUTOHSCROLL
+    PUSHBUTTON      ":-(",IDC_CHAT_SMILESAD,270,14,20,17,BS_FLAT
+    PUSHBUTTON      ":-)",IDC_CHAT_SMILEGLAD,248,14,20,17,BS_FLAT
+    PUSHBUTTON      "Send",IDC_CHAT_SENDBUTTON,245,212,50,12,BS_FLAT
+    PUSHBUTTON      ":-|",IDC_CHAT_SMILENEUTRAL,248,33,20,17,BS_FLAT
+    PUSHBUTTON      "B-)",IDC_CHAT_SMILEGLASSES,270,33,20,17,BS_FLAT
+    PUSHBUTTON      "%-7",IDC_CHAT_SMILECRAZY,270,52,20,17,BS_FLAT
+    PUSHBUTTON      ":-D",IDC_CHAT_SMILELOL,248,52,20,17,BS_FLAT
+    GROUPBOX        "Smiles",IDC_STATIC,243,2,52,72
+    PUSHBUTTON      "Close",IDC_CHAT_CLOSE,244,85,47,17,BS_FLAT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_FAKED_CHAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 295
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 224
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Ukrainian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+#ifdef _WIN32
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ADD_VIEWER_DIALOG DIALOGEX 0, 0, 365, 263
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add viewer"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,311,245,50,14,BS_FLAT
+    GROUPBOX        "Direct stream",IDC_STATIC,3,18,181,75,BS_FLAT
+    EDITTEXT        IDC_EDIT_IP,56,33,123,15,ES_AUTOHSCROLL
+    LTEXT           "Dest. host",IDC_STATIC,9,36,40,9
+    EDITTEXT        IDC_EDIT_DEST_PORT,56,53,57,15,ES_AUTOHSCROLL
+    LTEXT           "Dest. peer",IDC_STATIC,9,167,39,9
+    PUSHBUTTON      "Connect",IDC_BUTTON_CONNECT,118,53,62,15,BS_FLAT
+    EDITTEXT        IDC_EDIT_LOCAL_PORT,56,72,57,15,ES_AUTOHSCROLL
+    LTEXT           "Local port",IDC_STATIC,9,75,37,9
+    LTEXT           "Network stream",IDC_STATIC,7,8,76,9
+    PUSHBUTTON      "Set shadow stream",IDC_BUTTON_SHADOW_STREAM,4,244,84,15,BS_FLAT
+    LTEXT           "Viewer settings",IDC_STATIC,200,8,76,9
+    PUSHBUTTON      "Create from shadow stream",IDC_BUTTON_CREATE_FROM_SHADOW_STREAM,73,109,105,14,BS_FLAT
+    COMBOBOX        IDC_DISPLAY_MODE_COMBO,251,22,110,116,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Display mode",IDC_STATIC,200,24,43,8
+    CONTROL         "View only",IDC_VIEW_ONLY_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,221,40,46,10
+    CONTROL         "VisualPointer",IDC_VISUAL_POINTER_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,221,51,57,10
+    GROUPBOX        "Encoding",IDC_ENCODING_STATIC,200,80,62,109,BS_FLAT
+    CONTROL         "ZRLE",IDC_ZRLE_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT | WS_GROUP,208,90,32,10
+    CONTROL         "Zlib (+xor)",IDC_ZLIBXOR_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,208,100,50,10
+    CONTROL         "ZlibHex",IDC_ZLIBHEX_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,208,111,39,10
+    CONTROL         "Hextile",IDC_HEXTILE_RADIO2,"Button",BS_AUTORADIOBUTTON | BS_FLAT,208,122,38,10
+    CONTROL         "RRE",IDC_RRE_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,208,132,29,10
+    CONTROL         "CoRRE",IDC_CoRRE_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,208,143,38,10
+    CONTROL         "Raw",IDC_RAW_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,208,154,30,10
+    CONTROL         "Ultra",IDC_Ultra_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,208,165,31,10
+    CONTROL         "Tight",IDC_TIGHT_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT | WS_GROUP,208,175,32,10
+    GROUPBOX        "Colors",IDC_COLORS_STATIC,273,80,88,109,BS_FLAT
+    CONTROL         "Full Colors",IDC_FULL_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT | WS_GROUP,282,90,49,10
+    CONTROL         "256 Colors",IDC_256CLR_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,282,100,50,10
+    CONTROL         "64 Colors",IDC_64CLR_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT,282,110,46,10
+    CONTROL         "8 Colors",IDC_8CLR_RADIO2,"Button",BS_AUTORADIOBUTTON | BS_FLAT,282,119,42,10
+    CONTROL         "8 Dark Colors",IDC_8DARKCLR_RADIO2,"Button",BS_AUTORADIOBUTTON | BS_FLAT,282,128,59,10
+    CONTROL         "4 Grey Colors",IDC_4GRAYCLR_RADIO2,"Button",BS_AUTORADIOBUTTON | BS_FLAT,282,138,59,10
+    CONTROL         "Black & White",IDC_BWCLR_RADIO,"Button",BS_AUTORADIOBUTTON | BS_FLAT | WS_GROUP,282,148,55,10
+    CONTROL         "Use CopyRect encoding",IDC_COPYRECT_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,202,194,92,10
+    CONTROL         "Use Cache encoding",IDC_CACHEENC_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,202,206,81,10
+    CONTROL         "Use Zip/Tight Compression :",IDC_ZIPTIGHT_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,202,217,105,10
+    CONTROL         "Jpeg (Tight) - Quality :",IDC_JPEGQ_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,202,228,89,10
+    EDITTEXT        IDC_ZIPCOMPRESSION_EDIT,307,212,13,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JPEGQ_EDIT,307,228,13,12,ES_AUTOHSCROLL
+    CONTROL         "Auto detect settings",IDC_AUTODETECT_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,201,66,81,10
+    GROUPBOX        "Create from shadow stream",IDC_STATIC,4,97,181,30,BS_FLAT
+    GROUPBOX        "Stream fabric",IDC_STATIC,4,134,181,89,BS_FLAT
+    EDITTEXT        IDC_EDIT_SOURCE_PEER,56,144,123,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DEST_PEER,56,164,123,15,ES_AUTOHSCROLL
+    LTEXT           "Source peer",IDC_STATIC,9,147,40,9
+    LTEXT           "Dest. host",IDC_STATIC,9,54,40,9
+    PUSHBUTTON      "Connect",IDC_BUTTON_CONNECT2,117,204,62,15,BS_FLAT
+    CONTROL         "Capture Layered",IDC_LAYEREDCAPTURE_CHECK,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,290,40,70,10
+    LTEXT           "Session Id",IDC_STATIC,9,188,39,9
+    EDITTEXT        IDC_EDIT_SESSION_ID,56,185,123,15,ES_AUTOHSCROLL
+END
+
+IDD_NET_SETTINGS DIALOGEX 0, 0, 220, 135
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Network settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,110,114,50,14,BS_FLAT
+    PUSHBUTTON      "Cancel",IDCANCEL,163,114,50,14,BS_FLAT
+    EDITTEXT        IDC_RELAY_EDIT,73,7,140,14,ES_AUTOHSCROLL
+    LTEXT           "Relay server host",IDC_STATIC,9,9,58,8
+    LTEXT           "User Id",IDC_STATIC,43,26,24,8
+    EDITTEXT        IDC_USERID_EDIT,73,24,140,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD_EDIT,73,41,140,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Password",IDC_STATIC,35,44,32,8
+    LTEXT           "Stun server port",IDC_STATIC,13,60,54,8
+    EDITTEXT        IDC_STUNPORT_EDIT,73,58,62,14,ES_AUTOHSCROLL
+    LTEXT           "Relay server port",IDC_STATIC,10,76,57,8
+    EDITTEXT        IDC_RELAYPORT_EDIT,73,75,62,14,ES_AUTOHSCROLL
+    LTEXT           "IM stub svr port",IDC_STATIC,15,93,52,8
+    EDITTEXT        IDC_IMSTUBPORT_EDIT,73,92,62,14,ES_AUTOHSCROLL
+END
+
+IDD_PROGRESS_DLG DIALOGEX 0, 0, 300, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connection progress"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,243,34,50,14,BS_FLAT
+    LTEXT           "Start connectings...",IDC_CAPTION_STATIC,7,7,286,8
+    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",0x1,7,19,286,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ADD_VIEWER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 361
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 259
+    END
+
+    IDD_NET_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_PROGRESS_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\RCTest2.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\RCTest2.ico"
+#endif    // Ukrainian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_RCTEST2_DIALOG DIALOGEX 0, 0, 383, 255
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "RCTest2"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Add client",IDC_ADD_CLIENT_BTN,284,78,90,15,BS_FLAT
+    PUSHBUTTON      "Add viewer",IDC_ADD_VIEWER_BTN,11,4,75,34,BS_FLAT
+    GROUPBOX        "CRCHost interface",IDC_STATIC,95,0,286,152,BS_FLAT
+    GROUPBOX        "Connected clients",IDC_STATIC,95,12,180,140,BS_FLAT,WS_EX_RIGHT
+    LISTBOX         IDC_CLIENTS_LIST,96,20,178,131,LBS_NOINTEGRALHEIGHT | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Kill client",IDC_KILL_CLIENT_BTN,283,15,88,15,BS_FLAT
+    CONTROL         "View only",IDC_VIEW_ONLY,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,284,54,46,10
+    CONTROL         "Visual pointer",IDC_VISUAL_POINTER,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,284,64,59,10
+    CONTROL         "Protect this window",IDC_PROTECT_WINDOW,"Button",BS_AUTOCHECKBOX | BS_FLAT | WS_TABSTOP,284,114,79,10
+    GROUPBOX        "",IDC_STATIC,2,154,379,99,BS_FLAT
+    LISTBOX         IDC_LOG_LIST,3,158,377,93,LBS_NOINTEGRALHEIGHT | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Clear log",IDC_CLEAR_LOG_BTN,11,80,75,34,BS_FLAT
+    PUSHBUTTON      "Set shadow stream",IDC_SET_SHADOW_STREAM_BTN,284,95,90,15,BS_FLAT
+    CONTROL         "Auto accept clients on 5900 port",IDC_AUTO_ACCEPT_CHECK,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | BS_FLAT | WS_TABSTOP,281,127,77,15,WS_EX_RIGHT
+    PUSHBUTTON      "Netrowk settings",IDC_NETSETTINGS_BTN,11,42,75,34,BS_FLAT
+    PUSHBUTTON      "Send garbage",IDC_SEND_GARBAGE_BTN,283,33,88,15,BS_FLAT
+    PUSHBUTTON      "Run Faked Chat",IDC_CHAT_EMULATOR_BTN,11,118,75,34,BS_FLAT
+END
+
+IDD_ADD_CLIENT_DIALOG DIALOGEX 0, 0, 375, 130
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add client to CRCHost"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,320,108,53,14,BS_FLAT
+    GROUPBOX        "Direct network stream",IDC_STATIC,3,18,181,85,BS_FLAT
+    EDITTEXT        IDC_EDIT_IP,56,33,123,15,ES_AUTOHSCROLL
+    LTEXT           "Dest. host",IDC_STATIC,8,36,40,9
+    EDITTEXT        IDC_EDIT_DEST_PORT,56,53,57,15,ES_AUTOHSCROLL
+    LTEXT           "Dest. port",IDC_STATIC,8,55,39,9
+    PUSHBUTTON      "Connect",IDC_BUTTON_CONNECT,118,53,62,15,BS_FLAT
+    EDITTEXT        IDC_EDIT_LOCAL_PORT,56,72,57,15,ES_AUTOHSCROLL
+    LTEXT           "Local port",IDC_STATIC,9,76,37,9
+    LTEXT           "Network stream",IDC_STATIC,7,6,76,9
+    PUSHBUTTON      "Set shadow stream",IDC_BUTTON_SHADOW_STREAM,3,108,84,15,BS_FLAT
+    LTEXT           "Dest. peer",IDC_STATIC,198,47,39,9
+    GROUPBOX        "Stream fabric",IDC_STATIC,192,17,181,85,BS_FLAT
+    EDITTEXT        IDC_EDIT_SOURCE_PEER,244,26,123,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DEST_PEER,244,47,123,15,ES_AUTOHSCROLL
+    LTEXT           "Source peer",IDC_STATIC,198,30,40,9
+    PUSHBUTTON      "Connect",IDC_BUTTON_CONNECT2,302,85,62,15,BS_FLAT
+    PUSHBUTTON      "Reset server",IDC_BUTTON_RESET_SERVER,198,85,62,15,BS_FLAT
+    LTEXT           "Session Id",IDC_STATIC,198,69,39,9
+    EDITTEXT        IDC_EDIT_SESSION_ID,243,66,123,15,ES_AUTOHSCROLL
+END
+
+IDD_VIEWER_DIALOG DIALOGEX 0, 0, 316, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Viewer"
+MENU IDR_VIEWER_MENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_RCTEST2_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 381
+        BOTTOMMARGIN, 253
+    END
+
+    IDD_ADD_CLIENT_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 373
+        BOTTOMMARGIN, 127
+    END
+
+    IDD_VIEWER_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 315
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 216
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_VIEWER_MENU MENU 
+BEGIN
+    POPUP "Commands"
+    BEGIN
+        MENUITEM "Start",                       ID_COMMANDS_START
+        MENUITEM "Stop",                        ID_COMMANDS_STOP
+        MENUITEM "Send Ctrl+Alt+Del",           ID_COMMANDS_SENDCTRL
+        MENUITEM "Send garbage into stream",    ID_COMMANDS_SENDGARBAGEINTOSTREAM
+    END
+    POPUP "Options"
+    BEGIN
+        MENUITEM "SetShadowStream",             ID_OPTIONS_SETSHADOWSTREAM
+        MENUITEM "View only",                   ID_OPTIONS_VIEWONLY
+        MENUITEM "Visual pointer",              ID_OPTIONS_VISUALPOINTER
+        POPUP "Zoom"
+        BEGIN
+            MENUITEM "Static mode",                 ID_OPTIONS_SCROLLMODE
+            MENUITEM "Fullscreen mode",             ID_OPTIONS_FULLSCREENMODE
+            MENUITEM "Stretching-mode",             ID_OPTIONS_SCALEMODE
+            MENUITEM "Static-mode fit size",        ID_ZOOM_STRETCHING
+        END
+    END
+    POPUP "Playback"
+    BEGIN
+        MENUITEM "Start",                       ID_REPLAY_START
+        MENUITEM "Stop",                        ID_REPLAY_STOP
+        MENUITEM "Pause",                       ID_REPLAY_PAUSE
+        POPUP "Fast forward"
+        BEGIN
+            MENUITEM "x1",                          ID_FASTFORWARD_X1
+            MENUITEM "x2",                          ID_FASTFORWARD_X2
+            MENUITEM "x4",                          ID_FASTFORWARD_X4
+            MENUITEM "x8",                          ID_FASTFORWARD_X8
+            MENUITEM "x20",                         ID_FASTFORWARD_X20
+            MENUITEM "Fastest",                     ID_FASTFORWARD_FASTEST
+        END
+        POPUP "Fast backward", GRAYED
+        BEGIN
+            MENUITEM "x1",                          ID_FASTBACKWARD_1X
+            MENUITEM "x2",                          ID_FASTBACKWARD_2X
+            MENUITEM "x4",                          ID_FASTBACKWARD_X3
+            MENUITEM "x8",                          ID_FASTBACKWARD_X
+            MENUITEM "x20",                         ID_FASTBACKWARD_X20
+        END
+    END
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\RCTest2.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

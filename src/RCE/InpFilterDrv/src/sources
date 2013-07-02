@@ -1,0 +1,18 @@
+TARGETNAME=ssinput
+TARGETTYPE=DRIVER
+TARGETPATH=..\out\bin\$(CONFIGURATION)
+
+SOURCES=adddevice.c \
+	unload.c \
+	skip.c \
+	read.c \
+	complete.c \
+	control.c \
+	clear.c \
+	create.c \
+	close.c \
+	startio.c \
+	internalIOctl.c \
+	power.c \
+	inputdriver.c
+

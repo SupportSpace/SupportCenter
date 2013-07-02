@@ -1,0 +1,300 @@
+<html>
+	<head>
+        <script language='Javascript' type='text/javascript' src='js/prototype.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/consts.js'></script>
+        <script language='Javascript' type='text/javascript' src='js/S2Date.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/Customer.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/CallItem.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/index.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/interface.js'></script>
+		<script language='Javascript' type='text/javascript' src='js/callback.js'></script>
+
+		<link rel="stylesheet" type="text/css" href="css/global.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="css/settings.css"/>
+	
+        <script>
+            var g_ConnectionHelpLink='http://www.supportspace.com/support/expertHelp.s2#desktopsharing';
+        </script>
+	</head>
+
+	<body onload="MsngerBodyOnLoad();" onclick="onBodyClicked()" style='cursor:default' scrolling='auto' border='0' topmargin='0' leftmargin='0' marginwidth='0' marginheight='0'>
+		<input type="hidden" id="eCbkEventsHandler" sEvent='' iCallUID='' iCustomerUID='' sFlagStatus='' iSec='' iReplyUID='' sCustomReply='' sCalls=''
+		bPasswordChanged=false cOnIncomingCallsShowTrayMessage='' cAutomaticallyRun='' cOpenMainWindowOnWindowsStartUp='' cShowAway='' sShowAway=''
+		cHandleCallsDisplayBusy='' sHandleCallsDisplayBusy='' cOnIncomingCallsShowTrayMessage='' cOnIncomingCallsAnimateTrayIcon='' sLink=''
+		cPromptOnItemsUpdate='' cPromptAboutSnoozingItemsOnLogout='' cPlaySoundUponIncomingCall='' cPlaySoundUponConnectingToCustomer='' sDisplayItemsAtTime=''/>
+
+		<!--div id="debug" style="background-color:#EEEEEE;position:absolute;left:250px;width:250px;height:400px;"></div-->
+        <div id="CMWindow">
+            <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td id="CMWindowTL"></td>
+                        <td id="CMWindowT">
+                			<div id="CMHeaderPanel">
+                				<div id="CMHeaderPanel_1">
+                				    <div id="CMSupporterBar" style="display:none">
+                        			    <div id="CMSupporterStatus" onclick="openMenuStatuses()">
+                        				    <img src="img/btn_status_menu_open_12x20.gif" alt=""/><img src="img/btn_status_offline_18x20.gif" alt=""/>
+                        			    </div>
+                        			    <div id="CMSupporterName">Noam</div>
+                				    </div>
+                                    <div id="CMLoginTitle">Support Center</div>
+                                </div>
+                			</div>
+                        </td>
+                        <td id="CMWindowTR">
+                            <div id="CMWindowBtns">
+                				<div id="CMWindowSettingsBtn" class="dWindowButton" onclick="CALLBACKS_Messenger('SettingsApp')">
+                				    <img src="img/btn_open_regular_15x14.gif" onmouseover="this.src='img/btn_open_mouse_over_15x14.gif'" onmousedown="this.src='img/btn_open_press_15x14.gif'" onmouseout="this.src='img/btn_open_regular_15x14.gif'" onmouseup="this.src='img/btn_open_regular_15x14.gif'">
+                                </div>
+                				<div id="CMWindowMinimizeBtn" class="dWindowButton" onclick="CALLBACKS_Messenger('MinimizeApp')">
+                				    <img src="img/btn_minimize_regular_15x14.gif" onmouseover="this.src='img/btn_minimize_mouse_over_15x14.gif'" onmousedown="this.src='img/btn_minimize_press_15x14.gif'" onmouseout="this.src='img/btn_minimize_regular_15x14.gif'" onmouseup="this.src='img/btn_minimize_regular_15x14.gif'">
+                                </div>
+                				<div id="CMWindowCloseBtn" class="dWindowButton" onclick="CALLBACKS_Messenger('CloseApp')">
+                				    <img src="img/btn_close_regular_15x14.gif" onmouseover="this.src='img/btn_close_mouse_over_15x14.gif'" onmousedown="this.src='img/btn_close_press_15x14.gif'" onmouseout="this.src='img/btn_close_regular_15x14.gif'" onmouseup="this.src='img/btn_close_regular_15x14.gif'">
+                                </div>
+                			</div>
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr height="100%">
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+                  	<tr>
+                     	<td class="dFrameLeftBorder"></td>
+                    	<td>
+    						<div id="CMPanel1">
+    						    <div id="CMLoginPanel">
+    						        <div id="CMLoginLogo"></div>
+                                    <div id="CMLoginForm">
+                                        <table border="0" cellpadding="0" cellspacing="5">
+                                            <tr>
+                                                <td width="70">Email:</td>
+                                                <td><input type="text" id="loginEmail" value="" onKeyPress="checkEnterAndStartLogin(event)"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Password:</td>
+                                                <td><input type="password" id="loginPwd" name="loginPwd" onKeyPress="checkEnterAndStartLogin(event)" onChange="gPasswordChanged=true;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td><input  type="checkbox" id="loginRememberMe" name="loginRememberMe" style="margin-left:-3px">&nbsp;Remember me</td>
+                                            </tr>
+                                            <!--tr>
+                                                <td>Login status:</td>
+                                                <td><select id="loginStatus" name="loginStatus"><option>Online</option><option>Away</option><option>Busy</option></select></td>
+                                            </tr-->
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <div style="float:right"><a class="button" id="startBtn" title="Sign in" href="#" onclick="javascript:this.blur();OnLoginStartClicked(this);" onmouseout="this.blur()"><span>&nbsp;Start&nbsp;</span></a></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+    						    </div>
+    						    <!--div id="CMInboxPanel" style="display:none">
+    						        <div id="CMInboxHeader">
+        								<div id="CMInboxHeader_1">
+        									<div id="CMExpandInbox" onclick="OnExpandInboxClicked()"><img src="img/arrow_tab_panel_right_regular_19x19.gif" alt=""></div>
+        									<div ID="CMInboxTitle">Inbox&nbsp;(<span id="CMInboxNumber">0</span>)</div>
+        									<div id="CMInboxFilter">All&nbsp;<img align="absmiddle" src="img/arrow_down_grey_9x6.gif" alt=""/></div>
+        								</div>
+        							</div>
+        							<div id="CMInboxContent" >
+        								<div id="CMCallsListView" ></div>
+        								<div id="CMPbInfoView" style="display:none"></div>
+        								<div id="CMCustDetailsView" style="display:none"></div>
+        								<div id="CMFlagsView" style="display:none"></div>
+        								<div id="CMForwardView" style="display:none"></div>
+        								<div id="CMReplyView" style="display:none"></div>
+        								<div id="CMSnoozeView" style="display:none"></div>
+        							</div>
+    						    </div-->
+                                <div id="CMSettingsPanel" style="display:none">
+                                    <form name="CMSettingsForm">
+                                        <div style="clear:both"></div>
+                                        <div class="CMSettingsTitle">General</div>
+                                        <div style="clear:both">
+                                            <INPUT type="checkbox" checked id="cAutomaticallyRun" >
+                                            <div style="float:left;margin-top:3px">Automatically run Support Center when I log into Windows</div>
+                                        </div>
+                                        <!--div><INPUT type="checkbox" checked ID="cOpenMainWindowOnWindowsStartUp" >Open Support Center main window on Windows startup</div-->
+                                        
+                                        <div style="clear:both"></div>
+                                        <div class="CMSettingsTitle">Status</div>
+
+                                        <div style="clear:both">
+                                            <div style="float:left">Appear offline:</div>
+                                        </div>
+
+                                        <div style="clear:both">
+                                            <INPUT type="checkbox" checked id="cShowAway" >
+                                            <div style="float:left">After <INPUT type="text" id="sShowAway" onKeyUp="CheckParamShowAway(sShowAway);" value='10'> minute(s) of being inactive</div>
+                                        </div>
+
+                                        <div style="clear:both">
+                                            <INPUT type="checkbox" checked id="cScreenSaverIsOn" >
+                                            <div style="float:left;;margin-top:3px">When the screen saver is on</div>
+                                        </div> 
+                                       
+                                        <div style="clear:both"></div>
+                                        <div class="CMSettingsTitle">Notifications</div>
+                                        <!--div><INPUT type="checkbox" checked ID="cOnIncomingCallsShowTrayMessage" >On incoming calls, show tray message</div-->
+                                        <div style="clear:both">
+                                            <INPUT type="checkbox" checked id="cOnIncomingCallsAnimateTrayIcon" >
+                                            <div style="float:left;;margin-top:3px">On incoming calls, animate tray icon</div>
+                                        </div> 
+                                        <div style="clear:both">
+                                            <INPUT type="checkbox" checked ID="cPromptOnItemsOnLogout" >
+                                            <div style="float:left;margin-top:3px">Alert on open calls if I logout</div>
+                                        </div>
+                                        <!--div><INPUT type="checkbox" checked ID="cPromptAboutSnoozingItemsOnLogout" >Alert on snoozed items if I logout</div-->
+                                        <div style="clear:both">
+                                            <INPUT type="checkbox" checked id="cPlaySoundUponIncomingCall" >
+                                            <div style="float:left;margin-top:3px">Play sound upon incoming call</div>
+                                        </div>
+                                        <div style="clear:both">
+                                            <INPUT type="checkbox" checked id="cPlaySoundUponConnectingToCustomer" >
+                                            <div style="float:left;margin-top:3px">Play sound upon connecting to customer (Start)</div>
+                                        </div>
+                                        <!--div class="CMSettingsTitle">Display</div>
+                                        <div><INPUT type="checkbox" checked id="cDisplayItemsAtTime" >Inbox: Display <INPUT type="text" id="sDisplayItemsAtTime" value='20'> items at a time</div>
+                                        <div><INPUT type="checkbox" checked id="cWindowOnTop" >Window on top</div-->
+
+										<div id="HideConnection" style="display:none"> <!--div> todo remove this and all related later</div-->
+											<div style="clear:both"></div>
+											<div class="CMSettingsTitle">
+												<div style="float:left">Connection</div>
+												<div id="CMSettingsConnectionHelp" class="CMSettingsLink" onclick="CALLBACK_OpenLink(g_ConnectionHelpLink)">
+													<img src="img/help_icon.gif" align="absmiddle" alt=""/>&nbsp;<span>Help</span>
+												</div>
+											</div>
+											<div style="clear:both">
+												<INPUT type="checkbox" id="cPortOpened" checked>
+												<div style="float:left">TCP port: <INPUT type="text" id="sPortOpened" onKeyUp="CheckParamPortOpened(sPortOpened);" value='5869'></div>
+												<div style="float:right;margin-top:3px">Default Port: <span id="sDefaultPortOpened"></span></div>
+											</div>
+											<div style="clear:both">
+												<INPUT type="checkbox" id="cPortAutoconfigure" >
+												<div style="float:left;margin-top:3px">Autoconfigure TCP port using UPnP</div>
+											</div>
+											<div style="clear:both">
+												<div id="CMSettingsConnectionTest" class="CMSettingsLink" onclick="setConnectionTestStateUI('testing');">
+													<img src="img/test_test_icon.gif" align="absmiddle" alt=""/>&nbsp;<span>Test</span>
+												</div>
+											</div>
+										</div>
+                          
+                                        <div style="clear:both"></div>
+                                        <div style="width:100%;margin:10px 7px 0 7px;border-top:1px solid #999999;"></div>
+                                        <div style="float:right;margin-right:6px;">
+                                            <a class="button" href="#" onclick="this.blur();SettingsClose();" onmouseout="this.blur()"><span>Cancel</span></a>
+                                            <a class="button" href="#" onclick="this.blur();SettingsOk();" onmouseout="this.blur()"><span>&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;</span></a>
+                                        </div>
+                                          
+                                    </form>
+                                </div>
+                                <div id="CMAboutPanel" style="display:none">
+                                    <div id="CMAboutPanelVersion">
+                                        <div style="font-weight:bold;">SupportSpace<br/>Support Center</div>
+                                        <div>Version <span id="dCMVersion">1.0.0.0</span></div>
+                                    </div>
+                                    <div id="CMAboutPanelRights">Copyright © 2006-2011 SupportSpace Ltd.<br/>All Rights Reserved.</div>
+                                    
+                                    <div id="CMAboutPanelVisit">Visit <span onclick="CALLBACK_OpenLink('http://www.supportspace.com')" style="color:#000000;text-decoration:none;font-weight:bold;cursor:pointer;">www.supportspace.com</span> for more details.</div>
+                                    <div style="float:right;margin:6px 6px 0 0;"><a class="button" href="#" onclick="this.blur();CALLBACK_CloseMessenger();" onmouseout="this.blur()"><span>&nbsp;&nbsp;OK&nbsp;&nbsp;</span></a></div>
+                                </div>
+    						</div>
+    
+    					</td>
+    					<td class="dFrameRightBorder"></td>
+    				</tr>
+    				</table>
+                </td>			
+            </tr>
+            <tr id="trFooter">
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0"  width="100%">
+               		<tr>
+                        <td class="dFrameTopBotLeftBorder"></td>
+                        <td class="dFrameTopBotCenterBorder"></td>
+                        <td class="dFrameTopBotRightBorder"></td>
+                  	</tr>
+                    <tr>
+                     	<td class="dFrameLeftBorder"></td>
+                    		<td>
+                				<div id="CMPanel2">
+                				    <div id="CMLoginFooter" >
+                				        <div id="CMLoginFooterStart">
+                				            <div id="CMLoginFormError">&nbsp;</div>
+                				            <!--<div id="CMLoginFooterForgotPwd" onclick="alert('Forgot pwd')">Forgot password</div>-->
+                                            <!--<div id="CMLoginFooterCreateAcount" onclick="alert('New Account')">Create new account</div>-->
+                                        </div>
+                                        <div id="CMLoginFooterConnecting" style="display:none">
+                    				        <img align="absmiddle" src="img/btn_status_menu_away_14x14.gif" alt=""/>
+                                            <img align="absmiddle" src="img/btn_status_menu_away_14x14.gif" alt=""/>
+                                            <img align="absmiddle" src="img/btn_status_menu_away_14x14.gif" alt=""/>
+                                            <img align="absmiddle" src="img/btn_status_menu_away_14x14.gif" alt=""/>
+                                            <img align="absmiddle" src="img/btn_status_menu_away_14x14.gif" alt=""/>
+                                            &nbsp;&nbsp;&nbsp;Starting...
+                                        </div>
+                				    </div>
+                					<div id="CMInSession" style="display:none">
+          								<div id="CMInSessionHeader">
+          								    <div id="CMInSessionHeader_1">
+            									<div id="CMExpandInSession" onclick="OnExpandInSessionClicked()"><img src="img/arrow_tab_panel_right_regular_19x19.gif" alt=""></div>
+            									<div ID="CMInSessionTitle">In Session<span id="CMInSessionNumber">&nbsp;(2)</span></div>
+            									<div id="CMInSessionFilter">All&nbsp;<img align="absmiddle" src="img/arrow_down_grey_9x6.gif" alt=""/></div>
+                                            </div>
+        								</div>
+                                        
+                                        <div id="CMInSessionContent" style="display:none">
+                                            bla bla
+                                        </div>
+                                        
+                                        <div id="CMStatusBar">
+                                            <div id="CMStatusBarPattern"><img src="img/pattern_8x7.gif" alt=""/></div>
+                                            <div id="CMStatusBarText">No missed calls</div>
+                                            <div id="CMStatusBarResize"><img src="img/corner_8x7.gif" alt=""/></div>
+                                        </div>
+                					</div>
+                				</div>
+                            </td>
+    					<td class="dFrameRightBorder"></td>
+    				</tr>
+    				</table>
+			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+        			    <td class="dFrameBotLeftBorder"></td>
+        			    <td class="dFrameBotCenterBorder">&nbsp;</td>
+        			    <td class="dFrameBotRightBorder"></td>
+                    </tr>
+                    </table>
+                </td>
+			</tr>	
+            </table>                
+            <div id="CMSupporterStatusMenu" style="display:none;">
+                <div class="dStatusChoice" onclick="changeStatus('online')" onmouseover="$(this).addClassName('dStatusChoiceOver')" onmouseout="$(this).removeClassName('dStatusChoiceOver')">
+                    <img align="absmiddle" src="img/btn_status_menu_online_14x14.gif">&nbsp;Online
+                </div>
+                <div class="dStatusChoice" onclick="changeStatus('busy')" onmouseover="$(this).addClassName('dStatusChoiceOver')" onmouseout="$(this).removeClassName('dStatusChoiceOver')">
+                    <img align="absmiddle" src="img/btn_status_menu_busy_14x14.gif">&nbsp;Busy
+                </div>
+                <div class="dStatusChoice" onclick="changeStatus('offline')" onmouseover="$(this).addClassName('dStatusChoiceOver')" onmouseout="$(this).removeClassName('dStatusChoiceOver')">
+                    <img align="absmiddle" src="img/btn_status_menu_offline_14x14.gif">&nbsp;Appear Offline
+                </div>
+            </div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <!--media files-->
+  <Media Id="100" Cabinet="SupMes.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>
+  <?ifdef dynamic?>
+  <Media Id="3" Cabinet="MFC.cab" EmbedCab="yes" CompressionLevel="$(var.compressLevel)"/>
+  <?endif?>
+
+	<!-- stop SupportMessenger action. start SupportMessenger.exe with command line /uninstall -->
+	<CustomAction Id="stopSupportMessenger" Script="jscript">
+		var shell=new ActiveXObject("WScript.Shell");
+		var messenger=Session.Property("INSTALLLOCATION");
+		messenger="\""+messenger+"SupportCenter.exe\" /uninstall";
+		var record=Session.Installer.CreateRecord(2);
+		record.StringData(1)="Start: "+messenger;
+		try
+		{
+			var res=shell.run(messenger,10,true);
+			record.StringData(2)="return="+res;
+		}
+		catch(e)
+		{
+			record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+		}
+		Session.Message(0x04000000,record);
+	</CustomAction>
+	<!-- start SupportMessenger action -->
+	<CustomAction Id="startSupportMessenger" Script="jscript">
+		var shell=new ActiveXObject("WScript.Shell");
+		var messenger=Session.Property("INSTALLLOCATION");
+		messenger="\""+messenger+"SupportCenter.exe\"";
+		var record=Session.Installer.CreateRecord(2);
+		record.StringData(1)="Start: "+messenger;
+		try
+		{
+			var res=shell.run(messenger,10,false);
+			record.StringData(2)="return="+res;
+		}
+		catch(e)
+		{
+			record.StringData(2)="exception: "+e.name+" HIWORD=0x"+((e.number>>16)&amp;0xFFFF).toString(16)+" LOWORD=0x"+(e.number&amp;0xFFFF).toString(16)+" "+e.message+" "+e.description;
+		}
+		Session.Message(0x04000000,record);
+	</CustomAction>
+	
+  <!-- creation folder for shortcut in programs menu-->
+  <DirectoryRef Id="ProgramMenuFolder">
+    <Directory Id="SupportMessengerProgramMenuFolder" Name="SupportSpace Tools" ShortName="SSTools"/>
+  </DirectoryRef>
+
+  <!-- SupportMessanger files is installed in same folder that SupportSpace tools -->
+  <DirectoryRef Id="INSTALLLOCATION">
+    <!-- cSupportMessanger component is installed in INSTALLOCATION folder which define in RCComponents.wxs-->
+    <Component Id="cSupportMessenger" Guid="B07E88A8-1E26-48f9-BE92-295720580A58">
+      <File Id="SupportCenter.exe" Name="SupportCenter.exe" ShortName="SupCntr.exe" DiskId="100" Source="$(env.ROOTS)\console_$(var.Configuration)\bin\"/>
+      <File Id="config.ini" Name="config.ini"	DiskId="100" Source="$(env.ROOTS)\console_$(var.Configuration)\bin\"/>
+      <!-- can make sepparate component -->
+      <?ifdef dynamic?>
+      <File Id="Communicator.dll" Name="Communicator.dll" ShortName="Commctor.dll" DiskId="100" Source="$(env.ROOTS)\console_$(var.Configuration)\bin\"/>
+      <?endif?>
+      <RegistryValue Root="HKCU"  Key="SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION" Name="SupportCenter.exe" Type="integer"
+                     Value="8000"/>
+      <!--<RegistryValue Root="HKCU"  Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Run" Name="SupportCenter" Type="string"
+                     Value="[#SupportCenter.exe]  /autostart"/>-->
+      <!-- ico is retrieved from resource exe files. if it is not match, see to Icon WiX tag and Icon value of Shortcut tag.
+           Is the implementation made by We?-->
+      <Shortcut Id="ShortcutDesktopSupportMessenger" Directory="DesktopFolder" Name="Support Center" ShortName="SupCtr"
+                Target="[#SupportCenter.exe]" WorkingDirectory="INSTALLLOCATION"/>
+      <Shortcut Id="SortcutProgramSupportMessenger" Directory="SupportMessengerProgramMenuFolder" Name="Support Center" ShortName="SupCntr"
+                Target="[#SupportCenter.exe]" WorkingDirectory="INSTALLLOCATION"/>
+      <Shortcut Id="SortcutProgramUninstall" Directory="SupportMessengerProgramMenuFolder" Name="Support Center Uninstall" ShortName="SCUninst"
+                Target="[SystemFolder]\msiexec.exe" Arguments="/x [ProductCode]" WorkingDirectory="SystemFolder"/>
+		</Component>
+    <?ifdef dynamic?>
+    <!-- ATTENTION SupportMessenger.exe depend on mfc-->
+    <Component Id="cMFC" Guid="BDEF7912-BFCC-4d48-A281-CC522A6DD4E8">
+      <?if $(var.Configuration)="dynamic_debug"?>
+      <File Id="mfc80d.dll" Name="mfc80d.dll" DiskId="3" Source="$(env.VC80DPATH)\Microsoft.VC80.DebugMFC\"/>
+      <File Id="Microsoft.VC80.DebugMFC.manifest" Name="Microsoft.VC80.DebugMFC.manifest" DiskId="3" 
+            Source="$(env.VC80DPATH)\Microsoft.VC80.DebugMFC\"/>
+      <?elseif 	$(var.Configuration)="dynamic_release" ?>
+      <File Id="mfc80.dll" Name="mfc80.dll" DiskId="3" Source="$(env.VC80PATH)\Microsoft.VC80.MFC\"/>
+      <File Id="Microsoft.VC80.MFC.manifest" Name="Microsoft.VC80.MFC.manifest" DiskId="3" 
+            Source="$(env.VC80PATH)\Microsoft.VC80.MFC\"/>
+      <?endif?>
+    </Component>
+    <?endif?>
+  </DirectoryRef>
+  <Feature Id="SupportMessenger" Title="add title here" Level="1">
+    <ComponentRef Id="cSupportMessenger"/>
+    <?ifdef dynamic?>
+    <!-- cNWL component include (You unused) nwl.dll -->
+    <ComponentRef Id="cNWL"/>
+    <ComponentRef Id="cCRT"/>
+    <ComponentRef Id="cMFC"/>
+    <!-- <ComponentRef Id="cHelperService"/> In order to add HelperService to msi and install helper service just uncomment this-->
+    <?endif?>
+  </Feature>
+</Include>

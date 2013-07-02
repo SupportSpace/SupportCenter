@@ -1,0 +1,82 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.00.50727.762 (aa5c5dd5).
+//
+// d:\users\max\work\supportspace\clients\win32\shared\netlog\out\obj\static_debug\netloglib.tlh
+//
+// C++ source equivalent of Win32 type library D:\Users\Max\WORK\SupportSpace\roots\console_static_debug\bin\NetLogLib.dll
+// compiler-generated file created 10/30/07 at 18:07:26 - DO NOT EDIT!
+
+#pragma once
+#pragma pack(push, 8)
+
+#include <comdef.h>
+
+//
+// Forward references and typedefs
+//
+
+struct __declspec(uuid("5d282f46-a1b8-447b-97d4-8914cfe6ec40"))
+/* LIBID */ __NetLogLib;
+struct __declspec(uuid("e2df56f8-611d-45fe-a2f4-4a33e18c280a"))
+/* dispinterface */ _IComUDPListenerEvents;
+struct /* coclass */ CComUDPListener;
+struct __declspec(uuid("ac370f92-a9bf-4eaa-971c-3f28f770d67e"))
+/* dual interface */ IComUDPListener;
+
+//
+// Smart pointer typedef declarations
+//
+
+_COM_SMARTPTR_TYPEDEF(_IComUDPListenerEvents, __uuidof(_IComUDPListenerEvents));
+_COM_SMARTPTR_TYPEDEF(IComUDPListener, __uuidof(IComUDPListener));
+
+//
+// Type library items
+//
+
+struct __declspec(uuid("e2df56f8-611d-45fe-a2f4-4a33e18c280a"))
+_IComUDPListenerEvents : IDispatch
+{
+    //
+    // Wrapper methods for error-handling
+    //
+
+    // Methods:
+    HRESULT OnDatagramReceived (
+        _bstr_t addr,
+        long port );
+};
+
+struct __declspec(uuid("93abd1ab-cd4b-4e21-bf9b-5de265fd91aa"))
+CComUDPListener;
+    // [ default ] interface IComUDPListener
+    // [ default, source ] dispinterface _IComUDPListenerEvents
+
+struct __declspec(uuid("ac370f92-a9bf-4eaa-971c-3f28f770d67e"))
+IComUDPListener : IDispatch
+{
+    //
+    // Wrapper methods for error-handling
+    //
+
+    HRESULT Listen (
+        long port );
+    HRESULT AddWatch (
+        long pid );
+
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall raw_Listen (
+        /*[in]*/ long port ) = 0;
+      virtual HRESULT __stdcall raw_AddWatch (
+        /*[in]*/ long pid ) = 0;
+};
+
+//
+// Wrapper method implementations
+//
+
+#include "netloglib.tli"
+
+#pragma pack(pop)

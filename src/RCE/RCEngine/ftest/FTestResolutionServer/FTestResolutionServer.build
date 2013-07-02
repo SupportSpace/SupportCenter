@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+
+<project name="FTestResolutionServer" default="build_all">
+
+
+  <!-- Additional targers -->
+
+  <!-- Setup environment variables -->
+  <target name="setup_environment">
+    <property name="roots.dir" value="${environment::get-variable('ROOTS')}" />
+    <if test="${property::exists('configuration')}">
+      <setenv>
+        <variable name="CONFIGURATION" value="${configuration}" />
+      </setenv>
+    </if>
+    <if test="${not property::exists('configuration')}">
+      <property name="configuration" value="${environment::get-variable('CONFIGURATION')}" />
+    </if>
+    <property name="install.dir" value="${roots.dir}\console_${configuration}" />
+    <property name="public.dir" value="public" />
+    <property name="script.dir" value="script" />
+    <property name="public.dir" value="public" />
+    <property name="output.bin.dir" value="out\bin\${configuration}" />
+    <property name="output.obj.dir" value="out\obj\${configuration}" />
+    <property name="project.name" value="FTestResolutionServer" />
+    <property name="project.exclude" value="FTestResolutionServer_EXCLUDE_${configuration}" />
+    <property name="test.exclude" value="FTestResolutionServer_TEST_EXCLUDE_${configuration}" />
+    <property name="test.bin.path" value="TESTBINPATH_${configuration}" />
+    <if test="${not property::exists('failontesterror')}">
+      <property name="failontesterror" value="true" />
+    </if>
+  </target>
+
+  <!-- Removing public files and binary files from roots direcory -->
+  <target name="clean_installed" depends="setup_environment">
+    <delete file="${install.dir}\ftest\RCEngine\FTestResolutionServer.exe" if="${file::exists(install.dir+'\ftest\RCEngine\FTestResolutionServer.exe')}" />
+    <delete file="${install.dir}\ftest\RCEngine\FTestResolutionServer.pdb" if="${file::exists(install.dir+'\ftest\RCEngine\FTestResolutionServer.pdb')}" />
+  </target>
+
+  <!-- Removing intermediate files from output direcory -->
+  <target name="clean_intermediate" depends="setup_environment">
+    <delete dir="${output.bin.dir}" if="${directory::exists(output.bin.dir)}" />
+    <delete dir="${output.obj.dir}" if="${directory::exists(output.obj.dir)}" />
+  </target>
+
+  <!-- Copying public files to roots directory -->
+  <target name="copy_public" depends="setup_environment">
+    <mkdir dir="${install.dir}\ftest\RCEngine" />
+    <copy todir="${install.dir}\ftest\RCEngine" overwrite="true">
+      <fileset basedir="${script.dir}">
+        <include name="**\*.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Copying binary files from output directory to roots directory -->
+  <target name="copy_binaries" depends="setup_environment">
+    <!-- Copying dll, pdb files -->
+    <mkdir dir="${install.dir}\ftest\RCEngine" />
+    <copy todir="${install.dir}\ftest\RCEngine" overwrite="true">
+      <fileset basedir="${output.bin.dir}">
+        <include name="*.exe" />
+        <include name="*.pdb" />
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Building dependent projects -->
+  <target name="build_dependent" >
+    <nant target="${build.target}">
+      <buildfiles>
+        <include name="..\..\..\..\Shared\boost\boost.build"/>
+        <include name="..\..\..\..\Shared\AidLib\AidLib.build"/>
+        <include name="..\..\..\..\NetworkLayer\NWL\nwl.build"/>
+        <include name="..\..\RCEngine.build"/>
+        <include name="..\..\..\..\Shared\NetLog\NetLog.build"/>
+      </buildfiles>
+    </nant>
+  </target>
+
+  <!-- Building unit tests -->
+  <target name="build_utests" />
+
+  <!-- Building functional tests -->
+  <target name="build_ftests" />
+
+  <!-- Running unit and functional tests -->
+  <target name="run_tests" />
+
+
+  <!-- Main targers -->
+
+  <!-- Cleaning project -->
+  <target name="clean" depends="clean_installed, clean_intermediate" />
+
+  <!-- Installing project -->
+  <target name="install" depends="clean_installed, copy_public, copy_binaries" />
+
+  <!-- Building project and tests -->
+  <target name="build_all" depends="setup_environment" if="${not environment::variable-exists(project.exclude)}" >
+    <call target="clean_installed" />
+    <call target="copy_public" />
+    <property name="build.target" value="build_all" />
+    <call target="build_dependent" />
+    <call target="compile" />
+    <call target="copy_binaries" />
+    <setenv>
+      <variable name="${project.exclude}" value="1" />
+    </setenv>
+    <call target="build_utests" />
+    <call target="build_ftests" />
+  </target>
+
+  <!-- Building project -->
+  <target name="build" depends="setup_environment" if="${not environment::variable-exists(project.exclude)}" >
+    <call target="clean_installed" />
+    <call target="copy_public" />
+    <property name="build.target" value="build" />
+    <call target="build_dependent" />
+    <call target="compile" />
+    <call target="copy_binaries" />
+    <setenv>
+      <variable name="${project.exclude}" value="1" />
+    </setenv>
+  </target>
+
+  <!-- Building project without dependent projects -->
+  <target name="build_shallow" depends="clean_installed, copy_public, compile, copy_binaries" />
+
+  <!-- Compiling project -->
+  <target name="compile" depends="setup_environment">
+    <setenv>
+      <variable name="BUILDRCEFROMSCRIPT" value="1" />
+    </setenv>
+    <msbuild project = "src\FTestResolutionServer.vcproj" verbosity="Detailed" />
+  </target>
+
+
+
+  <!-- Targers for Visual Studio -->
+  <target name="prebuild" if="${not environment::variable-exists('BUILDRCEFROMSCRIPT')}">
+    <setenv>
+      <variable name="BUILDRCEFROMVS" value="1" />
+    </setenv>
+    <call target="clean_installed" />
+    <call target="copy_public" />
+  </target>
+  <target name="postbuild" if="${not environment::variable-exists('BUILDRCEFROMSCRIPT')}">
+    <call target="copy_binaries" />
+  </target>
+
+</project>

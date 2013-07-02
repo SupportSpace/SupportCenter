@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> RCUI ViewerOptions frame </TITLE>
+
+</HEAD>
+<script language="JavaScript">
+	/// active service currently bind with this frame
+	var service=null;
+	/// The method activate service object. The object set its state on the UI elements. The function can't invoke as separate function, it must invoke as method service object (for example: service.Activate(true); ).
+	/// @param flag bool parameter. if it's true - session activates, else session deactivetes.
+	function Activate(flag)
+	{	
+		// for CServiceRCViewerPlus
+		if(service.m_activeX==null)
+			service.Init();
+		if(flag)//Activate
+		{	
+			document.getElementById('srvDisplayMode').selectedIndex=service.m_displayMode;
+			document.getElementById('srvAccess').selectedIndex=service.m_access;
+			//+options
+			document.getElementById('srvColors').selectedIndex=service.m_options.colorDepth;
+			document.getElementById('srvEncoding').selectedIndex=service.m_options.encoding;
+			document.getElementById('srvuCompressLevel').checked=service.m_options.useCompressLevel;
+			document.getElementById('srvCompressLevel').value=service.m_options.compressLevel;
+			document.getElementById('srvuJpeg').checked=service.m_options.jpegCompress;
+			document.getElementById('srvJpeg').value=service.m_options.jpegQualityLevel;
+			
+			var f=service.m_activeX!=null;//viewer service started
+			document.getElementById('srvColors').disabled=f;
+			document.getElementById('srvEncoding').disabled=f;
+			document.getElementById('srvuCompressLevel').disabled=f;
+			document.getElementById('srvCompressLevel').disabled=f;
+			document.getElementById('srvuJpeg').disabled=f;
+			document.getElementById('srvJpeg').disabled=f;
+			
+			//recording
+			document.getElementById('srvRecord').value=service.m_recFileName;
+			if(service.m_activeX!=null&&service.m_state)
+			{	document.getElementById('srvRecordStart').disabled=service.m_recState;
+				document.getElementById('srvRecordStop').disabled=!service.m_recState;
+			}
+			else
+			{	document.getElementById('srvRecordStart').disabled=true;
+				document.getElementById('srvRecordStop').disabled=true;
+			}
+		}
+		else//Deactivate
+		{	
+			//document.getElementById('srvRecordStart').disabled=true;
+			//document.getElementById('srvRecordStop').disabled=true;
+		}
+	}
+	/// Set custom options by user control element
+	function SetOptions()
+	{	
+		service.m_useOptions=true;//user change options. jast befor next start viewer will set custom options
+		service.m_options.colorDepth=document.getElementById('srvColors').selectedIndex;
+		service.m_options.encoding=document.getElementById('srvEncoding').selectedIndex;
+		service.m_options.useCompressLevel=document.getElementById('srvuCompressLevel').checked;
+		
+		var LONG_MAX=2147483647;
+		if(document.getElementById('srvCompressLevel').value<=LONG_MAX&&document.getElementById('srvCompressLevel').value>=-LONG_MAX)
+			service.m_options.compressLevel=document.getElementById('srvCompressLevel').value;
+		else
+			document.getElementById('srvCompressLevel').value=service.m_options.compressLevel;
+		service.m_options.jpegCompress=document.getElementById('srvuJpeg').checked;
+		if(document.getElementById('srvJpeg').value<=LONG_MAX&&document.getElementById('srvJpeg').value>=-LONG_MAX)
+			service.m_options.jpegQualityLevel=document.getElementById('srvJpeg').value;
+		else
+			document.getElementById('srvJpeg').value=service.m_options.jpegQualityLevel;
+		
+	}
+</script>
+<BODY>
+	<span id="srViewerOptions" align="center"><!-- CServiceRCViewer pane -->
+		<table>
+			<tr>
+				<td>
+					Access:
+				</td>
+				<td>
+					<select id="srvAccess" style="width: 150px" onclick="service.SetAccessMode(document.getElementById('srvAccess').selectedIndex);">
+						<option id="0">View Only</option>
+						<option id="1">View Only + Visual Pointer</option>
+						<option id="2">Full Control</option>
+					</select>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Session Recording:
+				</td>
+				<td>
+					<input id="srvRecord"  type="text" value="untitled" style="width: 150px" onfocusout="service.m_recFileName=document.getElementById('srvRecord').value;">
+				</td>
+				<td>
+					<input id="srvRecordStart" type="button" value="Start"  onClick="service.SetSessionRecording(document.getElementById('srvRecord').value,true);">
+					<input id="srvRecordStop" type="button" value="Stop" onClick="service.SetSessionRecording(document.getElementById('srvRecord').value,false);">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					DisplayMode:
+				</td>
+				<td>
+					<select id="srvDisplayMode" style="width: 150px" onChange= "service.SetDisplayMode(document.getElementById('srvDisplayMode').selectedIndex);">
+						<option value="0">Scale mode</option>
+						<option value="1">Scroll mode</option>
+						<option value="2">Full screen</option>
+					</select>
+				</td>													
+				<td>
+					<input id="srvCaptureAlphaBlendViewer" type="checkbox" onclick="service.SetCaptureAlphaBlend(document.getElementById('srvCaptureAlphaBlendViewer').checked);">Capture alpha blend
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Colors:
+				</td>
+				<td>
+					<select id="srvColors" style="width: 150px" onChange= "SetOptions();">
+						<option value="0">full</option>
+						<option value="1">256</option>
+						<option value="2"> 64</option>
+						<option value="3">  8</option>
+						<option value="4">  8 grey</option>
+						<option value="5">  4</option>
+						<option value="6">  2 grey</option>
+					</select>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Encoding:
+				</td>
+				<td>
+					<select id="srvEncoding" style="width: 150px" onChange="SetOptions();">
+						<option value="0">ZRLE</option>
+						<option value="1">Zlib(+xor)</option>
+						<option value="2">ZlibHex</option>
+						<option value="3">Hextile</option>
+						<option value="4">RRE</option>
+						<option value="5">Raw</option>
+						<option value="6">Tight</option>
+					</select>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input id="srvuCompressLevel" type="checkbox" onclick="SetOptions();">Zip/Tight Compression	
+				</td>
+				<td>
+					<input id="srvCompressLevel" type="text" value=6 style="width: 150px" onfocusout="SetOptions();">
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input id="srvuJpeg" type="checkbox" onclick="SetOptions();">Jpeg(Tight) quality	
+				</td>
+				<td>
+					<input id="srvJpeg" type="text" value=6 style="width: 150px" onfocusout="SetOptions();">
+				</td>
+				<td>
+				</td>
+			</tr>
+		</table>
+	</span><!-- CServiceRCViewer pane -->
+</BODY>
+</HTML>
